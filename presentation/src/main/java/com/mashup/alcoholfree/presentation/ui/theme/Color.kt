@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.ui.theme
+package com.mashup.alcoholfree.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
