@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree
+package com.mashup.alcoholfree.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.mashup.alcoholfree.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
