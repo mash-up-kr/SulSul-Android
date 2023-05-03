@@ -6,14 +6,13 @@ plugins {
 }
 
 android {
-    namespace = AppConfig.presentationNamespace
-    compileSdk = AppConfig.compileSdk
+    namespace = AppConfig.PRESENTATION_NAME_SPACE
+    compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
-        minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
+        minSdk = AppConfig.MIN_SDK
 
-        testInstrumentationRunner = AppConfig.testRunner
+        testInstrumentationRunner = AppConfig.TEST_RUNNER
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -37,34 +36,34 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExt
+        kotlinCompilerExtensionVersion = AppConfig.KOTLIN_COMPILER_EXT
     }
 }
 
 dependencies {
 
-    implementation(AndroidX.coreKtx)
-    implementation(AndroidX.appCompat)
-    implementation(AndroidX.lifecycleRuntime)
-    implementation(Google.material)
+    implementation(Dependencies.AndroidX.CORE_KTX)
+    implementation(Dependencies.AndroidX.APP_COMPAT)
+    implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME)
+    implementation(Dependencies.AndroidX.MATERIAL)
 
     // compose
-    implementation(AndroidX.composeActivity)
-    implementation(AndroidX.composeUi)
-    implementation(AndroidX.composePreview)
-    implementation(AndroidX.composeMaterial)
+    implementation(Dependencies.Compose.COMPOSE_ACTIVITY)
+    implementation(Dependencies.Compose.COMPOSE_UI)
+    implementation(Dependencies.Compose.COMPOSE_PREVIEW)
+    implementation(Dependencies.Compose.COMPOSE_MATERIAL)
 
     // dagger hilt
-    implementation(Google.hiltAndroid)
-    kapt(Google.hiltCompiler)
+    implementation(Dependencies.Hilt.HILT_ANDROID)
+    kapt(Dependencies.Hilt.HILT_COMPILER)
 
-    testImplementation(UnitTest.junit)
-    androidTestImplementation(AndroidTest.androidJunit)
-    androidTestImplementation(AndroidTest.espressoCore)
+    testImplementation(Dependencies.UnitTest.JUNIT)
+    androidTestImplementation(Dependencies.AndroidTest.ANDROID_JUNIT)
+    androidTestImplementation(Dependencies.AndroidTest.ESPRESSO_CORE)
 
-    androidTestImplementation(AndroidTest.composeJunit)
-    debugImplementation(AndroidDebug.composeTooling)
-    debugImplementation(AndroidDebug.composeManifest)
+    androidTestImplementation(Dependencies.Compose.COMPOSE_JUNIT)
+    debugImplementation(Dependencies.Compose.COMPOSE_TOOLING)
+    debugImplementation(Dependencies.Compose.COMPOSE_MANITFEST)
 
     implementation(project(":domain"))
 }

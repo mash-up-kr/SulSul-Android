@@ -6,14 +6,13 @@ plugins {
 }
 
 android {
-    namespace = AppConfig.dataNamespace
-    compileSdk = AppConfig.compileSdk
+    namespace = AppConfig.DATA_NAME_SPACE
+    compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
-        minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
+        minSdk = AppConfig.MIN_SDK
 
-        testInstrumentationRunner = AppConfig.testRunner
+        testInstrumentationRunner = AppConfig.TEST_RUNNER
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -37,24 +36,24 @@ android {
 
 dependencies {
 
-    implementation(AndroidX.coreKtx)
-    implementation(AndroidX.lifecycleRuntime)
-    implementation(Google.material)
-    testImplementation(UnitTest.junit)
-    androidTestImplementation(AndroidTest.androidJunit)
-    androidTestImplementation(AndroidTest.espressoCore)
+    implementation(Dependencies.AndroidX.CORE_KTX)
+    implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME)
+    implementation(Dependencies.AndroidX.MATERIAL)
+    testImplementation(Dependencies.UnitTest.JUNIT)
+    androidTestImplementation(Dependencies.AndroidTest.ANDROID_JUNIT)
+    androidTestImplementation(Dependencies.AndroidTest.ESPRESSO_CORE)
 
     // dagger hilt
-    implementation(Google.hiltAndroid)
-    kapt(Google.hiltCompiler)
+    implementation(Dependencies.Hilt.HILT_ANDROID)
+    kapt(Dependencies.Hilt.HILT_COMPILER)
 
     // retrofit
-    implementation(Library.retrofit)
-    implementation(Library.retrofitGson)
+    implementation(Dependencies.Retrofit.RETROFIT)
+    implementation(Dependencies.Retrofit.CONVERTER_GSON)
 
     // okHttp
-    implementation(Library.okHttp)
-    implementation(Library.okHttpInterceptor)
+    implementation(Dependencies.OkHttp.OKHTTP)
+    implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
 
     implementation(project(":domain"))
 }

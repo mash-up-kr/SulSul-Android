@@ -1,10 +1,10 @@
 buildscript {
     dependencies {
-        classpath(Google.hiltGradle)
+        classpath(Dependencies.Hilt.HILT_GRADLE)
     }
 } // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id("com.android.application") version Version.gradle apply false
-    id("com.android.library") version Version.gradle apply false
-    id("org.jetbrains.kotlin.android") version Version.kotlin apply false
+    id("com.android.application") version Dependencies.Version.GRADLE apply false
+    id("com.android.library") version Dependencies.Version.GRADLE apply false
+    id("org.jetbrains.kotlin.android") version Dependencies.Version.KOTLIN apply false
 }

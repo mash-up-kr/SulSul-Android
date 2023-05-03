@@ -9,6 +9,6 @@ java {
 }
 
 dependencies {
-    implementation(Google.hiltCore)
-    kapt(Google.hiltCompiler)
+    implementation(Dependencies.Hilt.HILT_CORE)
+    kapt(Dependencies.Hilt.HILT_COMPILER)
 }

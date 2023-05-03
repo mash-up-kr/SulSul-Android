@@ -6,17 +6,17 @@ plugins {
 }
 
 android {
-    namespace = AppConfig.appNamespace
-    compileSdk = AppConfig.compileSdk
+    namespace = AppConfig.APP_NAME_SPACE
+    compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
-        applicationId = AppConfig.applicationId
-        minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
-        versionCode = AppConfig.appVersionCode
-        versionName = AppConfig.appVersionName
+        applicationId = AppConfig.APPLICATION_ID
+        minSdk = AppConfig.MIN_SDK
+        targetSdk = AppConfig.TARGET_SDK
+        versionCode = AppConfig.APP_VERSION_CODE
+        versionName = AppConfig.APP_VERSION_NAME
 
-        testInstrumentationRunner = AppConfig.testRunner
+        testInstrumentationRunner = AppConfig.TEST_RUNNER
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -48,15 +48,15 @@ android {
 
 dependencies {
 
-    implementation(AndroidX.coreKtx)
-    implementation(AndroidX.lifecycleRuntime)
-    testImplementation(UnitTest.junit)
-    androidTestImplementation(AndroidTest.androidJunit)
-    androidTestImplementation(AndroidTest.espressoCore)
+    implementation(Dependencies.AndroidX.CORE_KTX)
+    implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME)
+    testImplementation(Dependencies.UnitTest.JUNIT)
+    androidTestImplementation(Dependencies.AndroidTest.ANDROID_JUNIT)
+    androidTestImplementation(Dependencies.AndroidTest.ESPRESSO_CORE)
 
     // dagger hilt
-    implementation(Google.hiltAndroid)
-    kapt(Google.hiltCompiler)
+    implementation(Dependencies.Hilt.HILT_ANDROID)
+    kapt(Dependencies.Hilt.HILT_COMPILER)
 
     implementation(project(":presentation"))
     implementation(project(":domain"))
