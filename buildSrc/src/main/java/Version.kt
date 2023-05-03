@@ -1,89 +1,97 @@
-object Version {
-    const val kotlin = "1.8.10"
-    const val gradle = "7.4.0"
+object Dependencies {
+    object Version {
+        const val KOTLIN = "1.8.10"
+        const val GRADLE = "7.4.0"
+    }
 
-    const val lifeCycle = "2.6.1"
-    const val coreKtx = "1.7.0"
-    const val appCompat = "1.6.1"
-    const val material = "1.8.0"
+    object AndroidX {
+        private const val LIFECYCLE_VERSION = "2.6.1"
+        private const val CORE_KTX_VERSION = "1.7.0"
+        private const val APP_COMPAT_VERSION = "1.6.1"
+        private const val MATERIAL_VERSION = "1.8.0"
 
-    const val junit = "4.13.2"
-    const val junitTest = "1.1.5"
-    const val espressoCore = "3.5.1"
+        const val CORE_KTX = "androidx.core:core-ktx:$CORE_KTX_VERSION"
+        const val APP_COMPAT = "androidx.appcompat:appcompat:$APP_COMPAT_VERSION"
+        const val LIFECYCLE_RUNTIME =
+            "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
+        const val MATERIAL = "com.google.android.material:material:$MATERIAL_VERSION"
+    }
 
-    const val composeUi = "1.4.2"
-    const val composeActivity = "1.7.1"
+    object Retrofit {
+        private const val VERSION = "2.9.0"
 
-    const val hilt = "2.44.2"
+        const val RETROFIT = "com.squareup.retrofit2:retrofit:$VERSION"
+        const val CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:$VERSION"
+    }
 
-    const val retrofit = "2.9.0"
-    const val okHttp = "4.10.0"
+    object OkHttp {
+        private const val VERSION = "4.10.0"
 
-    const val room = "2.4.3"
+        const val OKHTTP = "com.squareup.okhttp3:okhttp:$VERSION"
+        const val OKHTTP_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:$VERSION"
+    }
 
-    const val coroutine = "1.6.4"
-    const val viewPager2 = "1.0.0"
+    object Hilt {
+        private const val VERSION = "2.44.2"
 
-    const val coil = "2.3.0"
+        const val HILT_ANDROID = "com.google.dagger:hilt-android:$VERSION"
+        const val HILT_CORE = "com.google.dagger:hilt-core:$VERSION"
+        const val HILT_COMPILER = "com.google.dagger:hilt-compiler:$VERSION"
+        const val HILT_GRADLE = "com.google.dagger:hilt-android-gradle-plugin:$VERSION"
+    }
 
-    const val timber = "5.0.1"
-}
+    object Compose {
+        private const val UI_VERISON = "1.4.2"
+        private const val ACTIVITY_VERSION = "1.7.1"
 
-object Kotlin {
-    const val coroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutine}"
-    const val coroutineAndroid =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutine}"
-}
+        const val COMPOSE_ACTIVITY = "androidx.activity:activity-compose:$ACTIVITY_VERSION"
+        const val COMPOSE_UI = "androidx.compose.ui:ui:$UI_VERISON"
+        const val COMPOSE_PREVIEW = "androidx.compose.ui:ui-tooling-preview:$UI_VERISON"
+        const val COMPOSE_MATERIAL = "androidx.compose.material:material:$UI_VERISON"
 
-object AndroidX {
-    const val coreKtx = "androidx.core:core-ktx:${Version.coreKtx}"
-    const val appCompat = "androidx.appcompat:appcompat:${Version.appCompat}"
+        const val COMPOSE_JUNIT = "androidx.compose.ui:ui-test-junit4:$UI_VERISON"
+        const val COMPOSE_TOOLING = "androidx.compose.ui:ui-tooling:$UI_VERISON"
+        const val COMPOSE_MANITFEST = "androidx.compose.ui:ui-test-manifest:$UI_VERISON"
+    }
 
-    const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifeCycle}"
-    const val viewPager2 = "androidx.viewpager2:viewpager2:${Version.viewPager2}"
+    object Coil {
+        private const val VERSION = "2.3.0"
 
-    const val roomRuntime = "androidx.room:room-runtime:${Version.room}"
-    const val roomKtx = "androidx.room:room-ktx:${Version.room}"
-    const val roomCompiler = "androidx.room:room-compiler:${Version.room}"
+        const val COIL_COMPOSE = "io.coil-kt:coil-compose:$VERSION"
+    }
 
-    const val composeActivity = "androidx.activity:activity-compose:${Version.composeActivity}"
-    const val composeUi = "androidx.compose.ui:ui:${Version.composeUi}"
-    const val composePreview = "androidx.compose.ui:ui-tooling-preview:${Version.composeUi}"
-    const val composeMaterial = "androidx.compose.material:material:${Version.composeUi}"
-}
+    object ViewPager {
+        private const val VERSION = "1.0.0"
 
-object Google {
-    const val material = "com.google.android.material:material:${Version.material}"
-    const val hiltAndroid = "com.google.dagger:hilt-android:${Version.hilt}"
-    const val hiltCore = "com.google.dagger:hilt-core:${Version.hilt}"
-    const val hiltCompiler = "com.google.dagger:hilt-compiler:${Version.hilt}"
-    const val hiltGradle = "com.google.dagger:hilt-android-gradle-plugin:${Version.hilt}"
-}
+        const val VIEW_PAGER2 = "androidx.viewpager2:viewpager2:$VERSION"
+    }
 
-object Library {
-    const val coilCompose = "io.coil-kt:coil-compose:${Version.coil}"
+    object Coroutine {
+        private const val VERSION = "1.6.4"
 
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
-    const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
+        const val COROUTINE_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VERSION"
+        const val COROUTINE_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$VERSION"
+    }
 
-    const val okHttp = "com.squareup.okhttp3:okhttp:${Version.okHttp}"
-    const val okHttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Version.okHttp}"
+    object Room {
+        private const val VERSION = "2.4.3"
 
-    const val timber = "com.jakewharton.timber:timber:${Version.timber}"
-}
+        const val ROOM_RUNTIME = "androidx.room:room-runtime:$VERSION"
+        const val ROOM_KTX = "androidx.room:room-ktx:$VERSION"
+        const val ROOM_COMPILER = "androidx.room:room-compiler:$VERSION"
+    }
 
-object UnitTest {
-    const val junit = "junit:junit:${Version.junit}"
-}
+    object UnitTest {
+        private const val JUNIT_VERSION = "4.13.2"
 
-object AndroidTest {
-    const val androidJunit = "androidx.core:core-ktx:${Version.junitTest}"
-    const val espressoCore = "androidx.test.espresso:espresso-core:${Version.espressoCore}"
+        const val JUNIT = "junit:junit:$JUNIT_VERSION"
+    }
 
-    const val composeJunit = "androidx.compose.ui:ui-test-junit4:${Version.composeUi}"
-}
+    object AndroidTest {
+        private const val JUNIT_TEST_VERSION = "1.1.5"
+        private const val ESPRESSO_VERSION = "3.5.1"
 
-object AndroidDebug {
-    const val composeTooling = "androidx.compose.ui:ui-tooling:${Version.composeUi}"
-    const val composeManifest = "androidx.compose.ui:ui-test-manifest:${Version.composeUi}"
+        const val ANDROID_JUNIT = "androidx.core:core-ktx:$JUNIT_TEST_VERSION"
+        const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
+    }
 }
