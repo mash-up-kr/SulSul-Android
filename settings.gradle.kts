@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "AlcoholFree-Android"
-include ':app'
-include ':domain'
-include ':presentation'
-include ':data'
+include(":app")
+include(":domain")
+include(":presentation")
+include(":data")
