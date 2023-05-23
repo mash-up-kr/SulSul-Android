@@ -33,16 +33,20 @@ object Dependencies {
 
     object Hilt {
         private const val VERSION = "2.44.2"
+        private const val VIEWMODEL_VERSION = "1.0.0"
 
         const val HILT_ANDROID = "com.google.dagger:hilt-android:$VERSION"
         const val HILT_CORE = "com.google.dagger:hilt-core:$VERSION"
         const val HILT_COMPILER = "com.google.dagger:hilt-compiler:$VERSION"
         const val HILT_GRADLE = "com.google.dagger:hilt-android-gradle-plugin:$VERSION"
+        const val HILT_VIEW_MODEL =
+            "androidx.hilt:hilt-navigation-compose:$VIEWMODEL_VERSION"
     }
 
     object Compose {
         private const val UI_VERISON = "1.4.2"
         private const val ACTIVITY_VERSION = "1.7.1"
+        private const val VIEW_MODEL_VERSION = "2.6.0"
 
         const val COMPOSE_ACTIVITY = "androidx.activity:activity-compose:$ACTIVITY_VERSION"
         const val COMPOSE_UI = "androidx.compose.ui:ui:$UI_VERISON"
@@ -52,6 +56,9 @@ object Dependencies {
         const val COMPOSE_JUNIT = "androidx.compose.ui:ui-test-junit4:$UI_VERISON"
         const val COMPOSE_TOOLING = "androidx.compose.ui:ui-tooling:$UI_VERISON"
         const val COMPOSE_MANITFEST = "androidx.compose.ui:ui-test-manifest:$UI_VERISON"
+
+        const val COMPOSE_VIEW_MODEL =
+            "androidx.lifecycle:lifecycle-viewmodel-compose:$VIEW_MODEL_VERSION"
     }
 
     object Coil {
@@ -93,5 +100,13 @@ object Dependencies {
 
         const val ANDROID_JUNIT = "androidx.core:core-ktx:$JUNIT_TEST_VERSION"
         const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
+    }
+
+    object DataStore {
+        private const val DATASTORE_VERSION = "1.0.0"
+
+        const val PREFERENCE = "androidx.datastore:datastore-preferences:$DATASTORE_VERSION"
+        const val PREFERENCE_CORE =
+            "androidx.datastore:datastore-preferences-core:$DATASTORE_VERSION"
     }
 }
