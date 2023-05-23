@@ -54,6 +54,12 @@ object Dependencies {
         const val COMPOSE_MANITFEST = "androidx.compose.ui:ui-test-manifest:$UI_VERISON"
     }
 
+    object Accompanist {
+        private const val VERSION = "0.30.1"
+
+        const val ACCOMPANIST_WEBVIEW = "com.google.accompanist:accompanist-webview:$VERSION"
+    }
+
     object Coil {
         private const val VERSION = "2.3.0"
 

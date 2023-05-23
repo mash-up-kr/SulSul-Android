@@ -52,6 +52,7 @@ dependencies {
     implementation(Dependencies.Compose.COMPOSE_UI)
     implementation(Dependencies.Compose.COMPOSE_PREVIEW)
     implementation(Dependencies.Compose.COMPOSE_MATERIAL)
+    implementation(Dependencies.Accompanist.ACCOMPANIST_WEBVIEW)
 
     // dagger hilt
     implementation(Dependencies.Hilt.HILT_ANDROID)
