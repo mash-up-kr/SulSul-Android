@@ -65,5 +65,11 @@ dependencies {
     debugImplementation(Dependencies.Compose.COMPOSE_TOOLING)
     debugImplementation(Dependencies.Compose.COMPOSE_MANITFEST)
 
+    // compose view model
+    implementation(Dependencies.Compose.COMPOSE_VIEW_MODEL)
+
+    // compose hilt view model
+    implementation(Dependencies.Hilt.HILT_VIEW_MODEL)
+
     implementation(project(":domain"))
 }
