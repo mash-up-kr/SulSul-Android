@@ -1,7 +1,7 @@
 package com.mashup.alcoholfree.data.di
 
-import com.mashup.alcoholfree.data.repository.DataStoreRepositoryImpl
-import com.mashup.alcoholfree.domain.repository.DataStoreRepository
+import com.mashup.alcoholfree.data.repository.LoginRepositoryImpl
+import com.mashup.alcoholfree.domain.repository.LoginRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,5 +12,5 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun bindDataStoreRepository(dataStoreRepositoryImpl: DataStoreRepositoryImpl): DataStoreRepository
+    abstract fun bindLoginRepository(loginRepositoryImpl: LoginRepositoryImpl): LoginRepository
 }
