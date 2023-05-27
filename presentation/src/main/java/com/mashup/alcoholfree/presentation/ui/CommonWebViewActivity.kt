@@ -1,5 +1,6 @@
 package com.mashup.alcoholfree.presentation.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,5 +39,25 @@ fun CommonWebView(
     WebView(
         modifier = modifier,
         state = state,
+    )
+}
+
+@SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
+@Composable
+fun CommonWebView(
+    modifier: Modifier = Modifier,
+    state: WebViewState,
+    bridge: Any,
+    bridgeName: String,
+) {
+    WebView(
+        modifier = modifier,
+        state = state,
+        onCreated = { webView ->
+            with(webView) {
+                settings.javaScriptEnabled = true
+                addJavascriptInterface(bridge, bridgeName)
+            }
+        }
     )
 }
