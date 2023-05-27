@@ -17,7 +17,7 @@ class CommonWebViewActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AlcoholFreeAndroidTheme {
-                CommonWebView(
+                SulSulWebView(
                     modifier = Modifier.fillMaxSize(),
                     state = WebViewState(
                         WebContent.Url(
@@ -32,7 +32,7 @@ class CommonWebViewActivity : ComponentActivity() {
 }
 
 @Composable
-fun CommonWebView(
+fun SulSulWebView(
     modifier: Modifier = Modifier,
     state: WebViewState,
 ) {
@@ -44,7 +44,7 @@ fun CommonWebView(
 
 @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
 @Composable
-fun CommonWebView(
+fun SulSulWebView(
     modifier: Modifier = Modifier,
     state: WebViewState,
     bridge: Any,
