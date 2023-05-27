@@ -6,8 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.google.accompanist.web.WebContent
 import com.google.accompanist.web.WebView
-import com.google.accompanist.web.rememberWebViewState
+import com.google.accompanist.web.WebViewState
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 
 class CommonWebViewActivity : ComponentActivity() {
@@ -15,7 +16,15 @@ class CommonWebViewActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AlcoholFreeAndroidTheme {
-                CommonWebView(modifier = Modifier.fillMaxSize(), "https://www.naver.com")
+                CommonWebView(
+                    modifier = Modifier.fillMaxSize(),
+                    state = WebViewState(
+                        WebContent.Url(
+                            url = "https://www.naver.com",
+                            additionalHttpHeaders = emptyMap()
+                        )
+                    )
+                )
             }
         }
     }
@@ -24,16 +33,10 @@ class CommonWebViewActivity : ComponentActivity() {
 @Composable
 fun CommonWebView(
     modifier: Modifier = Modifier,
-    url: String,
-    headers: Map<String, String> = emptyMap(),
+    state: WebViewState,
 ) {
-    val webViewState = rememberWebViewState(
-        url = url,
-        additionalHttpHeaders = headers
-    )
-
     WebView(
         modifier = modifier,
-        state = webViewState
+        state = state,
     )
 }
