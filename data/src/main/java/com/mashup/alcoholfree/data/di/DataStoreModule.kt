@@ -24,18 +24,19 @@ class DataStoreModule {
 
     @Singleton
     @Provides
-    fun providePreferencesDataStore(@ApplicationContext appContext: Context): DataStore<Preferences> {
+    fun providePreferencesDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
         return PreferenceDataStoreFactory.create(
             corruptionHandler = ReplaceFileCorruptionHandler(
                 produceNewData = { emptyPreferences() },
             ),
-            migrations = listOf(SharedPreferencesMigration(appContext, PREFERENCES)),
+            migrations = listOf(SharedPreferencesMigration(context, PREFERENCES)),
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
-            produceFile = { appContext.preferencesDataStoreFile(PREFERENCES) },
+            produceFile = { context.preferencesDataStoreFile(PREFERENCES) },
         )
     }
 
     companion object {
-        private const val PREFERENCES = "token_prefs"
+        private const val PREFERENCES = "login_token"
     }
 }
+
