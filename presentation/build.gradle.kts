@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -14,6 +16,7 @@ android {
 
         testInstrumentationRunner = AppConfig.TEST_RUNNER
         consumerProguardFiles("consumer-rules.pro")
+        manifestPlaceholders["KAKAO_KEY"] = gradleLocalProperties(rootDir).getProperty("kakao_native_key")
     }
 
     buildTypes {
@@ -70,6 +73,10 @@ dependencies {
 
     // compose hilt view model
     implementation(Dependencies.Hilt.HILT_VIEW_MODEL)
+
+    // kakao sdk
+    implementation(Dependencies.Kakao.USER_SDK) // 카카오 로그인
+    implementation(Dependencies.Kakao.TALK_SDK) // 친구, 메시지(카카오톡)
 
     implementation(project(":domain"))
 }
