@@ -115,4 +115,10 @@ object Dependencies {
         const val PREFERENCE_CORE =
             "androidx.datastore:datastore-preferences-core:$DATASTORE_VERSION"
     }
+
+    object Kakao {
+        private const val KAKAO_VERSION = "2.13.0"
+        const val USER_SDK = "com.kakao.sdk:v2-user:$KAKAO_VERSION"
+        const val TALK_SDK = "com.kakao.sdk:v2-talk:$KAKAO_VERSION"
+    }
 }
