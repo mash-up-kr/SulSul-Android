@@ -55,5 +55,9 @@ dependencies {
     implementation(Dependencies.OkHttp.OKHTTP)
     implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
 
+    // dataStore
+    implementation(Dependencies.DataStore.PREFERENCE_CORE)
+    implementation(Dependencies.DataStore.PREFERENCE)
+
     implementation(project(":domain"))
 }

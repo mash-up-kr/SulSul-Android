@@ -11,4 +11,7 @@ java {
 dependencies {
     implementation(Dependencies.Hilt.HILT_CORE)
     kapt(Dependencies.Hilt.HILT_COMPILER)
+
+    // coroutine
+    implementation(Dependencies.Coroutine.COROUTINE_CORE)
 }
