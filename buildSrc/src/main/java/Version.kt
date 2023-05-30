@@ -61,6 +61,12 @@ object Dependencies {
             "androidx.lifecycle:lifecycle-viewmodel-compose:$VIEW_MODEL_VERSION"
     }
 
+    object Accompanist {
+        private const val VERSION = "0.30.1"
+
+        const val ACCOMPANIST_WEBVIEW = "com.google.accompanist:accompanist-webview:$VERSION"
+    }
+
     object Coil {
         private const val VERSION = "2.3.0"
 
