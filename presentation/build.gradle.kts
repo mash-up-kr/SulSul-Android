@@ -69,12 +69,6 @@ dependencies {
     debugImplementation(Dependencies.Compose.COMPOSE_TOOLING)
     debugImplementation(Dependencies.Compose.COMPOSE_MANITFEST)
 
-    // compose view model
-    implementation(Dependencies.Compose.COMPOSE_VIEW_MODEL)
-
-    // compose hilt view model
-    implementation(Dependencies.Hilt.HILT_VIEW_MODEL)
-
     // kakao sdk
     implementation(Dependencies.Kakao.USER_SDK) // 카카오 로그인
     implementation(Dependencies.Kakao.TALK_SDK) // 친구, 메시지(카카오톡)
