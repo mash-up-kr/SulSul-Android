@@ -33,14 +33,11 @@ object Dependencies {
 
     object Hilt {
         private const val VERSION = "2.44.2"
-        private const val VIEWMODEL_VERSION = "1.0.0"
 
         const val HILT_ANDROID = "com.google.dagger:hilt-android:$VERSION"
         const val HILT_CORE = "com.google.dagger:hilt-core:$VERSION"
         const val HILT_COMPILER = "com.google.dagger:hilt-compiler:$VERSION"
         const val HILT_GRADLE = "com.google.dagger:hilt-android-gradle-plugin:$VERSION"
-        const val HILT_VIEW_MODEL =
-            "androidx.hilt:hilt-navigation-compose:$VIEWMODEL_VERSION"
     }
 
     object Compose {
@@ -56,9 +53,6 @@ object Dependencies {
         const val COMPOSE_JUNIT = "androidx.compose.ui:ui-test-junit4:$UI_VERISON"
         const val COMPOSE_TOOLING = "androidx.compose.ui:ui-tooling:$UI_VERISON"
         const val COMPOSE_MANITFEST = "androidx.compose.ui:ui-test-manifest:$UI_VERISON"
-
-        const val COMPOSE_VIEW_MODEL =
-            "androidx.lifecycle:lifecycle-viewmodel-compose:$VIEW_MODEL_VERSION"
     }
 
     object Coil {
