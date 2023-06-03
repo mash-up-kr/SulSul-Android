@@ -1,6 +1,5 @@
 package com.mashup.alcoholfree.presentation.ui.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -13,7 +12,6 @@ import androidx.compose.ui.Modifier
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
-import com.mashup.alcoholfree.presentation.ui.home.HomeActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -75,7 +73,6 @@ class LoginActivity : ComponentActivity() {
                     Toast.LENGTH_SHORT,
                 ).show()
                 viewModel.addKakaoToken(token)
-                startActivity(Intent(this, HomeActivity::class.java))
             }
         }
     }
