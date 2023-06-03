@@ -1,6 +1,7 @@
 package com.mashup.alcoholfree.presentation.ui.login
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,6 +12,7 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +23,7 @@ class LoginActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("Kakao KeyHash : ", getKakaoKeyHash())
 
         setContent {
             AlcoholFreeAndroidTheme {
@@ -75,5 +78,9 @@ class LoginActivity : ComponentActivity() {
                 viewModel.addKakaoToken(token)
             }
         }
+    }
+
+    private fun getKakaoKeyHash(): String {
+        return Utility.getKeyHash(this)
     }
 }
