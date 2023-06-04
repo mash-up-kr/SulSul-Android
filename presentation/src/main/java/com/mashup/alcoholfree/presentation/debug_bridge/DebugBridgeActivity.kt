@@ -12,7 +12,7 @@ class DebugBridgeActivity : ComponentActivity() {
         setContent {
             DebugBridgeScreen(
                 items = listOf(
-                    MainActivity::class.java
+                    MainActivity::class.java,
                 )
             )
         }
