@@ -63,6 +63,7 @@ fun MeasureResultScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         MeasureResultHeader(
+            modifier = Modifier.padding(top = 56.dp),
             status = state.headerStatus,
             userName = state.userName,
             sojuCount = state.overDrinkSojuCount,
@@ -115,9 +116,14 @@ fun MeasureResultScreen(
 }
 
 @Composable
-private fun MeasureResultHeader(status: String, userName: String, sojuCount: Int) {
+private fun MeasureResultHeader(
+    modifier: Modifier = Modifier,
+    status: String,
+    userName: String,
+    sojuCount: Int,
+) {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = stringResource(id = R.string.measure_result_title), style = H5, color = Grey900)
