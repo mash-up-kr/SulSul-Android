@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
@@ -19,9 +22,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
+import com.mashup.alcoholfree.presentation.measure_result.model.AlcoholType
+import com.mashup.alcoholfree.presentation.ui.theme.Grey050
 import com.mashup.alcoholfree.presentation.ui.theme.Grey800
 import com.mashup.alcoholfree.presentation.ui.theme.Grey900
 import com.mashup.alcoholfree.presentation.ui.theme.H1
+import com.mashup.alcoholfree.presentation.ui.theme.H3
 import com.mashup.alcoholfree.presentation.ui.theme.H4
 import com.mashup.alcoholfree.presentation.ui.theme.H5
 import com.mashup.alcoholfree.presentation.ui.theme.SubPurple
@@ -52,7 +58,7 @@ fun MeasureResultScreen() {
             modifier = Modifier.padding(
                 top = 32.dp,
                 start = rootHorizontalPadding,
-                end = rootHorizontalPadding
+                end = rootHorizontalPadding,
             ),
             kcal = 132,
             alcohol = 16.9f,
@@ -63,9 +69,17 @@ fun MeasureResultScreen() {
             modifier = Modifier.padding(
                 top = 40.dp,
                 start = rootHorizontalPadding,
-                end = rootHorizontalPadding
+                end = rootHorizontalPadding,
             ),
             color = White40,
+        )
+
+        MeasureResultDrinkAlcoholCollectAndSeeLayer(
+            modifier = Modifier.padding(
+                top = 40.dp,
+                start = rootHorizontalPadding,
+                end = rootHorizontalPadding,
+            ),
         )
     }
 }
@@ -91,7 +105,7 @@ fun MeasureAlcoholCupCountBox(modifier: Modifier = Modifier, alcoholCupCount: In
     Box(
         modifier = modifier
             .clip(shape = RoundedCornerShape(8.dp))
-            .background(color = SubPurple16)
+            .background(color = SubPurple16),
     ) {
         Text(
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp),
@@ -111,7 +125,7 @@ fun MeasureResultInfoItems(
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         /* TODO: icon 변경 되어야함 */
         MeasureResultInfoItem(
@@ -142,6 +156,75 @@ fun MeasureResultInfoItem(
         Image(painter = painterResource(id = imageResId), contentDescription = null)
         Text(text = mainText, style = H4, color = White)
         Text(text = subText, style = SubTitle4, color = Grey900)
+    }
+}
+
+@Composable
+fun MeasureResultDrinkAlcoholCollectAndSeeLayer(modifier: Modifier = Modifier) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        Text(text = "마신 술 모아보기", style = H3, color = White)
+        MeasureResultDrinkAlcoholCupLayer(
+            modifier = Modifier.padding(top = 20.dp, bottom = 125.dp)
+        )
+    }
+}
+
+@Composable
+fun MeasureResultDrinkAlcoholCupLayer(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(8.dp))
+            .background(color = Grey050),
+    ) {
+        MeasureResultDrinkAlcoholCupCountItem(
+            modifier = Modifier.padding(vertical = 16.dp),
+            alcoholType = AlcoholType.SOJU,
+            cupCount = 5,
+        )
+
+        MeasureResultDrinkAlcoholCupCountItem(
+            modifier = Modifier.padding(vertical = 16.dp),
+            alcoholType = AlcoholType.BEER,
+            cupCount = 4,
+        )
+
+        MeasureResultDrinkAlcoholCupCountItem(
+            modifier = Modifier.padding(vertical = 16.dp),
+            alcoholType = AlcoholType.KAOLIANGJU,
+            cupCount = 3
+        )
+
+        MeasureResultDrinkAlcoholCupCountItem(
+            modifier = Modifier.padding(vertical = 16.dp),
+            alcoholType = AlcoholType.WINE,
+            cupCount = 5,
+        )
+    }
+}
+
+@Composable
+fun MeasureResultDrinkAlcoholCupCountItem(
+    modifier: Modifier = Modifier,
+    alcoholType: AlcoholType,
+    cupCount: Int,
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(text = "${alcoholType.title} ${cupCount}잔", style = H5, color = White)
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Row {
+            for (i in 0 until cupCount) {
+                Image(
+                    painter = painterResource(id = alcoholType.iconResId),
+                    contentDescription = null
+                )
+            }
+        }
     }
 }
 
