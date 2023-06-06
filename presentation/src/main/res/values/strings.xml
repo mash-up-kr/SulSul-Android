@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="measure_result_title">오늘의 주량은?</string>
+    <string name="measure_result_sub_title_2">평소 %s님의 주량 대비, 소주를 %d잔 더 마셨어요.</string>
+    <string name="alcohol_cup_count">총 %d잔</string>
+    <string name="today_drink_kcal">오늘 마신 술 칼로리</string>
+    <string name="average_alcohol_level">평균 도수</string>
+    <string name="drink_time">마신 시간</string>
+    <string name="drink_alcohol_collect_and_see">마신 술 모아보기</string>
+    <string name="go_to_home">홈으로 돌아가기</string>
+    <string name="drink_type_and_count">%s %d잔</string>
+</resources>

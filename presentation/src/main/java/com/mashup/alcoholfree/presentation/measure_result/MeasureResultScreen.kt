@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -112,10 +113,10 @@ fun MeasureResultHeader(status: String, userName: String, sojuCount: Int) {
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = "오늘의 주량은?", style = H5, color = Grey900)
+        Text(text = stringResource(id = R.string.measure_result_title), style = H5, color = Grey900)
         Text(text = status, style = H1, color = White)
         Text(
-            text = "평소 ${userName}님의 주량 대비, 소주를 ${sojuCount}잔 더 마셨어요.",
+            text = stringResource(id = R.string.measure_result_sub_title_2, userName, sojuCount),
             style = SubTitle3,
             color = Grey800,
         )
@@ -131,7 +132,7 @@ fun MeasureAlcoholCupCountBox(modifier: Modifier = Modifier, alcoholCupCount: In
     ) {
         Text(
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp),
-            text = "총 ${alcoholCupCount}잔",
+            text = stringResource(id = R.string.alcohol_cup_count, alcoholCupCount),
             style = SubTitle3,
             color = SubPurple,
         )
@@ -153,17 +154,17 @@ fun MeasureResultInfoItems(
         MeasureResultInfoItem(
             imageResId = R.drawable.clock,
             mainText = "$kcal Kcal",
-            subText = "오늘 마신 술 칼로리",
+            subText = stringResource(id = R.string.today_drink_kcal),
         )
         MeasureResultInfoItem(
             imageResId = R.drawable.clock,
             mainText = "${alcohol}%",
-            subText = "평균 도수",
+            subText = stringResource(id = R.string.average_alcohol_level),
         )
         MeasureResultInfoItem(
             imageResId = R.drawable.clock,
             mainText = time,
-            subText = "마신 시간",
+            subText = stringResource(id = R.string.drink_time),
         )
     }
 }
@@ -184,7 +185,7 @@ fun MeasureResultInfoItem(
 @Composable
 fun MeasureResultDrinkAlcoholCollectAndSeeLayer(modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(text = "마신 술 모아보기", style = H3, color = White)
+        Text(text = stringResource(id = R.string.drink_alcohol_collect_and_see), style = H3, color = White)
         MeasureResultDrinkAlcoholCupLayer(
             modifier = Modifier.padding(top = 20.dp, bottom = 125.dp)
         )
@@ -250,7 +251,11 @@ fun MeasureResultDrinkAlcoholCupCountItem(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = "${alcoholType.title} ${cupCount}잔", style = H5, color = White)
+        Text(
+            text = stringResource(id = R.string.drink_type_and_count, alcoholType.title, cupCount),
+            style = H5,
+            color = White,
+        )
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -282,7 +287,7 @@ fun MeasureResultHomeButton(onClickGoToHome: () -> Unit = {}) {
             ),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text = "홈으로 돌아가기", style = SubTitle2, color = White)
+        Text(text = stringResource(id = R.string.go_to_home), style = SubTitle2, color = White)
     }
 }
 
