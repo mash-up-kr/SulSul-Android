@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.measure_result.model.AlcoholType
 import com.mashup.alcoholfree.presentation.ui.theme.Grey050
+import com.mashup.alcoholfree.presentation.ui.theme.Grey200
 import com.mashup.alcoholfree.presentation.ui.theme.Grey800
 import com.mashup.alcoholfree.presentation.ui.theme.Grey900
 import com.mashup.alcoholfree.presentation.ui.theme.H1
@@ -189,16 +190,31 @@ fun MeasureResultDrinkAlcoholCupLayer(modifier: Modifier = Modifier) {
             cupCount = 5,
         )
 
+        Divider(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            color = Grey200
+        )
+
         MeasureResultDrinkAlcoholCupCountItem(
             modifier = Modifier.padding(vertical = 16.dp),
             alcoholType = AlcoholType.BEER,
             cupCount = 4,
         )
 
+        Divider(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            color = Grey200
+        )
+
         MeasureResultDrinkAlcoholCupCountItem(
             modifier = Modifier.padding(vertical = 16.dp),
             alcoholType = AlcoholType.KAOLIANGJU,
             cupCount = 3
+        )
+
+        Divider(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            color = Grey200
         )
 
         MeasureResultDrinkAlcoholCupCountItem(
