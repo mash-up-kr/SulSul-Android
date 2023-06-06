@@ -3,7 +3,7 @@ package com.mashup.alcoholfree.presentation.debug_bridge
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.mashup.alcoholfree.presentation.MainActivity
+import com.mashup.alcoholfree.presentation.ui.login.LoginActivity
 
 class DebugBridgeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +12,7 @@ class DebugBridgeActivity : ComponentActivity() {
         setContent {
             DebugBridgeScreen(
                 items = listOf(
-                    MainActivity::class.java,
+                    LoginActivity::class.java,
                 )
             )
         }

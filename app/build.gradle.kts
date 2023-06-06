@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -20,6 +22,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "KAKAO_KEY", "\"${gradleLocalProperties(rootDir).getProperty("kakao_native_key")}\"")
     }
 
     buildTypes {
@@ -57,6 +60,9 @@ dependencies {
     // dagger hilt
     implementation(Dependencies.Hilt.HILT_ANDROID)
     kapt(Dependencies.Hilt.HILT_COMPILER)
+
+    // kakao login
+    implementation(Dependencies.Kakao.USER_SDK)
 
     implementation(project(":presentation"))
     implementation(project(":domain"))
