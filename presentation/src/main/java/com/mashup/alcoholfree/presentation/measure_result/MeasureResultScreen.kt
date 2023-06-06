@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.measure_result.model.AlcoholType
+import com.mashup.alcoholfree.presentation.measure_result.model.MeasureResultState
 import com.mashup.alcoholfree.presentation.ui.theme.Grey050
 import com.mashup.alcoholfree.presentation.ui.theme.Grey200
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
@@ -51,23 +52,25 @@ import com.mashup.alcoholfree.presentation.ui.theme.White40
 private val rootHorizontalPadding = 16.dp
 
 @Composable
-fun MeasureResultScreen(onClickGoToHome: () -> Unit = {}) {
+fun MeasureResultScreen(
+    state: MeasureResultState,
+    onClickGoToHome: () -> Unit = {},
+) {
     val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier.verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        /* TODO: 서버(?)에서 받아올 예정 */
         MeasureResultHeader(
-            status = "미쳤다.",
-            userName = "우진",
-            sojuCount = 4,
+            status = state.headerStatus,
+            userName = state.userName,
+            sojuCount = state.overDrinkSojuCount,
         )
 
         MeasureAlcoholCupCountBox(
             modifier = Modifier.padding(top = 8.dp),
-            alcoholCupCount = 25,
+            alcoholCupCount = state.totalDrinkCountOfCup,
         )
 
         MeasureResultInfoItems(
@@ -76,9 +79,9 @@ fun MeasureResultScreen(onClickGoToHome: () -> Unit = {}) {
                 start = rootHorizontalPadding,
                 end = rootHorizontalPadding,
             ),
-            kcal = 132,
-            alcohol = 16.9f,
-            time = "3시간 20분",
+            kcal = state.totalDrinkKcal,
+            alcohol = state.totalDrinkAlcohol,
+            time = state.totalDrinkTime,
         )
 
         Divider(
@@ -96,6 +99,10 @@ fun MeasureResultScreen(onClickGoToHome: () -> Unit = {}) {
                 start = rootHorizontalPadding,
                 end = rootHorizontalPadding,
             ),
+            drinkCountOfSoju = state.drinkCountOfSoju,
+            drinkCountOfBeer = state.drinkCountOfBeer,
+            drinkCountOfKaoliangju = state.drinkCountOfKaoliangju,
+            drinkCountOfWine = state.drinkCountOfWine,
         )
     }
 
@@ -108,7 +115,7 @@ fun MeasureResultScreen(onClickGoToHome: () -> Unit = {}) {
 }
 
 @Composable
-fun MeasureResultHeader(status: String, userName: String, sojuCount: Int) {
+private fun MeasureResultHeader(status: String, userName: String, sojuCount: Int) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -124,7 +131,7 @@ fun MeasureResultHeader(status: String, userName: String, sojuCount: Int) {
 }
 
 @Composable
-fun MeasureAlcoholCupCountBox(modifier: Modifier = Modifier, alcoholCupCount: Int) {
+private fun MeasureAlcoholCupCountBox(modifier: Modifier = Modifier, alcoholCupCount: Int) {
     Box(
         modifier = modifier
             .clip(shape = RoundedCornerShape(8.dp))
@@ -140,7 +147,7 @@ fun MeasureAlcoholCupCountBox(modifier: Modifier = Modifier, alcoholCupCount: In
 }
 
 @Composable
-fun MeasureResultInfoItems(
+private fun MeasureResultInfoItems(
     modifier: Modifier = Modifier,
     kcal: Int,
     alcohol: Float,
@@ -170,7 +177,7 @@ fun MeasureResultInfoItems(
 }
 
 @Composable
-fun MeasureResultInfoItem(
+private fun MeasureResultInfoItem(
     imageResId: Int,
     mainText: String,
     subText: String,
@@ -183,17 +190,33 @@ fun MeasureResultInfoItem(
 }
 
 @Composable
-fun MeasureResultDrinkAlcoholCollectAndSeeLayer(modifier: Modifier = Modifier) {
+private fun MeasureResultDrinkAlcoholCollectAndSeeLayer(
+    modifier: Modifier = Modifier,
+    drinkCountOfSoju: Int,
+    drinkCountOfBeer: Int,
+    drinkCountOfKaoliangju: Int,
+    drinkCountOfWine: Int,
+) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(text = stringResource(id = R.string.drink_alcohol_collect_and_see), style = H3, color = White)
         MeasureResultDrinkAlcoholCupLayer(
-            modifier = Modifier.padding(top = 20.dp, bottom = 125.dp)
+            modifier = Modifier.padding(top = 20.dp, bottom = 125.dp),
+            drinkCountOfSoju = drinkCountOfSoju,
+            drinkCountOfBeer = drinkCountOfBeer,
+            drinkCountOfKaoliangju = drinkCountOfKaoliangju,
+            drinkCountOfWine = drinkCountOfWine,
         )
     }
 }
 
 @Composable
-fun MeasureResultDrinkAlcoholCupLayer(modifier: Modifier = Modifier) {
+private fun MeasureResultDrinkAlcoholCupLayer(
+    modifier: Modifier = Modifier,
+    drinkCountOfSoju: Int,
+    drinkCountOfBeer: Int,
+    drinkCountOfKaoliangju: Int,
+    drinkCountOfWine: Int,
+) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -203,7 +226,7 @@ fun MeasureResultDrinkAlcoholCupLayer(modifier: Modifier = Modifier) {
         MeasureResultDrinkAlcoholCupCountItem(
             modifier = Modifier.padding(vertical = 16.dp),
             alcoholType = AlcoholType.SOJU,
-            cupCount = 5,
+            drinkCount = drinkCountOfSoju,
         )
 
         Divider(
@@ -214,7 +237,7 @@ fun MeasureResultDrinkAlcoholCupLayer(modifier: Modifier = Modifier) {
         MeasureResultDrinkAlcoholCupCountItem(
             modifier = Modifier.padding(vertical = 16.dp),
             alcoholType = AlcoholType.BEER,
-            cupCount = 4,
+            drinkCount = drinkCountOfBeer,
         )
 
         Divider(
@@ -225,7 +248,7 @@ fun MeasureResultDrinkAlcoholCupLayer(modifier: Modifier = Modifier) {
         MeasureResultDrinkAlcoholCupCountItem(
             modifier = Modifier.padding(vertical = 16.dp),
             alcoholType = AlcoholType.KAOLIANGJU,
-            cupCount = 3
+            drinkCount = drinkCountOfKaoliangju,
         )
 
         Divider(
@@ -236,23 +259,23 @@ fun MeasureResultDrinkAlcoholCupLayer(modifier: Modifier = Modifier) {
         MeasureResultDrinkAlcoholCupCountItem(
             modifier = Modifier.padding(vertical = 16.dp),
             alcoholType = AlcoholType.WINE,
-            cupCount = 5,
+            drinkCount = drinkCountOfWine,
         )
     }
 }
 
 @Composable
-fun MeasureResultDrinkAlcoholCupCountItem(
+private fun MeasureResultDrinkAlcoholCupCountItem(
     modifier: Modifier = Modifier,
     alcoholType: AlcoholType,
-    cupCount: Int,
+    drinkCount: Int,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = stringResource(id = R.string.drink_type_and_count, alcoholType.title, cupCount),
+            text = stringResource(id = R.string.drink_type_and_count, alcoholType.title, drinkCount),
             style = H5,
             color = White,
         )
@@ -260,7 +283,7 @@ fun MeasureResultDrinkAlcoholCupCountItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         Row {
-            for (i in 0 until cupCount) {
+            for (i in 0 until drinkCount) {
                 Image(
                     painter = painterResource(id = alcoholType.iconResId),
                     contentDescription = null
@@ -271,7 +294,7 @@ fun MeasureResultDrinkAlcoholCupCountItem(
 }
 
 @Composable
-fun MeasureResultHomeButton(onClickGoToHome: () -> Unit = {}) {
+private fun MeasureResultHomeButton(onClickGoToHome: () -> Unit = {}) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -293,6 +316,20 @@ fun MeasureResultHomeButton(onClickGoToHome: () -> Unit = {}) {
 
 @Preview
 @Composable
-fun MeasureResultScreenPreview() {
-    MeasureResultScreen()
+private fun MeasureResultScreenPreview() {
+    MeasureResultScreen(
+        MeasureResultState(
+            headerStatus = "미쳤다.",
+            userName = "우진",
+            overDrinkSojuCount = 4,
+            totalDrinkCountOfCup = 25,
+            totalDrinkKcal = 132,
+            totalDrinkAlcohol = 16.9f,
+            totalDrinkTime = "3시간 20분",
+            drinkCountOfSoju = 3,
+            drinkCountOfBeer = 4,
+            drinkCountOfKaoliangju = 3,
+            drinkCountOfWine = 3,
+        )
+    )
 }
