@@ -13,6 +13,7 @@ val Primary300 = Color(0xFFFFBE5C)
 
 val SubBlue = Color(0xFF4E4DFF)
 val SubPurple = Color(0xFFBBB6FF)
+val SubPurple16 = Color(0x29BBB6FF)
 val SubGreen = Color(0xFFC6DC84)
 val ErrorRed = Color(0xFFFF6262)
 
