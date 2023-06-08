@@ -46,3 +46,28 @@ fun SulSulLargeBadge(
         )
     }
 }
+
+@Composable
+fun SulSulMiddleBadge(
+    modifier: Modifier = Modifier,
+    type: SulSulBadgeType,
+    text: String,
+) {
+    val (badgeColor, textColor) = when (type) {
+        SulSulBadgeType.PURPLE -> SubPurple16 to SubPurple
+        SulSulBadgeType.ORANGE -> Primary200Transparent16 to Primary200
+    }
+
+    Box(
+        modifier = modifier
+            .clip(shape = RoundedCornerShape(sulSulBadgeRadius))
+            .background(color = badgeColor),
+    ) {
+        Text(
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+            text = text,
+            style = SubTitle3,
+            color = textColor,
+        )
+    }
+}
