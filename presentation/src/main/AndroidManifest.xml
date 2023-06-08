@@ -31,5 +31,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".measure_result.MeasureResultActivity" />
     </application>
 </manifest>
