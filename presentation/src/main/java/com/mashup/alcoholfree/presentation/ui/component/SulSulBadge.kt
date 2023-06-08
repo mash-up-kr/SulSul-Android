@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.ui.theme.Primary200
 import com.mashup.alcoholfree.presentation.ui.theme.Primary200Transparent16
@@ -70,4 +71,40 @@ fun SulSulMiddleBadge(
             color = textColor,
         )
     }
+}
+
+@Preview
+@Composable
+private fun SulSulLargePurpleBadgePreview() {
+    SulSulLargeBadge(
+        type = SulSulBadgeType.PURPLE,
+        text = "BADGE"
+    )
+}
+
+@Preview
+@Composable
+private fun SulSulLargeOrangeBadgePreview() {
+    SulSulLargeBadge(
+        type = SulSulBadgeType.ORANGE,
+        text = "BADGE"
+    )
+}
+
+@Preview
+@Composable
+private fun SulSulMiddlePurpleBadgePreview() {
+    SulSulMiddleBadge(
+        type = SulSulBadgeType.PURPLE,
+        text = "BADGE"
+    )
+}
+
+@Preview
+@Composable
+private fun SulSulMiddleOrangeBadgePreview() {
+    SulSulMiddleBadge(
+        type = SulSulBadgeType.ORANGE,
+        text = "BADGE"
+    )
 }
