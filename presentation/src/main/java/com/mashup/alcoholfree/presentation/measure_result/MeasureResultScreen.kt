@@ -43,7 +43,6 @@ import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.H3
 import com.mashup.alcoholfree.presentation.ui.theme.H4
 import com.mashup.alcoholfree.presentation.ui.theme.H5
-import com.mashup.alcoholfree.presentation.ui.theme.SubPurple16
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
@@ -137,17 +136,6 @@ private fun MeasureResultHeader(
             style = SubTitle3,
             color = Grey800,
         )
-    }
-}
-
-@Composable
-private fun MeasureAlcoholCupCountBox(modifier: Modifier = Modifier, alcoholCupCount: Int) {
-    Box(
-        modifier = modifier
-            .clip(shape = RoundedCornerShape(8.dp))
-            .background(color = SubPurple16),
-    ) {
-
     }
 }
 
