@@ -32,6 +32,8 @@ import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.measure_result.model.AlcoholType
 import com.mashup.alcoholfree.presentation.measure_result.model.MeasureResultState
+import com.mashup.alcoholfree.presentation.ui.component.SulSulBadgeType
+import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.theme.Grey050
 import com.mashup.alcoholfree.presentation.ui.theme.Grey200
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
@@ -41,7 +43,6 @@ import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.H3
 import com.mashup.alcoholfree.presentation.ui.theme.H4
 import com.mashup.alcoholfree.presentation.ui.theme.H5
-import com.mashup.alcoholfree.presentation.ui.theme.SubPurple
 import com.mashup.alcoholfree.presentation.ui.theme.SubPurple16
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
@@ -78,9 +79,10 @@ private fun MeasureResultContent(state: MeasureResultState) {
             sojuCount = state.overDrinkSojuCount,
         )
 
-        MeasureAlcoholCupCountBox(
+        SulSulLargeBadge(
             modifier = Modifier.padding(top = 8.dp),
-            alcoholCupCount = state.totalDrinkCountOfCup,
+            type = SulSulBadgeType.PURPLE,
+            text = stringResource(id = R.string.alcohol_cup_count, state.totalDrinkCountOfCup),
         )
 
         MeasureResultInfoItems(
@@ -145,12 +147,7 @@ private fun MeasureAlcoholCupCountBox(modifier: Modifier = Modifier, alcoholCupC
             .clip(shape = RoundedCornerShape(8.dp))
             .background(color = SubPurple16),
     ) {
-        Text(
-            modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp),
-            text = stringResource(id = R.string.alcohol_cup_count, alcoholCupCount),
-            style = SubTitle3,
-            color = SubPurple,
-        )
+
     }
 }
 

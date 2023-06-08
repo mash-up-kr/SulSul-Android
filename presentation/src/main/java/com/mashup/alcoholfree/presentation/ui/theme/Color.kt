@@ -14,6 +14,8 @@ val Primary100 = Color(0xFFFD6234)
 val Primary200 = Color(0xFFFF8B4B)
 val Primary300 = Color(0xFFFFBE5C)
 
+val Primary200Transparent16 = Color(0x29FD6234)
+
 val SubBlue = Color(0xFF4E4DFF)
 val SubPurple = Color(0xFFBBB6FF)
 val SubGreen = Color(0xFFC6DC84)
