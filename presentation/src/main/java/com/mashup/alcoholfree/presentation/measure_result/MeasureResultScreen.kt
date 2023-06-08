@@ -56,10 +56,19 @@ fun MeasureResultScreen(
     state: MeasureResultState,
     onClickGoToHome: () -> Unit = {},
 ) {
-    val scrollState = rememberScrollState()
+    Box(modifier = Modifier.fillMaxHeight()) {
+        MeasureResultContent(state = state)
+        MeasureResultHomeButton(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            onClickGoToHome = onClickGoToHome,
+        )
+    }
+}
 
+@Composable
+private fun MeasureResultContent(state: MeasureResultState) {
     Column(
-        modifier = Modifier.verticalScroll(scrollState),
+        modifier = Modifier.verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         MeasureResultHeader(
@@ -105,13 +114,6 @@ fun MeasureResultScreen(
             drinkCountOfKaoliangju = state.drinkCountOfKaoliangju,
             drinkCountOfWine = state.drinkCountOfWine,
         )
-    }
-
-    Column(
-        modifier = Modifier.fillMaxHeight(),
-        verticalArrangement = Arrangement.Bottom
-    ) {
-        MeasureResultHomeButton(onClickGoToHome)
     }
 }
 
@@ -300,9 +302,12 @@ private fun MeasureResultDrinkAlcoholCupCountItem(
 }
 
 @Composable
-private fun MeasureResultHomeButton(onClickGoToHome: () -> Unit = {}) {
+private fun MeasureResultHomeButton(
+    modifier: Modifier = Modifier,
+    onClickGoToHome: () -> Unit = {},
+) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(start = rootHorizontalPadding, end = rootHorizontalPadding, bottom = 40.dp)
             .clip(RoundedCornerShape(16.dp))
