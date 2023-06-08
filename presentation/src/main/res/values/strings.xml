@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="kakao_login_label">카카오톡으로 시작하기</string>
+    <string name="my_alcohol_stat_intro_label">내 술 능력치는 얼만큼?</string>
+    <string name="my_alcohol_intro_label">주종별 내 주량 궁금하지 않으신가요?</string>
+    <string name="measure_intro_label">지금 측정해보세요!</string>
 </resources>
