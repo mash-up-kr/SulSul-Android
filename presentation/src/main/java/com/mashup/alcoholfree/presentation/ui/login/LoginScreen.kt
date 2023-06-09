@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -40,27 +41,32 @@ import com.mashup.alcoholfree.presentation.ui.theme.White
 fun LoginScreen(
     onKakaoLoginClick: () -> Unit,
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Box(
+        modifier = Modifier.fillMaxHeight(),
     ) {
-        LoginIntroTitle()
-        LoginIntroImage()
-        Spacer(Modifier.height(24.dp))
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.align(Alignment.TopCenter).padding(top = 120.dp),
+        ) {
+            LoginIntroTitle()
+            LoginIntroImage(modifier = Modifier.weight(1f).padding(horizontal = 9.dp))
+            Spacer(modifier = Modifier.height(24.dp))
+            KakaoLoginButton(onKakaoLoginClick = onKakaoLoginClick)
+        }
     }
-    KakaoLoginButton(onKakaoLoginClick)
 }
 
 @Composable
 private fun LoginIntroTitle() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.padding(bottom = 40.dp),
     ) {
         Image(
             painter = painterResource(id = R.drawable.sulsul_title_label),
             contentDescription = null,
             contentScale = ContentScale.Fit,
-            modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
+            modifier = Modifier.padding(bottom = 16.dp),
         )
         Text(
             text = stringResource(R.string.my_alcohol_stat_intro_label),
@@ -77,59 +83,48 @@ private fun LoginIntroTitle() {
             text = stringResource(R.string.measure_intro_label),
             style = SubTitle2,
             color = Grey700,
-            modifier = Modifier.padding(bottom = 40.dp),
         )
     }
 }
 
 @Composable
-private fun LoginIntroImage() {
+private fun LoginIntroImage(modifier: Modifier = Modifier) {
     Image(
         painter = painterResource(id = androidx.constraintlayout.widget.R.drawable.abc_btn_check_to_on_mtrl_000),
         contentDescription = null,
-        modifier = Modifier
-            .size(width = 300.dp, height = 400.dp)
-            .background(color = Grey300),
+        modifier = modifier.background(color = Grey300).fillMaxWidth(),
     )
 }
 
 @Composable
-private fun KakaoLoginButton(onKakaoLoginClick: () -> Unit) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Bottom,
+private fun KakaoLoginButton(
+    modifier: Modifier = Modifier,
+    onKakaoLoginClick: () -> Unit,
+) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 9.dp, vertical = 16.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .height(52.dp)
+            .background(color = KakaoContainer)
+            .clickable(
+                role = Role.Button,
+                onClick = onKakaoLoginClick,
+            ),
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 9.dp, vertical = 16.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .height(52.dp)
-                .background(color = KakaoContainer)
-                .clickable(
-                    role = Role.Button,
-                    onClick = onKakaoLoginClick,
-                ),
-            contentAlignment = Alignment.Center,
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.kakao_symbol),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(end = 9.dp)
-                        .size(height = 16.dp, width = 17.5.dp),
-                )
-                Text(
-                    text = stringResource(R.string.kakao_login_label),
-                    style = H5,
-                    color = KakaoSymbol,
-                )
-            }
-        }
+        Icon(
+            painter = painterResource(id = R.drawable.kakao_symbol),
+            contentDescription = null,
+            modifier = modifier.padding(end = 9.dp).size(height = 16.dp, width = 17.5.dp),
+        )
+        Text(
+            text = stringResource(R.string.kakao_login_label),
+            style = H5,
+            color = KakaoSymbol,
+        )
     }
 }
 
