@@ -165,19 +165,19 @@ private fun MeasureResultInfoItems(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        /* TODO: icon 변경 되어야함 */
         MeasureResultInfoItem(
-            imageResId = R.drawable.clock,
+            imageResId = R.drawable.ic_kcal,
             mainText = "$kcal Kcal",
             subText = stringResource(id = R.string.today_drink_kcal),
         )
+        /* TODO: icon 변경 되어야함 */
         MeasureResultInfoItem(
-            imageResId = R.drawable.clock,
+            imageResId = R.drawable.ic_clock,
             mainText = "${alcohol}%",
             subText = stringResource(id = R.string.average_alcohol_level),
         )
         MeasureResultInfoItem(
-            imageResId = R.drawable.clock,
+            imageResId = R.drawable.ic_clock,
             mainText = time,
             subText = stringResource(id = R.string.drink_time),
         )
