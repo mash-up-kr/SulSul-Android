@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.theme.Primary200
 import com.mashup.alcoholfree.presentation.ui.theme.Primary200Transparent16
 import com.mashup.alcoholfree.presentation.ui.theme.SubPurple
@@ -17,11 +18,6 @@ import com.mashup.alcoholfree.presentation.ui.theme.SubPurple16
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 
 private val sulSulBadgeRadius = 8.dp
-
-enum class SulSulBadgeType {
-    PURPLE,
-    ORANGE,
-}
 
 @Composable
 fun SulSulLargeBadge(
