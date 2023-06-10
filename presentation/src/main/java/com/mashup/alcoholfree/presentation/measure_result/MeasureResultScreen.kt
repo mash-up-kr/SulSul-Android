@@ -301,25 +301,36 @@ private fun MeasureResultDrinkAlcoholCupCountItem(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            val maxCountToDisplay = 4
+        MeasureResultDrinkAlcoholCups(
+            alcoholIconResId = alcoholType.iconResId,
+            drinkCount = drinkCount,
+        )
+    }
+}
 
-            for (i in 0 until drinkCount.coerceAtMost(maxCountToDisplay)) {
-                Image(
-                    painter = painterResource(id = alcoholType.iconResId),
-                    contentDescription = null
-                )
-            }
+@Composable
+private fun MeasureResultDrinkAlcoholCups(
+    alcoholIconResId: Int,
+    drinkCount: Int,
+) {
+    val maxCountToDisplay = 4
 
-            if (drinkCount > maxCountToDisplay) {
-                Text(
-                    modifier = Modifier.widthIn(min = 52.dp),
-                    text = "+${drinkCount - maxCountToDisplay}",
-                    style = H4,
-                    color = Grey700,
-                    textAlign = TextAlign.Center
-                )
-            }
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        for (i in 0 until drinkCount.coerceAtMost(maxCountToDisplay)) {
+            Image(
+                painter = painterResource(id = alcoholIconResId),
+                contentDescription = null
+            )
+        }
+
+        if (drinkCount > maxCountToDisplay) {
+            Text(
+                modifier = Modifier.widthIn(min = 52.dp),
+                text = "+${drinkCount - maxCountToDisplay}",
+                style = H4,
+                color = Grey700,
+                textAlign = TextAlign.Center
+            )
         }
     }
 }
