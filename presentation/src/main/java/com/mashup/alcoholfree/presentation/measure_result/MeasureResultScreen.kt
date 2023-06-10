@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -27,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
@@ -35,6 +37,7 @@ import com.mashup.alcoholfree.presentation.measure_result.model.MeasureResultSta
 import com.mashup.alcoholfree.presentation.ui.theme.Grey050
 import com.mashup.alcoholfree.presentation.ui.theme.Grey200
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
+import com.mashup.alcoholfree.presentation.ui.theme.Grey700
 import com.mashup.alcoholfree.presentation.ui.theme.Grey800
 import com.mashup.alcoholfree.presentation.ui.theme.Grey900
 import com.mashup.alcoholfree.presentation.ui.theme.H1
@@ -298,11 +301,23 @@ private fun MeasureResultDrinkAlcoholCupCountItem(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Row {
-            for (i in 0 until drinkCount) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            val maxCountToDisplay = 4
+
+            for (i in 0 until drinkCount.coerceAtMost(maxCountToDisplay)) {
                 Image(
                     painter = painterResource(id = alcoholType.iconResId),
                     contentDescription = null
+                )
+            }
+
+            if (drinkCount > maxCountToDisplay) {
+                Text(
+                    modifier = Modifier.widthIn(min = 52.dp),
+                    text = "+${drinkCount - maxCountToDisplay}",
+                    style = H4,
+                    color = Grey700,
+                    textAlign = TextAlign.Center
                 )
             }
         }
