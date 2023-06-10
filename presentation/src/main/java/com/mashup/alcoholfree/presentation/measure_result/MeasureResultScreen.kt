@@ -231,44 +231,52 @@ private fun MeasureResultDrinkAlcoholCupLayer(
             .clip(RoundedCornerShape(8.dp))
             .background(color = Grey050),
     ) {
-        MeasureResultDrinkAlcoholCupCountItem(
-            modifier = Modifier.padding(vertical = 16.dp),
-            alcoholType = AlcoholType.SOJU,
-            drinkCount = drinkCountOfSoju,
-        )
+        if (drinkCountOfSoju > 0) {
+            MeasureResultDrinkAlcoholCupCountItem(
+                modifier = Modifier.padding(vertical = 16.dp),
+                alcoholType = AlcoholType.SOJU,
+                drinkCount = drinkCountOfSoju,
+            )
 
-        Divider(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            color = Grey200
-        )
+            Divider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = Grey200
+            )
+        }
 
-        MeasureResultDrinkAlcoholCupCountItem(
-            modifier = Modifier.padding(vertical = 16.dp),
-            alcoholType = AlcoholType.BEER,
-            drinkCount = drinkCountOfBeer,
-        )
+        if (drinkCountOfBeer > 0) {
+            MeasureResultDrinkAlcoholCupCountItem(
+                modifier = Modifier.padding(vertical = 16.dp),
+                alcoholType = AlcoholType.BEER,
+                drinkCount = drinkCountOfBeer,
+            )
 
-        Divider(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            color = Grey200
-        )
+            Divider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = Grey200
+            )
+        }
 
-        MeasureResultDrinkAlcoholCupCountItem(
-            modifier = Modifier.padding(vertical = 16.dp),
-            alcoholType = AlcoholType.KAOLIANGJU,
-            drinkCount = drinkCountOfKaoliangju,
-        )
+        if (drinkCountOfKaoliangju > 0) {
+            MeasureResultDrinkAlcoholCupCountItem(
+                modifier = Modifier.padding(vertical = 16.dp),
+                alcoholType = AlcoholType.KAOLIANGJU,
+                drinkCount = drinkCountOfKaoliangju,
+            )
 
-        Divider(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            color = Grey200
-        )
+            Divider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = Grey200
+            )
+        }
 
-        MeasureResultDrinkAlcoholCupCountItem(
-            modifier = Modifier.padding(vertical = 16.dp),
-            alcoholType = AlcoholType.WINE,
-            drinkCount = drinkCountOfWine,
-        )
+        if (drinkCountOfWine > 0) {
+            MeasureResultDrinkAlcoholCupCountItem(
+                modifier = Modifier.padding(vertical = 16.dp),
+                alcoholType = AlcoholType.WINE,
+                drinkCount = drinkCountOfWine,
+            )
+        }
     }
 }
 
@@ -337,8 +345,8 @@ private fun MeasureResultScreenPreview() {
             totalDrinkKcal = 132,
             totalDrinkAlcohol = 16.9f,
             totalDrinkTime = "3시간 20분",
-            drinkCountOfSoju = 3,
-            drinkCountOfBeer = 4,
+            drinkCountOfSoju = 14,
+            drinkCountOfBeer = 0,
             drinkCountOfKaoliangju = 3,
             drinkCountOfWine = 3,
         )
