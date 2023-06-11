@@ -32,8 +32,8 @@ import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.measure_result.model.AlcoholType
 import com.mashup.alcoholfree.presentation.measure_result.model.MeasureResultState
-import com.mashup.alcoholfree.presentation.ui.component.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
+import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.theme.Grey050
 import com.mashup.alcoholfree.presentation.ui.theme.Grey200
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
