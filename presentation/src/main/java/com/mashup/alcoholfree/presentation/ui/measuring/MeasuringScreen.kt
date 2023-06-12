@@ -1,15 +1,25 @@
 package com.mashup.alcoholfree.presentation.ui.measuring
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
@@ -18,6 +28,8 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.H1
+import com.mashup.alcoholfree.presentation.ui.theme.Primary100
+import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
@@ -27,6 +39,7 @@ fun MeasuringScreen(
     records: String,
     level: String,
     currentAlcoholType: AlcoholType,
+    onMeasureFinishClick: () -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -49,6 +62,17 @@ fun MeasuringScreen(
         MeasuringSelectedAlcoholBubble(
             modifier = Modifier.padding(vertical = 16.dp),
             selectedAlcoholType = currentAlcoholType
+        )
+
+        MeasuringBubblesContainer(
+            modifier = Modifier.weight(1f),
+        )
+
+        MeasuringFinishButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            onMeasureClick = onMeasureFinishClick
         )
     }
 }
@@ -96,6 +120,44 @@ private fun MeasuringSelectedAlcoholBubble(
     )
 }
 
+@Composable
+private fun MeasuringBubblesContainer(
+    modifier: Modifier = Modifier,
+) {
+    /* TODO: 애니메이션 같은 거.. ㅎ */
+    Image(
+        modifier = modifier,
+        painter = painterResource(id = R.drawable.kakao_symbol),
+        contentDescription = null
+    )
+}
+
+@Composable
+private fun MeasuringFinishButton(
+    modifier: Modifier = Modifier,
+    onMeasureClick: () -> Unit,
+) {
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(16.dp))
+            .background(color = Primary100)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple(),
+                role = Role.Button,
+                onClick = onMeasureClick
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            modifier = Modifier.padding(17.dp),
+            text = "술 측정 끝내기",
+            style = SubTitle2,
+            color = White
+        )
+    }
+}
+
 @Preview
 @Composable
 private fun MeasuringScreenPreview() {
@@ -105,6 +167,7 @@ private fun MeasuringScreenPreview() {
             records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
             level = "미쳤다",
             currentAlcoholType = AlcoholType.SOJU,
+            onMeasureFinishClick = {}
         )
     }
 }
