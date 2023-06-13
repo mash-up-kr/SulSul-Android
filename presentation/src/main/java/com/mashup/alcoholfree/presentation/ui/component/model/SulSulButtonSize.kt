@@ -17,20 +17,20 @@ enum class SulSulButtonSize(
         verticalPadding = 5,
         imagePadding = 4,
         radius = 10,
-        SubTitle4,
+        textStyle = SubTitle4,
     ),
     MIDDLE(
         horizontalPadding = 12,
         verticalPadding = 9,
         imagePadding = 4,
         radius = 12,
-        SubTitle3,
+        textStyle = SubTitle3,
     ),
     LARGE(
         horizontalPadding = 16,
         verticalPadding = 14,
         imagePadding = 8,
         radius = 16,
-        SubTitle2,
+        textStyle = SubTitle2,
     ),
 }
