@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
+import com.mashup.alcoholfree.presentation.ui.component.model.SulSulIconOnlyButtonSize
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
 @Composable
@@ -33,16 +34,16 @@ fun SulSulDefaultButton(
             .background(color = buttonColor.color),
     ) {
         Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier.padding(
+            modifier = Modifier.padding(
                 horizontal = buttonSize.horizontalPadding.dp,
                 vertical = buttonSize.verticalPadding.dp,
             ),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = content,
-                style = buttonSize.textSize,
+                style = buttonSize.textStyle,
                 color = White,
             )
         }
@@ -52,7 +53,7 @@ fun SulSulDefaultButton(
 @Composable
 fun SulSulIconStartButton(
     modifier: Modifier = Modifier,
-    imgSrc: Int,
+    imageResId: Int,
     content: String,
     buttonColor: SulSulButtonColor,
     buttonSize: SulSulButtonSize,
@@ -63,21 +64,21 @@ fun SulSulIconStartButton(
             .background(color = buttonColor.color),
     ) {
         Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier.padding(
+            modifier = Modifier.padding(
                 horizontal = buttonSize.horizontalPadding.dp,
                 vertical = buttonSize.verticalPadding.dp,
             ),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
-                painter = painterResource(id = imgSrc),
+                painter = painterResource(id = imageResId),
                 contentDescription = null,
             )
             Text(
+                modifier = Modifier.padding(start = buttonSize.imagePadding.dp),
                 text = content,
-                modifier = modifier.padding(start = buttonSize.imagePadding.dp),
-                style = buttonSize.textSize,
+                style = buttonSize.textStyle,
                 color = White,
             )
         }
@@ -87,7 +88,7 @@ fun SulSulIconStartButton(
 @Composable
 fun SulSulIconEndButton(
     modifier: Modifier = Modifier,
-    imgSrc: Int,
+    imageResId: Int,
     content: String,
     buttonColor: SulSulButtonColor,
     buttonSize: SulSulButtonSize,
@@ -98,21 +99,21 @@ fun SulSulIconEndButton(
             .background(color = buttonColor.color),
     ) {
         Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier.padding(
+            modifier = Modifier.padding(
                 horizontal = buttonSize.horizontalPadding.dp,
                 vertical = buttonSize.verticalPadding.dp,
             ),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = content,
-                style = buttonSize.textSize,
+                style = buttonSize.textStyle,
                 color = White,
             )
             Image(
-                painter = painterResource(id = imgSrc),
-                modifier = modifier.padding(start = buttonSize.imagePadding.dp),
+                modifier = Modifier.padding(start = buttonSize.imagePadding.dp),
+                painter = painterResource(id = imageResId),
                 contentDescription = null,
             )
         }
@@ -122,9 +123,10 @@ fun SulSulIconEndButton(
 @Composable
 fun SulSulIconOnlyButton(
     modifier: Modifier = Modifier,
-    imgSrc: Int,
+    imageResId: Int,
     buttonSize: SulSulButtonSize,
     buttonColor: SulSulButtonColor,
+    iconOnlyButtonSize: SulSulIconOnlyButtonSize,
 ) {
     Box(
         modifier = modifier
@@ -132,12 +134,12 @@ fun SulSulIconOnlyButton(
             .background(color = buttonColor.color),
     ) {
         Row(
+            modifier = Modifier.padding(iconOnlyButtonSize.imagePadding.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier.padding(buttonSize.singleImagePadding.dp),
         ) {
             Image(
-                painter = painterResource(id = imgSrc),
+                painter = painterResource(id = imageResId),
                 contentDescription = null,
             )
         }
@@ -159,7 +161,7 @@ private fun SulSulDefaultButtonPreview() {
 private fun SulSulIconStartButtonPreview() {
     SulSulIconStartButton(
         content = "테스트",
-        imgSrc = R.drawable.kakao_symbol,
+        imageResId = R.drawable.kakao_symbol,
         buttonSize = SulSulButtonSize.MIDDLE,
         buttonColor = SulSulButtonColor.PRIMARY200,
     )
@@ -170,7 +172,7 @@ private fun SulSulIconStartButtonPreview() {
 private fun SulSulIconEndButtonPreview() {
     SulSulIconEndButton(
         content = "테스트",
-        imgSrc = R.drawable.kakao_symbol,
+        imageResId = R.drawable.kakao_symbol,
         buttonSize = SulSulButtonSize.LARGE,
         buttonColor = SulSulButtonColor.GREY200,
     )
@@ -180,8 +182,9 @@ private fun SulSulIconEndButtonPreview() {
 @Composable
 private fun SulSulIconOnlyButtonPreview() {
     SulSulIconOnlyButton(
-        imgSrc = R.drawable.kakao_symbol,
+        imageResId = R.drawable.kakao_symbol,
         buttonSize = SulSulButtonSize.MIDDLE,
         buttonColor = SulSulButtonColor.GREY300,
+        iconOnlyButtonSize = SulSulIconOnlyButtonSize.MIDDLE,
     )
 }
