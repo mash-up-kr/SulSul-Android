@@ -7,9 +7,8 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
-val KakaoContainer = Color(0xFFFEE500)
-val KakaoSymbol = Color(0xFF191919)
-
+val KakaoContainer = Color(0xFFFBE44D)
+val KakaoSymbol = Color(0xFF3B1F1E)
 val Primary100 = Color(0xFFFD6234)
 val Primary200 = Color(0xFFFF8B4B)
 val Primary300 = Color(0xFFFFBE5C)
