@@ -2,8 +2,11 @@ package com.mashup.alcoholfree.presentation.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
@@ -14,6 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulAlcoholLevel
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
+import com.mashup.alcoholfree.presentation.ui.theme.H2
+import com.mashup.alcoholfree.presentation.ui.theme.White
 
 @Composable
 fun SulSulAlcoholLevelCard(
@@ -21,15 +26,24 @@ fun SulSulAlcoholLevelCard(
     alcoholLevel: SulSulAlcoholLevel,
 ) {
     /* TODO: grainy background 적용해야함 */
-    Row(
-        modifier = modifier.width(328.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
+    Box(modifier = modifier
+        .width(328.dp)
+        .height(111.dp),
     ) {
-        SulSulAlcoholLevelTitle(
+        Row(
             modifier = Modifier.padding(start = 20.dp, top = 20.dp),
-            alcoholLevel = alcoholLevel,
-        )
-        Image(painter = painterResource(id = alcoholLevel.imageResId), contentDescription = null)
+            horizontalArrangement = Arrangement.Start,
+        ) {
+            SulSulAlcoholLevelTitle(
+                alcoholLevel = alcoholLevel,
+            )
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End,
+        ) {
+            Image(painter = painterResource(id = alcoholLevel.imageResId), contentDescription = null)
+        }
     }
 }
 
@@ -39,7 +53,11 @@ fun SulSulAlcoholLevelTitle(
     alcoholLevel: SulSulAlcoholLevel,
 ) {
     Column(modifier = modifier) {
-        Text(text = alcoholLevel.title)
+        Text(
+            text = alcoholLevel.title,
+            style = H2,
+            color = White,
+        )
         SulSulMiddleBadge(
             modifier = Modifier.padding(top = 4.dp),
             type = SulSulBadgeType.PURPLE,
