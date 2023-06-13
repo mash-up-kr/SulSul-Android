@@ -92,9 +92,7 @@ fun MeasuringScreen(
             )
 
             MeasuringFinishButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier = Modifier.padding(bottom = 40.dp),
                 onMeasureClick = onMeasureFinishClick
             )
         }
@@ -202,6 +200,8 @@ private fun MeasuringFinishButton(
 ) {
     Box(
         modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(color = Primary100)
             .clickable(
