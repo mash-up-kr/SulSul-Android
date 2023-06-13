@@ -10,4 +10,6 @@
     <string name="drink_alcohol_collect_and_see">마신 술 모아보기</string>
     <string name="go_to_home">홈으로 돌아가기</string>
     <string name="drink_type_and_count">%s %d잔</string>
+    <string name="alcohol_type_selection">주종 선택</string>
+    <string name="finish_measuring">술 측정 끝내기</string>
 </resources>

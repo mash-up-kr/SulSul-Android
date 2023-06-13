@@ -157,7 +157,7 @@ private fun MeasuringAlcoholSelection(
         /* TODO: 주종 선택 컴포넌트 */
         Text(
             modifier = Modifier.padding(vertical = 8.dp),
-            text = "주종 선택",
+            text = stringResource(id = R.string.alcohol_type_selection),
             style = SubTitle3,
             color = Grey800
         )
@@ -216,7 +216,7 @@ private fun MeasuringFinishButton(
     ) {
         Text(
             modifier = Modifier.padding(17.dp),
-            text = "술 측정 끝내기",
+            text = stringResource(id = R.string.finish_measuring),
             style = SubTitle2,
             color = White
         )
