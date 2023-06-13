@@ -9,11 +9,28 @@ enum class SulSulButtonSize(
     val horizontalPadding: Int,
     val verticalPadding: Int,
     val imagePadding: Int,
-    val singleImagePadding: Int,
     val radius: Int,
-    val textSize: TextStyle,
+    val textStyle: TextStyle,
 ) {
-    SMALL(8, 5, 4, 6, 10, SubTitle4),
-    MIDDLE(12, 9, 4, 12, 12, SubTitle3),
-    LARGE(16, 14, 8, 14, 16, SubTitle2),
+    SMALL(
+        horizontalPadding = 8,
+        verticalPadding = 5,
+        imagePadding = 4,
+        radius = 10,
+        SubTitle4,
+    ),
+    MIDDLE(
+        horizontalPadding = 12,
+        verticalPadding = 9,
+        imagePadding = 4,
+        radius = 12,
+        SubTitle3,
+    ),
+    LARGE(
+        horizontalPadding = 16,
+        verticalPadding = 14,
+        imagePadding = 8,
+        radius = 16,
+        SubTitle2,
+    ),
 }
