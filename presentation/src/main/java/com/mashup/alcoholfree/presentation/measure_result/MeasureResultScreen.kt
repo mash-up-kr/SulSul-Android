@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -294,7 +294,11 @@ private fun MeasureResultDrinkAlcoholCupCountItem(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = stringResource(id = R.string.drink_type_and_count, alcoholType.title, drinkCount),
+            text = stringResource(
+                id = R.string.drink_type_and_count,
+                alcoholType.title,
+                drinkCount
+            ),
             style = H5,
             color = White,
         )
@@ -325,7 +329,7 @@ private fun MeasureResultDrinkAlcoholCups(
 
         if (drinkCount > maxCountToDisplay) {
             Text(
-                modifier = Modifier.widthIn(min = 52.dp),
+                modifier = Modifier.width(52.dp),
                 text = "+${drinkCount - maxCountToDisplay}",
                 style = H4,
                 color = Grey700,
@@ -371,7 +375,7 @@ private fun MeasureResultScreenPreview() {
             totalDrinkKcal = 132,
             totalDrinkAlcohol = 16.9f,
             totalDrinkTime = "3시간 20분",
-            drinkCountOfSoju = 14,
+            drinkCountOfSoju = 999,
             drinkCountOfBeer = 0,
             drinkCountOfKaoliangju = 3,
             drinkCountOfWine = 3,
