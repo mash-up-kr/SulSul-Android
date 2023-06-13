@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -27,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
@@ -37,6 +39,7 @@ import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.theme.Grey050
 import com.mashup.alcoholfree.presentation.ui.theme.Grey200
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
+import com.mashup.alcoholfree.presentation.ui.theme.Grey700
 import com.mashup.alcoholfree.presentation.ui.theme.Grey800
 import com.mashup.alcoholfree.presentation.ui.theme.Grey900
 import com.mashup.alcoholfree.presentation.ui.theme.H1
@@ -216,44 +219,53 @@ private fun MeasureResultDrinkAlcoholCupLayer(
             .clip(RoundedCornerShape(8.dp))
             .background(color = Grey050),
     ) {
-        MeasureResultDrinkAlcoholCupCountItem(
-            modifier = Modifier.padding(vertical = 16.dp),
-            alcoholType = AlcoholType.SOJU,
-            drinkCount = drinkCountOfSoju,
-        )
+        val zero = 0
+        if (drinkCountOfSoju > zero) {
+            MeasureResultDrinkAlcoholCupCountItem(
+                modifier = Modifier.padding(vertical = 16.dp),
+                alcoholType = AlcoholType.SOJU,
+                drinkCount = drinkCountOfSoju,
+            )
 
-        Divider(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            color = Grey200
-        )
+            Divider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = Grey200
+            )
+        }
 
-        MeasureResultDrinkAlcoholCupCountItem(
-            modifier = Modifier.padding(vertical = 16.dp),
-            alcoholType = AlcoholType.BEER,
-            drinkCount = drinkCountOfBeer,
-        )
+        if (drinkCountOfBeer > zero) {
+            MeasureResultDrinkAlcoholCupCountItem(
+                modifier = Modifier.padding(vertical = 16.dp),
+                alcoholType = AlcoholType.BEER,
+                drinkCount = drinkCountOfBeer,
+            )
 
-        Divider(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            color = Grey200
-        )
+            Divider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = Grey200
+            )
+        }
 
-        MeasureResultDrinkAlcoholCupCountItem(
-            modifier = Modifier.padding(vertical = 16.dp),
-            alcoholType = AlcoholType.KAOLIANGJU,
-            drinkCount = drinkCountOfKaoliangju,
-        )
+        if (drinkCountOfKaoliangju > zero) {
+            MeasureResultDrinkAlcoholCupCountItem(
+                modifier = Modifier.padding(vertical = 16.dp),
+                alcoholType = AlcoholType.KAOLIANGJU,
+                drinkCount = drinkCountOfKaoliangju,
+            )
 
-        Divider(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            color = Grey200
-        )
+            Divider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = Grey200
+            )
+        }
 
-        MeasureResultDrinkAlcoholCupCountItem(
-            modifier = Modifier.padding(vertical = 16.dp),
-            alcoholType = AlcoholType.WINE,
-            drinkCount = drinkCountOfWine,
-        )
+        if (drinkCountOfWine > zero) {
+            MeasureResultDrinkAlcoholCupCountItem(
+                modifier = Modifier.padding(vertical = 16.dp),
+                alcoholType = AlcoholType.WINE,
+                drinkCount = drinkCountOfWine,
+            )
+        }
     }
 }
 
@@ -268,20 +280,47 @@ private fun MeasureResultDrinkAlcoholCupCountItem(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = stringResource(id = R.string.drink_type_and_count, alcoholType.title, drinkCount),
+            text = stringResource(
+                id = R.string.drink_type_and_count,
+                alcoholType.title,
+                drinkCount
+            ),
             style = H5,
             color = White,
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Row {
-            for (i in 0 until drinkCount) {
-                Image(
-                    painter = painterResource(id = alcoholType.iconResId),
-                    contentDescription = null
-                )
-            }
+        MeasureResultDrinkAlcoholCups(
+            alcoholIconResId = alcoholType.iconResId,
+            drinkCount = drinkCount,
+        )
+    }
+}
+
+@Composable
+private fun MeasureResultDrinkAlcoholCups(
+    alcoholIconResId: Int,
+    drinkCount: Int,
+) {
+    val maxCountToDisplay = 4
+
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        for (i in 0 until drinkCount.coerceAtMost(maxCountToDisplay)) {
+            Image(
+                painter = painterResource(id = alcoholIconResId),
+                contentDescription = null
+            )
+        }
+
+        if (drinkCount > maxCountToDisplay) {
+            Text(
+                modifier = Modifier.width(52.dp),
+                text = "+${drinkCount - maxCountToDisplay}",
+                style = H4,
+                color = Grey700,
+                textAlign = TextAlign.Center
+            )
         }
     }
 }
@@ -322,8 +361,8 @@ private fun MeasureResultScreenPreview() {
             totalDrinkKcal = 132,
             totalDrinkAlcohol = 16.9f,
             totalDrinkTime = "3시간 20분",
-            drinkCountOfSoju = 3,
-            drinkCountOfBeer = 4,
+            drinkCountOfSoju = 999,
+            drinkCountOfBeer = 0,
             drinkCountOfKaoliangju = 3,
             drinkCountOfWine = 3,
         )
