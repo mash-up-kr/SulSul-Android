@@ -234,7 +234,8 @@ private fun MeasureResultDrinkAlcoholCupLayer(
             .clip(RoundedCornerShape(8.dp))
             .background(color = Grey050),
     ) {
-        if (drinkCountOfSoju > 0) {
+        val zero = 0
+        if (drinkCountOfSoju > zero) {
             MeasureResultDrinkAlcoholCupCountItem(
                 modifier = Modifier.padding(vertical = 16.dp),
                 alcoholType = AlcoholType.SOJU,
@@ -247,7 +248,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
             )
         }
 
-        if (drinkCountOfBeer > 0) {
+        if (drinkCountOfBeer > zero) {
             MeasureResultDrinkAlcoholCupCountItem(
                 modifier = Modifier.padding(vertical = 16.dp),
                 alcoholType = AlcoholType.BEER,
@@ -260,7 +261,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
             )
         }
 
-        if (drinkCountOfKaoliangju > 0) {
+        if (drinkCountOfKaoliangju > zero) {
             MeasureResultDrinkAlcoholCupCountItem(
                 modifier = Modifier.padding(vertical = 16.dp),
                 alcoholType = AlcoholType.KAOLIANGJU,
@@ -273,7 +274,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
             )
         }
 
-        if (drinkCountOfWine > 0) {
+        if (drinkCountOfWine > zero) {
             MeasureResultDrinkAlcoholCupCountItem(
                 modifier = Modifier.padding(vertical = 16.dp),
                 alcoholType = AlcoholType.WINE,
