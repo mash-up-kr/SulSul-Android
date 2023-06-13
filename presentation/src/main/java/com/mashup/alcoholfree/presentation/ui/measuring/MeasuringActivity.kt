@@ -14,7 +14,8 @@ class MeasuringActivity : ComponentActivity() {
                 records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
                 level = "미쳤다",
                 currentAlcoholType = AlcoholType.SOJU,
-                onMeasureFinishClick = {}
+                onMeasureFinishClick = {},
+                onBackButtonClick = {}
             )
         }
     }

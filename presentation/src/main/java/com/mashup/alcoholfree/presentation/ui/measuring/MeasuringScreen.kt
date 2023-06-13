@@ -9,7 +9,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
@@ -27,6 +30,7 @@ import com.mashup.alcoholfree.presentation.measure_result.model.AlcoholType
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.ui.theme.Grey900
 import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.Primary100
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
@@ -40,39 +44,68 @@ fun MeasuringScreen(
     level: String,
     currentAlcoholType: AlcoholType,
     onMeasureFinishClick: () -> Unit,
+    onBackButtonClick: () -> Unit,
 ) {
-    Column(
+    Box(
         modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        MeasuringHeader(
-            modifier = Modifier.padding(top = 38.dp),
-            totalCount = totalCount,
-            status = records,
+        BackButton(
+            modifier = Modifier
+                .padding(top = 8.dp, start = 16.dp)
+                .align(Alignment.TopStart),
+            onBackButtonClick = onBackButtonClick
         )
 
-        if (totalCount > 0) {
-            SulSulLargeBadge(
-                modifier = Modifier.padding(top = 16.dp),
-                type = SulSulBadgeType.PURPLE,
-                text = level
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            MeasuringHeader(
+                modifier = Modifier.padding(top = 38.dp),
+                totalCount = totalCount,
+                status = records,
+            )
+
+            if (totalCount > 0) {
+                SulSulLargeBadge(
+                    modifier = Modifier.padding(top = 16.dp),
+                    type = SulSulBadgeType.PURPLE,
+                    text = level
+                )
+            }
+
+            MeasuringSelectedAlcoholBubble(
+                modifier = Modifier.padding(vertical = 16.dp),
+                selectedAlcoholType = currentAlcoholType
+            )
+
+            MeasuringBubblesContainer(
+                modifier = Modifier.weight(1f),
+            )
+
+            MeasuringFinishButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                onMeasureClick = onMeasureFinishClick
             )
         }
+    }
+}
 
-        MeasuringSelectedAlcoholBubble(
-            modifier = Modifier.padding(vertical = 16.dp),
-            selectedAlcoholType = currentAlcoholType
-        )
-
-        MeasuringBubblesContainer(
-            modifier = Modifier.weight(1f),
-        )
-
-        MeasuringFinishButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            onMeasureClick = onMeasureFinishClick
+@Composable
+private fun BackButton(
+    modifier: Modifier = Modifier,
+    onBackButtonClick: () -> Unit,
+) {
+    IconButton(
+        modifier = modifier.size(40.dp),
+        onClick = onBackButtonClick
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_back),
+            contentDescription = null,
+            tint = Grey900
         )
     }
 }
@@ -167,7 +200,8 @@ private fun MeasuringScreenPreview() {
             records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
             level = "미쳤다",
             currentAlcoholType = AlcoholType.SOJU,
-            onMeasureFinishClick = {}
+            onMeasureFinishClick = {},
+            onBackButtonClick = {}
         )
     }
 }
