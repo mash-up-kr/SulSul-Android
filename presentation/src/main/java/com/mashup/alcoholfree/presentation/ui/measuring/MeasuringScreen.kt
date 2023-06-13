@@ -41,6 +41,8 @@ import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
+private val measuringShape = RoundedCornerShape(16.dp)
+
 @Composable
 fun MeasuringScreen(
     totalCount: Int,
@@ -147,9 +149,9 @@ private fun MeasuringAlcoholSelection(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
+            .clip(measuringShape)
             .background(color = Grey100)
-            .border(width = 1.dp, color = Grey300, shape = RoundedCornerShape(16.dp)),
+            .border(width = 1.dp, color = Grey300, shape = measuringShape),
         contentAlignment = Alignment.Center,
     ) {
         /* TODO: 주종 선택 컴포넌트 */
@@ -202,7 +204,7 @@ private fun MeasuringFinishButton(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
-            .clip(RoundedCornerShape(16.dp))
+            .clip(measuringShape)
             .background(color = Primary100)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
