@@ -2,6 +2,7 @@ package com.mashup.alcoholfree.presentation.ui.measuring
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -30,6 +31,9 @@ import com.mashup.alcoholfree.presentation.measure_result.model.AlcoholType
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.ui.theme.Grey100
+import com.mashup.alcoholfree.presentation.ui.theme.Grey300
+import com.mashup.alcoholfree.presentation.ui.theme.Grey800
 import com.mashup.alcoholfree.presentation.ui.theme.Grey900
 import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.Primary100
@@ -83,6 +87,10 @@ fun MeasuringScreen(
                 modifier = Modifier.weight(1f),
             )
 
+            MeasuringAlcoholSelection(
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+            )
+
             MeasuringFinishButton(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -130,6 +138,28 @@ private fun MeasuringHeader(
             text = status,
             style = SubTitle3,
             color = White
+        )
+    }
+}
+
+@Composable
+private fun MeasuringAlcoholSelection(
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(color = Grey100)
+            .border(width = 1.dp, color = Grey300, shape = RoundedCornerShape(16.dp)),
+        contentAlignment = Alignment.Center,
+    ) {
+        /* TODO: 주종 선택 컴포넌트 */
+        Text(
+            modifier = Modifier.padding(vertical = 8.dp),
+            text = "주종 선택",
+            style = SubTitle3,
+            color = Grey800
         )
     }
 }
