@@ -124,7 +124,7 @@ private fun KakaoLoginButton(
     ) {
         Icon(
             modifier = Modifier.padding(end = 8.dp),
-            painter = painterResource(id = R.drawable.kakao_symbol),
+            painter = painterResource(id = R.drawable.ic_kakao),
             contentDescription = null,
         )
         Text(
