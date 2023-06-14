@@ -25,6 +25,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -59,7 +61,12 @@ fun MeasureResultScreen(
     state: MeasureResultState,
     onClickGoToHome: () -> Unit = {},
 ) {
-    Box(modifier = Modifier.fillMaxHeight()) {
+    Box(
+        modifier = Modifier.fillMaxHeight().paint(
+            painterResource(id = R.drawable.sulsul_background),
+            contentScale = ContentScale.FillBounds,
+        ),
+    ) {
         MeasureResultContent(state = state)
         MeasureResultHomeButton(
             modifier = Modifier.align(Alignment.BottomCenter),
@@ -161,7 +168,7 @@ private fun MeasureResultInfoItems(
         /* TODO: icon 변경 되어야함 */
         MeasureResultInfoItem(
             imageResId = R.drawable.ic_clock,
-            mainText = "${alcohol}%",
+            mainText = "$alcohol%",
             subText = stringResource(id = R.string.average_alcohol_level),
         )
         MeasureResultInfoItem(
@@ -194,7 +201,11 @@ private fun MeasureResultDrinkAlcoholCollectAndSeeLayer(
     drinkCountOfWine: Int,
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(text = stringResource(id = R.string.drink_alcohol_collect_and_see), style = H3, color = White)
+        Text(
+            text = stringResource(id = R.string.drink_alcohol_collect_and_see),
+            style = H3,
+            color = White,
+        )
         MeasureResultDrinkAlcoholCupLayer(
             modifier = Modifier.padding(top = 20.dp, bottom = 125.dp),
             drinkCountOfSoju = drinkCountOfSoju,
@@ -229,7 +240,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
 
             Divider(
                 modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200
+                color = Grey200,
             )
         }
 
@@ -242,7 +253,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
 
             Divider(
                 modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200
+                color = Grey200,
             )
         }
 
@@ -255,7 +266,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
 
             Divider(
                 modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200
+                color = Grey200,
             )
         }
 
@@ -283,7 +294,7 @@ private fun MeasureResultDrinkAlcoholCupCountItem(
             text = stringResource(
                 id = R.string.drink_type_and_count,
                 alcoholType.title,
-                drinkCount
+                drinkCount,
             ),
             style = H5,
             color = White,
@@ -309,7 +320,7 @@ private fun MeasureResultDrinkAlcoholCups(
         for (i in 0 until drinkCount.coerceAtMost(maxCountToDisplay)) {
             Image(
                 painter = painterResource(id = alcoholIconResId),
-                contentDescription = null
+                contentDescription = null,
             )
         }
 
@@ -319,7 +330,7 @@ private fun MeasureResultDrinkAlcoholCups(
                 text = "+${drinkCount - maxCountToDisplay}",
                 style = H4,
                 color = Grey700,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }
@@ -365,6 +376,6 @@ private fun MeasureResultScreenPreview() {
             drinkCountOfBeer = 0,
             drinkCountOfKaoliangju = 3,
             drinkCountOfWine = 3,
-        )
+        ),
     )
 }
