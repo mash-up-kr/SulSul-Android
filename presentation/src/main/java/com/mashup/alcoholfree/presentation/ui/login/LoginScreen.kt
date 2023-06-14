@@ -3,20 +3,20 @@ package com.mashup.alcoholfree.presentation.ui.login
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,38 +41,41 @@ import com.mashup.alcoholfree.presentation.ui.theme.White
 fun LoginScreen(
     onKakaoLoginClick: () -> Unit,
 ) {
-    Box(
-        modifier = Modifier.fillMaxHeight(),
+    Column(
+        modifier = Modifier.padding(top = 120.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.align(Alignment.TopCenter).padding(top = 120.dp),
-        ) {
-            LoginIntroTitle()
-            LoginIntroImage(modifier = Modifier.weight(1f).padding(horizontal = 9.dp))
-            Spacer(modifier = Modifier.height(24.dp))
-            KakaoLoginButton(onKakaoLoginClick = onKakaoLoginClick)
-        }
+        LoginIntroTitle(modifier = Modifier.padding(bottom = 40.dp))
+        LoginIntroImage(
+            modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 9.dp),
+        )
+        Spacer(modifier = Modifier.height(24.dp))
+        KakaoLoginButton(
+            modifier = Modifier.padding(bottom = 40.dp),
+            onKakaoLoginClick = onKakaoLoginClick,
+        )
     }
 }
 
 @Composable
-private fun LoginIntroTitle() {
+private fun LoginIntroTitle(modifier: Modifier = Modifier) {
     Column(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(bottom = 40.dp),
     ) {
         Image(
+            modifier = Modifier.padding(bottom = 16.dp),
             painter = painterResource(id = R.drawable.sulsul_title_label),
             contentDescription = null,
             contentScale = ContentScale.Fit,
-            modifier = Modifier.padding(bottom = 16.dp),
         )
         Text(
+            modifier = Modifier.padding(bottom = 16.dp),
             text = stringResource(R.string.my_alcohol_stat_intro_label),
             style = H1,
             color = White,
-            modifier = Modifier.padding(bottom = 16.dp),
         )
         Text(
             text = stringResource(R.string.my_alcohol_intro_label),
@@ -90,9 +93,11 @@ private fun LoginIntroTitle() {
 @Composable
 private fun LoginIntroImage(modifier: Modifier = Modifier) {
     Image(
+        modifier = modifier
+            .background(color = Grey300)
+            .fillMaxWidth(),
         painter = painterResource(id = androidx.constraintlayout.widget.R.drawable.abc_btn_check_to_on_mtrl_000),
         contentDescription = null,
-        modifier = modifier.background(color = Grey300).fillMaxWidth(),
     )
 }
 
@@ -102,23 +107,25 @@ private fun KakaoLoginButton(
     onKakaoLoginClick: () -> Unit,
 ) {
     Row(
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 9.dp, vertical = 16.dp)
+            .padding(horizontal = 16.dp)
             .clip(RoundedCornerShape(16.dp))
             .height(52.dp)
             .background(color = KakaoContainer)
             .clickable(
                 role = Role.Button,
                 onClick = onKakaoLoginClick,
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple(),
             ),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
+            modifier = Modifier.padding(end = 8.dp),
             painter = painterResource(id = R.drawable.kakao_symbol),
             contentDescription = null,
-            modifier = modifier.padding(end = 9.dp).size(height = 16.dp, width = 17.5.dp),
         )
         Text(
             text = stringResource(R.string.kakao_login_label),
