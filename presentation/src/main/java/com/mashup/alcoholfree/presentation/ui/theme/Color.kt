@@ -13,6 +13,8 @@ val Primary100 = Color(0xFFFD6234)
 val Primary200 = Color(0xFFFF8B4B)
 val Primary300 = Color(0xFFFFBE5C)
 
+val Primary200Transparent16 = Color(0x29FD6234)
+
 val SubBlue = Color(0xFF4E4DFF)
 val SubPurple = Color(0xFFBBB6FF)
 val SubGreen = Color(0xFFC6DC84)
@@ -31,3 +33,7 @@ val Grey700 = Color(0xFFAAACBA)
 val Grey800 = Color(0xFFC3C4CF)
 val Grey900 = Color(0xFFDDDDE4)
 val White = Color(0xFFFFFFFF)
+
+/* TODO: 이름이 정해지면 변경되어야할 친구들 */
+val SubPurple16 = Color(0x29BBB6FF)
+val White40 = Color(0x66FFFFFF)
