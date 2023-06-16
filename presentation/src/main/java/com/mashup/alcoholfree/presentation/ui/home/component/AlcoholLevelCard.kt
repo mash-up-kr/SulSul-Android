@@ -29,7 +29,7 @@ fun AlcoholLevelCard(
     /* TODO: grainy background 적용해야함 */
     Box(
         modifier = modifier
-        .width(328.dp)
+        .fillMaxWidth()
         .height(111.dp),
     ) {
         Row(
