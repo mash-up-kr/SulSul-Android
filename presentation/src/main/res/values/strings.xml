@@ -10,4 +10,7 @@
     <string name="drink_alcohol_collect_and_see">마신 술 모아보기</string>
     <string name="go_to_home">홈으로 돌아가기</string>
     <string name="drink_type_and_count">%s %d잔</string>
+    <string name="my_alcohol_stat_intro_label">내 술 능력치는 얼만큼?</string>
+    <string name="my_alcohol_intro_label">주종별 내 주량 궁금하지 않으신가요?</string>
+    <string name="measure_intro_label">지금 측정해보세요!</string>
 </resources>
