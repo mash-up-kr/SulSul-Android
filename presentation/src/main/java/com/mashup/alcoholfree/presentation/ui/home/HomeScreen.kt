@@ -15,27 +15,27 @@ import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholLevelCard
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
+import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.H3
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
 @Composable
-fun HomeScreen() {
-    val name = "우진"
-    val alcoholLevel = AlcoholLevel.LEVEL3
-
+fun HomeScreen(
+    state: HomeState,
+) {
     Column(
         modifier = Modifier.padding(horizontal = 16.dp),
     ) {
         Text(
             modifier = Modifier.padding(top = 40.dp),
-            text = "${name}님은",
+            text = "${state.userName}님은",
             style = H2,
             color = White,
         )
         AlcoholLevelCard(
             modifier = Modifier.padding(top = 8.dp),
-            alcoholLevel = alcoholLevel,
+            alcoholLevel = state.alcoholLevel,
         )
         Text(
             modifier = Modifier.padding(top = 24.dp),
@@ -65,5 +65,10 @@ fun HomeScreen() {
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(
+        HomeState(
+            userName = "우진",
+            alcoholLevel = AlcoholLevel.LEVEL3,
+        )
+    )
 }
