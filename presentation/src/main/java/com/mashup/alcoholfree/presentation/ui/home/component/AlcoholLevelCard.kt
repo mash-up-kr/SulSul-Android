@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.ui.component
+package com.mashup.alcoholfree.presentation.ui.home.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -15,18 +15,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mashup.alcoholfree.presentation.ui.component.model.SulSulAlcoholLevel
+import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
 @Composable
-fun SulSulAlcoholLevelCard(
+fun AlcoholLevelCard(
     modifier: Modifier = Modifier,
-    alcoholLevel: SulSulAlcoholLevel,
+    alcoholLevel: AlcoholLevel,
 ) {
     /* TODO: grainy background 적용해야함 */
-    Box(modifier = modifier
+    Box(
+        modifier = modifier
         .width(328.dp)
         .height(111.dp),
     ) {
@@ -34,7 +36,7 @@ fun SulSulAlcoholLevelCard(
             modifier = Modifier.padding(start = 20.dp, top = 20.dp),
             horizontalArrangement = Arrangement.Start,
         ) {
-            SulSulAlcoholLevelTitle(
+            AlcoholLevelTitle(
                 alcoholLevel = alcoholLevel,
             )
         }
@@ -48,9 +50,9 @@ fun SulSulAlcoholLevelCard(
 }
 
 @Composable
-fun SulSulAlcoholLevelTitle(
+private fun AlcoholLevelTitle(
     modifier: Modifier = Modifier,
-    alcoholLevel: SulSulAlcoholLevel,
+    alcoholLevel: AlcoholLevel,
 ) {
     Column(modifier = modifier) {
         Text(
@@ -68,36 +70,36 @@ fun SulSulAlcoholLevelTitle(
 
 @Preview
 @Composable
-fun SulSulAlcoholLevelCardLevel1PreView() {
-    SulSulAlcoholLevelCard(alcoholLevel = SulSulAlcoholLevel.LEVEL1)
+fun AlcoholLevelCardLevel1PreView() {
+    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL1)
 }
 
 @Preview
 @Composable
-fun SulSulAlcoholLevelCardLevel2PreView() {
-    SulSulAlcoholLevelCard(alcoholLevel = SulSulAlcoholLevel.LEVEL2)
+fun AlcoholLevelCardLevel2PreView() {
+    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL2)
 }
 
 @Preview
 @Composable
-fun SulSulAlcoholLevelCardLevel3PreView() {
-    SulSulAlcoholLevelCard(alcoholLevel = SulSulAlcoholLevel.LEVEL3)
+fun AlcoholLevelCardLevel3PreView() {
+    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL3)
 }
 
 @Preview
 @Composable
-fun SulSulAlcoholLevelCardLevel4PreView() {
-    SulSulAlcoholLevelCard(alcoholLevel = SulSulAlcoholLevel.LEVEL4)
+fun AlcoholLevelCardLevel4PreView() {
+    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL4)
 }
 
 @Preview
 @Composable
-fun SulSulAlcoholLevelCardLevel5PreView() {
-    SulSulAlcoholLevelCard(alcoholLevel = SulSulAlcoholLevel.LEVEL5)
+fun AlcoholLevelCardLevel5PreView() {
+    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL5)
 }
 
 @Preview
 @Composable
-fun SulSulAlcoholLevelCardLevel6PreView() {
-    SulSulAlcoholLevelCard(alcoholLevel = SulSulAlcoholLevel.LEVEL6)
+fun AlcoholLevelCardLevel6PreView() {
+    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL6)
 }
