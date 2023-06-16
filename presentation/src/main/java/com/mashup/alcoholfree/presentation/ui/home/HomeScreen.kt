@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
@@ -29,7 +30,7 @@ fun HomeScreen(
     ) {
         Text(
             modifier = Modifier.padding(top = 40.dp),
-            text = "${state.userName}님은",
+            text = stringResource(id = R.string.home_title, state.userName),
             style = H2,
             color = White,
         )
@@ -39,7 +40,7 @@ fun HomeScreen(
         )
         Text(
             modifier = Modifier.padding(top = 24.dp),
-            text = "나의 술 약속\uD83C\uDF7E",
+            text = stringResource(id = R.string.home_alcohol_appointment_text),
             style = H3,
             color = White,
         )
@@ -55,7 +56,7 @@ fun HomeScreen(
                 .align(Alignment.CenterHorizontally)
                 .padding(top = 35.dp, bottom = 40.dp),
             imageResId = R.drawable.ic_plus,
-            content = "술 마시러 가기",
+            content = stringResource(id = R.string.home_button_text),
             buttonColor = SulSulButtonColor.GREY300,
             buttonSize = SulSulButtonSize.LARGE,
         )
