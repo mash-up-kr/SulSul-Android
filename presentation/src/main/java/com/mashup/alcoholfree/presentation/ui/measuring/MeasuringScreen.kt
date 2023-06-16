@@ -10,10 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
@@ -27,6 +24,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
+import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.AlcoholBubbleType
@@ -34,7 +32,6 @@ import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Grey100
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.Grey800
-import com.mashup.alcoholfree.presentation.ui.theme.Grey900
 import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.Primary100
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
@@ -55,11 +52,11 @@ fun MeasuringScreen(
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
-        BackButton(
+        SulSulBackButton(
             modifier = Modifier
                 .padding(top = 8.dp, start = 16.dp)
                 .align(Alignment.TopStart),
-            onBackButtonClick = onBackButtonClick
+            onClick = onBackButtonClick
         )
 
         Column(
@@ -101,22 +98,6 @@ fun MeasuringScreen(
     }
 }
 
-@Composable
-private fun BackButton(
-    modifier: Modifier = Modifier,
-    onBackButtonClick: () -> Unit,
-) {
-    IconButton(
-        modifier = modifier.size(40.dp),
-        onClick = onBackButtonClick
-    ) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_back),
-            contentDescription = null,
-            tint = Grey900
-        )
-    }
-}
 
 @Composable
 private fun MeasuringHeader(
