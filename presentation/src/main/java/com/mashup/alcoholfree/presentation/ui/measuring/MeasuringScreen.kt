@@ -28,6 +28,7 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.AlcoholBubbleType
+import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Grey100
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
@@ -42,12 +43,9 @@ private val measuringShape = RoundedCornerShape(16.dp)
 
 @Composable
 fun MeasuringScreen(
-    totalCount: Int,
-    records: String,
-    level: String,
-    currentAlcoholType: AlcoholBubbleType,
-    onMeasureFinishClick: () -> Unit,
-    onBackButtonClick: () -> Unit,
+    state: MeasuringState,
+    onMeasureFinishClick: () -> Unit = {},
+    onBackButtonClick: () -> Unit = {},
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -56,30 +54,30 @@ fun MeasuringScreen(
             modifier = Modifier
                 .padding(top = 8.dp, start = 16.dp)
                 .align(Alignment.TopStart),
-            onClick = onBackButtonClick
+            onClick = onBackButtonClick,
         )
 
         Column(
             modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             MeasuringHeader(
                 modifier = Modifier.padding(top = 38.dp),
-                totalCount = totalCount,
-                status = records,
+                totalCount = state.totalCount,
+                status = state.records,
             )
 
-            if (totalCount > 0) {
+            if (state.totalCount > 0) {
                 SulSulLargeBadge(
                     modifier = Modifier.padding(top = 16.dp),
                     type = SulSulBadgeType.PURPLE,
-                    text = level
+                    text = state.level,
                 )
             }
 
             MeasuringSelectedAlcoholBubble(
                 modifier = Modifier.padding(vertical = 16.dp),
-                bubbleResId = currentAlcoholType.iconResId
+                bubbleResId = state.currentAlcoholType.iconResId,
             )
 
             MeasuringBubblesContainer(
@@ -92,7 +90,7 @@ fun MeasuringScreen(
 
             MeasuringFinishButton(
                 modifier = Modifier.padding(bottom = 40.dp),
-                onMeasureClick = onMeasureFinishClick
+                onMeasureClick = onMeasureFinishClick,
             )
         }
     }
@@ -107,18 +105,18 @@ private fun MeasuringHeader(
 ) {
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = stringResource(id = R.string.alcohol_cup_count, totalCount),
             style = H1,
-            color = White
+            color = White,
         )
         Text(
             modifier = Modifier.padding(top = 4.dp),
             text = status,
             style = SubTitle3,
-            color = White
+            color = White,
         )
     }
 }
@@ -140,7 +138,7 @@ private fun MeasuringAlcoholSelection(
             modifier = Modifier.padding(vertical = 8.dp),
             text = stringResource(id = R.string.alcohol_type_selection),
             style = SubTitle3,
-            color = Grey800
+            color = Grey800,
         )
     }
 }
@@ -184,15 +182,15 @@ private fun MeasuringFinishButton(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(),
                 role = Role.Button,
-                onClick = onMeasureClick
+                onClick = onMeasureClick,
             ),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             modifier = Modifier.padding(17.dp),
             text = stringResource(id = R.string.finish_measuring),
             style = SubTitle2,
-            color = White
+            color = White,
         )
     }
 }
@@ -202,12 +200,12 @@ private fun MeasuringFinishButton(
 private fun MeasuringScreenPreview() {
     AlcoholFreeAndroidTheme {
         MeasuringScreen(
-            totalCount = 25,
-            records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
-            level = "미쳤다",
-            currentAlcoholType = AlcoholBubbleType.SOJU,
-            onMeasureFinishClick = {},
-            onBackButtonClick = {}
+            MeasuringState(
+                totalCount = 25,
+                records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
+                level = "미쳤다",
+                currentAlcoholType = AlcoholBubbleType.SOJU,
+            ),
         )
     }
 }
