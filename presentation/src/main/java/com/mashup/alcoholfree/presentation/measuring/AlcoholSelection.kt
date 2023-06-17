@@ -49,6 +49,7 @@ private val selectionGradientBrush = Brush.horizontalGradient(
     0.5f to Color.Transparent,
     0.85f to Grey100,
 )
+private val defaultIconButtonSize = 40.dp
 
 @Composable
 fun AlcoholSelection(
@@ -98,7 +99,7 @@ private fun AlcoholSelectionRow(
         AlcoholSelectionPager(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 40.dp)
+                .padding(horizontal = defaultIconButtonSize)
                 .align(Alignment.Center),
             items = items,
             selectedPage = selectedIndex
@@ -110,7 +111,7 @@ private fun AlcoholSelectionRow(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             IconButton(
-                modifier = Modifier.size(40.dp),
+                modifier = Modifier.size(defaultIconButtonSize),
                 onClick = onLeftClick,
             ) {
                 Icon(
@@ -120,7 +121,7 @@ private fun AlcoholSelectionRow(
                 )
             }
             IconButton(
-                modifier = Modifier.size(40.dp),
+                modifier = Modifier.size(defaultIconButtonSize),
                 onClick = onRightClick,
             ) {
                 Icon(
