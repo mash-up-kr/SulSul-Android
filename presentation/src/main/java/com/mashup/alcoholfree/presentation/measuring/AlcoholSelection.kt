@@ -13,11 +13,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,6 +49,9 @@ private val selectionShape = RoundedCornerShape(16.dp)
 fun AlcoholSelection(
     modifier: Modifier = Modifier,
     items: List<String>,
+    selectedIndex: Int,
+    onLeftClick: () -> Unit,
+    onRightClick: () -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -63,6 +72,9 @@ fun AlcoholSelection(
                 .padding(horizontal = 34.dp)
                 .padding(bottom = 12.dp),
             items = items,
+            selectedIndex = selectedIndex,
+            onLeftClick = onLeftClick,
+            onRightClick = onRightClick,
         )
     }
 }
@@ -71,6 +83,9 @@ fun AlcoholSelection(
 private fun AlcoholSelectionRow(
     modifier: Modifier = Modifier,
     items: List<String>,
+    selectedIndex: Int,
+    onLeftClick: () -> Unit,
+    onRightClick: () -> Unit,
 ) {
     Box(
         modifier = modifier,
@@ -81,6 +96,7 @@ private fun AlcoholSelectionRow(
                 .padding(horizontal = 40.dp)
                 .align(Alignment.Center),
             items = items,
+            selectedPage = selectedIndex
         )
         Row(
             modifier = Modifier
@@ -96,7 +112,7 @@ private fun AlcoholSelectionRow(
         ) {
             IconButton(
                 modifier = Modifier.size(40.dp),
-                onClick = { /*TODO*/ },
+                onClick = onLeftClick,
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_doublechevron_left),
@@ -106,7 +122,7 @@ private fun AlcoholSelectionRow(
             }
             IconButton(
                 modifier = Modifier.size(40.dp),
-                onClick = { /*TODO*/ },
+                onClick = onRightClick,
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_doublechevron_right),
@@ -123,11 +139,20 @@ private fun AlcoholSelectionRow(
 private fun AlcoholSelectionPager(
     modifier: Modifier = Modifier,
     items: List<String>,
+    selectedPage: Int,
 ) {
+    val pagerState = rememberPagerState()
+
+    LaunchedEffect(selectedPage) {
+        pagerState.animateScrollToPage(selectedPage)
+    }
+
     HorizontalPager(
         modifier = modifier,
+        state = pagerState,
         pageCount = items.size,
         contentPadding = PaddingValues(horizontal = 80.dp),
+        userScrollEnabled = false,
     ) { page ->
         Text(
             modifier = Modifier.width(72.dp),
@@ -143,10 +168,15 @@ private fun AlcoholSelectionPager(
 @Composable
 private fun AlcoholSelectionPreview() {
     AlcoholFreeAndroidTheme {
+        var page by remember { mutableStateOf(0) }
+
         AlcoholSelection(
             items = listOf(
                 "소주", "맥주", "와인", "위스키", "고량주",
             ),
+            selectedIndex = page,
+            onLeftClick = { page -= 1 },
+            onRightClick = { page += 1 },
         )
     }
 }
