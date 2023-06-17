@@ -16,6 +16,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.Primary200Transparent16
 import com.mashup.alcoholfree.presentation.ui.theme.SubPurple
 import com.mashup.alcoholfree.presentation.ui.theme.SubPurple16
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
+import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
 
 private val sulSulBadgeRadius = 8.dp
 
@@ -63,7 +64,7 @@ fun SulSulMiddleBadge(
         Text(
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
             text = text,
-            style = SubTitle3,
+            style = SubTitle4,
             color = textColor,
         )
     }
