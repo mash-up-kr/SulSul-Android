@@ -21,6 +21,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -82,7 +84,14 @@ private fun AlcoholSelectionRow(
         )
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .background(
+                    brush = Brush.horizontalGradient(
+                        0.15f to Grey100,
+                        0.5f to Color.Transparent,
+                        0.85f to Grey100,
+                    ),
+                ),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             IconButton(
@@ -132,7 +141,7 @@ private fun AlcoholSelectionPager(
 
 @Preview
 @Composable
-fun AlcoholSelectionPreview() {
+private fun AlcoholSelectionPreview() {
     AlcoholFreeAndroidTheme {
         AlcoholSelection(
             items = listOf(
