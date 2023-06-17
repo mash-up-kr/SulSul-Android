@@ -44,6 +44,11 @@ import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
 private val selectionShape = RoundedCornerShape(16.dp)
+private val selectionGradientBrush = Brush.horizontalGradient(
+    0.15f to Grey100,
+    0.5f to Color.Transparent,
+    0.85f to Grey100,
+)
 
 @Composable
 fun AlcoholSelection(
@@ -101,13 +106,7 @@ private fun AlcoholSelectionRow(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(
-                    brush = Brush.horizontalGradient(
-                        0.15f to Grey100,
-                        0.5f to Color.Transparent,
-                        0.85f to Grey100,
-                    ),
-                ),
+                .background(brush = selectionGradientBrush),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             IconButton(
