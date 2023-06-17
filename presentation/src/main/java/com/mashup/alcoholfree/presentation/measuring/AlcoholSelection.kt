@@ -169,14 +169,15 @@ private fun AlcoholSelectionPager(
 private fun AlcoholSelectionPreview() {
     AlcoholFreeAndroidTheme {
         var page by remember { mutableStateOf(0) }
+        val list = listOf(
+            "소주", "맥주", "와인", "위스키", "고량주",
+        )
 
         AlcoholSelection(
-            items = listOf(
-                "소주", "맥주", "와인", "위스키", "고량주",
-            ),
+            items = list,
             selectedIndex = page,
-            onLeftClick = { page -= 1 },
-            onRightClick = { page += 1 },
+            onLeftClick = { if (page > 0) page -= 1 },
+            onRightClick = { if (page < list.size) page += 1 },
         )
     }
 }
