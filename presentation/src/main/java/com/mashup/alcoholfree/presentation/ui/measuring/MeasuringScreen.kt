@@ -75,7 +75,7 @@ fun MeasuringScreen(
                 )
             }
 
-            MeasuringSelectedAlcoholBubble(
+            MeasuringAlcoholBubble(
                 modifier = Modifier.padding(vertical = 16.dp),
                 bubbleResId = state.currentAlcoholType.iconResId,
             )
@@ -144,7 +144,7 @@ private fun MeasuringAlcoholSelection(
 }
 
 @Composable
-private fun MeasuringSelectedAlcoholBubble(
+private fun MeasuringAlcoholBubble(
     modifier: Modifier = Modifier,
     bubbleResId: Int
 ) {
