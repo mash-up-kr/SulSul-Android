@@ -25,8 +25,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
+import com.mashup.alcoholfree.presentation.ui.component.model.SulSulAlcoholPromiseCardType
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
-import com.mashup.alcoholfree.presentation.ui.component.model.SulSulPromiseCardAlcohol
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.FakeWhiteGradient
 import com.mashup.alcoholfree.presentation.ui.theme.H2
@@ -34,22 +34,10 @@ import com.mashup.alcoholfree.presentation.ui.theme.ParagraphLg
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
 @Composable
-fun HomeScreen(
-    list: List<HomeActivity.TempAlcohol>,
-) {
-    AlcoholPromiseCard(
-        modifier = Modifier
-            .padding(horizontal = 22.dp, vertical = 120.dp),
-        alcohol = SulSulPromiseCardAlcohol.WINE,
-        list = list,
-    )
-}
-
-@Composable
 private fun AlcoholPromiseCard(
     modifier: Modifier = Modifier,
-    alcohol: SulSulPromiseCardAlcohol,
-    list: List<HomeActivity.TempAlcohol>,
+    alcohol: SulSulAlcoholPromiseCardType,
+    list: List<TempAlcohol>,
 ) {
     Column(
         modifier = modifier
@@ -103,7 +91,7 @@ private fun AlcoholPromiseCard(
 @Composable
 private fun AlcoholTypeCount(
     modifier: Modifier = Modifier,
-    list: List<HomeActivity.TempAlcohol>,
+    list: List<TempAlcohol>,
 ) {
     Row(
         modifier = modifier.horizontalScroll(rememberScrollState()),
@@ -132,11 +120,17 @@ private fun AlcoholTypeCount(
 @Composable
 private fun HomeScreenPreview() {
     AlcoholFreeAndroidTheme {
-        HomeScreen(
-            listOf(
-                HomeActivity.TempAlcohol("맥주", 1),
-                HomeActivity.TempAlcohol("와인", 2),
+        AlcoholPromiseCard(
+            list = listOf(
+                TempAlcohol("맥주", 1),
+                TempAlcohol("와인", 2),
             ),
+            alcohol = SulSulAlcoholPromiseCardType.WINE,
         )
     }
 }
+
+data class TempAlcohol(
+    val alcohol: String,
+    val amount: Int,
+)
