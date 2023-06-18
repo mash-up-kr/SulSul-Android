@@ -15,7 +15,7 @@ class DebugBridgeActivity : ComponentActivity() {
                 items = listOf(
                     LoginActivity::class.java,
                     MeasureResultActivity::class.java,
-                )
+                ),
             )
         }
     }
