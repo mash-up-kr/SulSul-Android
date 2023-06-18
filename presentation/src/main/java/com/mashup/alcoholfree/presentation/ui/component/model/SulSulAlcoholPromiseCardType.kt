@@ -7,7 +7,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.GoryangjuGradient
 import com.mashup.alcoholfree.presentation.ui.theme.SojuGradient
 import com.mashup.alcoholfree.presentation.ui.theme.WineGradient
 
-enum class SulSulPromiseCardAlcohol(
+enum class SulSulAlcoholPromiseCardType(
     val imageResId: Int,
     val color: Color,
 ) {
