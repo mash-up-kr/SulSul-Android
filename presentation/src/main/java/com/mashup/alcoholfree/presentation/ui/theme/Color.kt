@@ -34,6 +34,5 @@ val Grey800 = Color(0xFFC3C4CF)
 val Grey900 = Color(0xFFDDDDE4)
 val White = Color(0xFFFFFFFF)
 
-/* TODO: 이름이 정해지면 변경되어야할 친구들 */
-val SubPurple16 = Color(0x29BBB6FF)
-val White40 = Color(0x66FFFFFF)
+val SubPurpleTransparent16 = Color(0x29BBB6FF)
+val WhiteTransparent32 = Color(0x52FFFFFF)

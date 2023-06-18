@@ -14,7 +14,7 @@ import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.theme.Primary200
 import com.mashup.alcoholfree.presentation.ui.theme.Primary200Transparent16
 import com.mashup.alcoholfree.presentation.ui.theme.SubPurple
-import com.mashup.alcoholfree.presentation.ui.theme.SubPurple16
+import com.mashup.alcoholfree.presentation.ui.theme.SubPurpleTransparent16
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
 
@@ -27,7 +27,7 @@ fun SulSulLargeBadge(
     text: String,
 ) {
     val (badgeColor, textColor) = when (type) {
-        SulSulBadgeType.PURPLE -> SubPurple16 to SubPurple
+        SulSulBadgeType.PURPLE -> SubPurpleTransparent16 to SubPurple
         SulSulBadgeType.ORANGE -> Primary200Transparent16 to Primary200
     }
 
@@ -52,7 +52,7 @@ fun SulSulMiddleBadge(
     text: String,
 ) {
     val (badgeColor, textColor) = when (type) {
-        SulSulBadgeType.PURPLE -> SubPurple16 to SubPurple
+        SulSulBadgeType.PURPLE -> SubPurpleTransparent16 to SubPurple
         SulSulBadgeType.ORANGE -> Primary200Transparent16 to Primary200
     }
 

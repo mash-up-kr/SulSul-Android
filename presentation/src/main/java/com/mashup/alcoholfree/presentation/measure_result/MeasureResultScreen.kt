@@ -50,7 +50,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
 import com.mashup.alcoholfree.presentation.ui.theme.White
-import com.mashup.alcoholfree.presentation.ui.theme.White40
+import com.mashup.alcoholfree.presentation.ui.theme.WhiteTransparent32
 
 private val rootHorizontalPadding = 16.dp
 
@@ -104,7 +104,7 @@ private fun MeasureResultContent(state: MeasureResultState) {
                 start = rootHorizontalPadding,
                 end = rootHorizontalPadding,
             ),
-            color = White40,
+            color = WhiteTransparent32,
         )
 
         MeasureResultDrinkAlcoholCollectAndSeeLayer(
