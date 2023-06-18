@@ -75,13 +75,10 @@ fun MeasuringScreen(
                 )
             }
 
-            MeasuringAlcoholBubble(
-                modifier = Modifier.padding(vertical = 16.dp),
-                bubbleResId = state.currentAlcoholType.iconResId,
-            )
-
             MeasuringBubblesContainer(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .padding(vertical = 16.dp)
+                    .weight(1f),
             )
 
             MeasuringAlcoholSelection(
@@ -141,18 +138,6 @@ private fun MeasuringAlcoholSelection(
             color = Grey800,
         )
     }
-}
-
-@Composable
-private fun MeasuringAlcoholBubble(
-    modifier: Modifier = Modifier,
-    bubbleResId: Int
-) {
-    Image(
-        modifier = modifier,
-        painter = painterResource(id = bubbleResId),
-        contentDescription = null
-    )
 }
 
 @Composable
