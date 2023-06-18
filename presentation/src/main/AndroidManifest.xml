@@ -32,6 +32,7 @@
         </activity>
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".measure_result.MeasureResultActivity" />
+        <activity android:name=".ui.measuring.MeasuringActivity" />
         <activity android:name=".ui.home.HomeActivity" />
     </application>
 </manifest>
