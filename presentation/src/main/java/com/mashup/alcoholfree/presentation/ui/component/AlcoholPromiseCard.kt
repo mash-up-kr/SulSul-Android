@@ -2,6 +2,7 @@ package com.mashup.alcoholfree.presentation.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +29,7 @@ import com.mashup.alcoholfree.presentation.ui.component.model.AlcoholPromiseCard
 import com.mashup.alcoholfree.presentation.ui.component.model.AlcoholPromiseCardType
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.ParagraphLg
 import com.mashup.alcoholfree.presentation.ui.theme.White
@@ -43,6 +45,7 @@ private fun AlcoholPromiseCard(
     Column(
         modifier = modifier
             .clip(shape = RoundedCornerShape(16.dp))
+            .border(width = 1.dp, color = Grey300)
             .paint(
                 painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.Crop,
