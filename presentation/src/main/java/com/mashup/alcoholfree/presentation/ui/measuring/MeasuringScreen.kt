@@ -23,9 +23,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.web.WebContent
+import com.google.accompanist.web.WebViewState
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
+import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.AlcoholBubbleType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
@@ -77,7 +80,7 @@ fun MeasuringScreen(
 
             MeasuringBubblesContainer(
                 modifier = Modifier
-                    .padding(vertical = 16.dp)
+                    .padding(top = 16.dp, bottom = 7.dp)
                     .weight(1f),
             )
 
@@ -144,11 +147,9 @@ private fun MeasuringAlcoholSelection(
 private fun MeasuringBubblesContainer(
     modifier: Modifier = Modifier,
 ) {
-    /* TODO: 애니메이션 같은 거.. ㅎ */
-    Image(
+    SulSulWebView(
         modifier = modifier,
-        painter = painterResource(id = R.drawable.kakao_symbol),
-        contentDescription = null
+        state = WebViewState(WebContent.Url("https://feat-test-webview.d1odkcnw7yeu9w.amplifyapp.com/")),
     )
 }
 
