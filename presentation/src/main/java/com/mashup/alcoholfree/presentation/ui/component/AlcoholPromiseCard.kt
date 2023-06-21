@@ -71,7 +71,7 @@ private fun AlcoholPromiseCard(
                 ),
             painter = painterResource(id = alcohol.imageResId),
             alignment = Alignment.Center,
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Fit,
             contentDescription = null,
         )
         AlcoholTypeCount(
