@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.measuring
+package com.mashup.alcoholfree.presentation.ui.measuring
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
