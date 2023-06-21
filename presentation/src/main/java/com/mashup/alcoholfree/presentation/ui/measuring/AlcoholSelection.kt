@@ -151,7 +151,7 @@ private fun AlcoholSelectionPager(
         modifier = modifier,
         state = pagerState,
         pageCount = items.size,
-        contentPadding = PaddingValues(horizontal = 80.dp),
+        contentPadding = PaddingValues(horizontal = 72.dp),
         userScrollEnabled = false,
     ) { page ->
         Text(
@@ -177,7 +177,7 @@ private fun AlcoholSelectionPreview() {
             items = list,
             selectedIndex = page,
             onLeftClick = { if (page > 0) page -= 1 },
-            onRightClick = { if (page < list.size) page += 1 },
+            onRightClick = { if (page < list.lastIndex) page += 1 },
         )
     }
 }
