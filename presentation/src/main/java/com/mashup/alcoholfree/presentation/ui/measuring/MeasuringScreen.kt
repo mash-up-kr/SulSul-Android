@@ -1,8 +1,6 @@
 package com.mashup.alcoholfree.presentation.ui.measuring
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -14,11 +12,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,12 +31,8 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
-import com.mashup.alcoholfree.presentation.ui.measuring.model.AlcoholBubbleType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
-import com.mashup.alcoholfree.presentation.ui.theme.Grey100
-import com.mashup.alcoholfree.presentation.ui.theme.Grey300
-import com.mashup.alcoholfree.presentation.ui.theme.Grey800
 import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.Primary100
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
@@ -47,6 +44,7 @@ private val measuringShape = RoundedCornerShape(16.dp)
 @Composable
 fun MeasuringScreen(
     state: MeasuringState,
+    onAlcoholSelectionChanged: (Int) -> Unit = {},
     onMeasureFinishClick: () -> Unit = {},
     onBackButtonClick: () -> Unit = {},
 ) {
@@ -84,8 +82,20 @@ fun MeasuringScreen(
                     .weight(1f),
             )
 
-            MeasuringAlcoholSelection(
+            AlcoholSelection(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                selectedIndex = state.currentAlcoholId,
+                items = state.alcoholTypes,
+                onLeftClick = {
+                    if (state.currentAlcoholId > 0) {
+                        onAlcoholSelectionChanged(state.currentAlcoholId - 1)
+                    }
+                },
+                onRightClick = {
+                    if (state.currentAlcoholId < state.alcoholTypes.lastIndex) {
+                        onAlcoholSelectionChanged(state.currentAlcoholId + 1)
+                    }
+                },
             )
 
             MeasuringFinishButton(
@@ -117,28 +127,6 @@ private fun MeasuringHeader(
             text = status,
             style = SubTitle3,
             color = White,
-        )
-    }
-}
-
-@Composable
-private fun MeasuringAlcoholSelection(
-    modifier: Modifier = Modifier,
-) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(measuringShape)
-            .background(color = Grey100)
-            .border(width = 1.dp, color = Grey300, shape = measuringShape),
-        contentAlignment = Alignment.Center,
-    ) {
-        /* TODO: 주종 선택 컴포넌트 */
-        Text(
-            modifier = Modifier.padding(vertical = 8.dp),
-            text = stringResource(id = R.string.alcohol_type_selection),
-            style = SubTitle3,
-            color = Grey800,
         )
     }
 }
@@ -185,13 +173,26 @@ private fun MeasuringFinishButton(
 @Composable
 private fun MeasuringScreenPreview() {
     AlcoholFreeAndroidTheme {
+        var alcoholId by remember { mutableStateOf(0) }
+        var state by remember {
+            mutableStateOf(
+                MeasuringState(
+                    totalCount = 25,
+                    records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
+                    level = "미쳤다",
+                    currentAlcoholId = alcoholId,
+                    alcoholTypes = listOf("소주", "맥주", "위스키", "와인", "고량주"),
+                )
+            )
+        }
+
+        LaunchedEffect(key1 = alcoholId) {
+            state = state.copy(currentAlcoholId = alcoholId)
+        }
+
         MeasuringScreen(
-            MeasuringState(
-                totalCount = 25,
-                records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
-                level = "미쳤다",
-                currentAlcoholType = AlcoholBubbleType.SOJU,
-            ),
+            state = state,
+            onAlcoholSelectionChanged = { id -> alcoholId = id },
         )
     }
 }

@@ -4,5 +4,6 @@ data class MeasuringState(
     val totalCount: Int,
     val records: String,
     val level: String,
-    val currentAlcoholType: AlcoholBubbleType,
+    val currentAlcoholId: Int,
+    val alcoholTypes: List<String>,
 )
