@@ -28,7 +28,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
-import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.Grey700
 import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.H5
@@ -93,10 +92,8 @@ private fun LoginIntroTitle(modifier: Modifier = Modifier) {
 @Composable
 private fun LoginIntroImage(modifier: Modifier = Modifier) {
     Image(
-        modifier = modifier
-            .background(color = Grey300)
-            .fillMaxWidth(),
-        painter = painterResource(id = androidx.constraintlayout.widget.R.drawable.abc_btn_check_to_on_mtrl_000),
+        modifier = modifier.fillMaxWidth(),
+        painter = painterResource(id = R.drawable.img_main),
         contentDescription = null,
     )
 }
