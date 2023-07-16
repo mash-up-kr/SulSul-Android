@@ -1,6 +1,5 @@
 package com.mashup.alcoholfree.presentation.ui.home
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
@@ -11,6 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
+import com.mashup.alcoholfree.presentation.ui.component.AlcoholPromiseCardView
 import com.mashup.alcoholfree.presentation.ui.component.SulSulIconStartButton
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
@@ -44,12 +44,12 @@ fun HomeScreen(
             style = H3,
             color = White,
         )
-        /* TODO: 술 약속 카드 컴포넌트가 들어와야함 */
-        Box(
-            modifier = Modifier.padding(top = 16.dp),
-        ) {
 
-        }
+        AlcoholPromiseCardView(
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .weight(1f),
+        )
 
         SulSulIconStartButton(
             modifier = Modifier
@@ -70,6 +70,6 @@ fun HomeScreenPreview() {
         HomeState(
             userName = "우진",
             alcoholLevel = AlcoholLevel.LEVEL3,
-        )
+        ),
     )
 }
