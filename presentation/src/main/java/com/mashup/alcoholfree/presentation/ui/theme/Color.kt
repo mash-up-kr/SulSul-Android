@@ -7,9 +7,8 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
-val KakaoContainer = Color(0xFFFEE500)
-val KakaoSymbol = Color(0xFF191919)
-
+val KakaoContainer = Color(0xFFFBE44D)
+val KakaoSymbol = Color(0xFF3B1F1E)
 val Primary100 = Color(0xFFFD6234)
 val Primary200 = Color(0xFFFF8B4B)
 val Primary300 = Color(0xFFFFBE5C)
@@ -35,6 +34,5 @@ val Grey800 = Color(0xFFC3C4CF)
 val Grey900 = Color(0xFFDDDDE4)
 val White = Color(0xFFFFFFFF)
 
-/* TODO: 이름이 정해지면 변경되어야할 친구들 */
-val SubPurple16 = Color(0x29BBB6FF)
-val White40 = Color(0x66FFFFFF)
+val SubPurpleTransparent16 = Color(0x29BBB6FF)
+val WhiteTransparent32 = Color(0x52FFFFFF)

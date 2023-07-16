@@ -161,7 +161,7 @@ private fun SulSulDefaultButtonPreview() {
 private fun SulSulIconStartButtonPreview() {
     SulSulIconStartButton(
         content = "테스트",
-        imageResId = R.drawable.kakao_symbol,
+        imageResId = R.drawable.ic_kakao,
         buttonSize = SulSulButtonSize.MIDDLE,
         buttonColor = SulSulButtonColor.PRIMARY200,
     )
@@ -172,7 +172,7 @@ private fun SulSulIconStartButtonPreview() {
 private fun SulSulIconEndButtonPreview() {
     SulSulIconEndButton(
         content = "테스트",
-        imageResId = R.drawable.kakao_symbol,
+        imageResId = R.drawable.ic_kakao,
         buttonSize = SulSulButtonSize.LARGE,
         buttonColor = SulSulButtonColor.GREY200,
     )
@@ -182,7 +182,7 @@ private fun SulSulIconEndButtonPreview() {
 @Composable
 private fun SulSulIconOnlyButtonPreview() {
     SulSulIconOnlyButton(
-        imageResId = R.drawable.kakao_symbol,
+        imageResId = R.drawable.ic_kakao,
         buttonSize = SulSulButtonSize.MIDDLE,
         buttonColor = SulSulButtonColor.GREY300,
         iconOnlyButtonSize = SulSulIconOnlyButtonSize.MIDDLE,
