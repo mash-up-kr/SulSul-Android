@@ -35,7 +35,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.ParagraphLg
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
 @Composable
-private fun AlcoholPromiseCard(
+fun AlcoholPromiseCard(
     modifier: Modifier = Modifier,
     alcohol: AlcoholPromiseCardType,
     list: List<AlcoholPromiseCardState>,
