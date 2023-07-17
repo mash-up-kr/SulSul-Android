@@ -1,6 +1,7 @@
 package com.mashup.alcoholfree.presentation.ui.home.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -29,10 +34,12 @@ import com.mashup.alcoholfree.presentation.ui.theme.H4
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 
 private val emptyPromiseCardShape = RoundedCornerShape(16.dp)
+private val emptyGradient = Color(0x33747474)
 
 @Composable
 fun EmptyPromiseCard(
     modifier: Modifier = Modifier,
+    onAddPromiseClick: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
@@ -41,6 +48,14 @@ fun EmptyPromiseCard(
             .paint(
                 painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.Crop,
+            )
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(emptyGradient, Color.Transparent),
+                    center = Offset(500f, 1300f),
+                    radius = 800f,
+                ),
+                shape = RectangleShape,
             ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
