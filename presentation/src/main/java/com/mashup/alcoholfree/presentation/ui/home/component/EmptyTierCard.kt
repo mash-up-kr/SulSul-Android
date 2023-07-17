@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
@@ -45,11 +46,19 @@ fun EmptyTierCard(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = "내 알코올 능력치는 얼마?", style = SubTitle4, color = Grey600)
-        Text(text = "아직 주량 등록을 하지 않았어요!", style = H5, color = Grey600)
+        Text(
+            text = stringResource(id = R.string.home_empty_tier_title),
+            style = SubTitle4,
+            color = Grey600
+        )
+        Text(
+            text = stringResource(id = R.string.home_empty_tier_subtitle),
+            style = H5,
+            color = Grey600
+        )
         SulSulIconEndButton(
             imageResId = R.drawable.ic_arrow_right,
-            content = "주량 등록하고 칭호 보기",
+            content = stringResource(id = R.string.home_empty_tier_button),
             buttonColor = SulSulButtonColor.TRANSPARENT,
             buttonSize = SulSulButtonSize.MIDDLE
         )

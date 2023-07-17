@@ -18,5 +18,8 @@
     <string name="home_title">%s님은</string>
     <string name="home_alcohol_appointment_text">나의 술 약속🍾</string>
     <string name="home_button_text">술 마시러 가기</string>
+    <string name="home_empty_tier_title">내 알코올 능력치는 얼마?</string>
+    <string name="home_empty_tier_subtitle">아직 주량 등록을 하지 않았어요!</string>
+    <string name="home_empty_tier_button">주량 등록하고 칭호 보기</string>
     <string name="alcohol_record_count">%s %d잔</string>
 </resources>
