@@ -66,12 +66,12 @@ fun EmptyPromiseCard(
         )
         Text(
             modifier = Modifier.padding(top = 32.dp),
-            text = "아직 등록된 술 약속이 없어요",
+            text = stringResource(id = R.string.home_empty_promise_title),
             style = H4,
             color = Grey600,
         )
         Text(
-            text = "술자리에서 마신 술을 등록해 보세요",
+            text = stringResource(id = R.string.home_empty_promise_subtitle),
             style = SubTitle3,
             color = Grey600,
         )
