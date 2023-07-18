@@ -36,3 +36,5 @@ val White = Color(0xFFFFFFFF)
 
 val SubPurpleTransparent16 = Color(0x29BBB6FF)
 val WhiteTransparent32 = Color(0x52FFFFFF)
+
+val EmptyGradient = Color(0x33747474)

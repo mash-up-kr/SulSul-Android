@@ -28,13 +28,13 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulIconStartButton
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.ui.theme.EmptyGradient
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.Grey600
 import com.mashup.alcoholfree.presentation.ui.theme.H4
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 
 private val emptyPromiseCardShape = RoundedCornerShape(16.dp)
-private val emptyGradient = Color(0x33747474)
 
 @Composable
 fun EmptyPromiseCard(
@@ -51,7 +51,7 @@ fun EmptyPromiseCard(
             )
             .background(
                 brush = Brush.radialGradient(
-                    colors = listOf(emptyGradient, Color.Transparent),
+                    colors = listOf(EmptyGradient, Color.Transparent),
                     center = Offset(500f, 1300f),
                     radius = 800f,
                 ),
