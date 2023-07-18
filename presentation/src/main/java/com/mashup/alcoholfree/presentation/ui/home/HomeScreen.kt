@@ -1,12 +1,21 @@
 package com.mashup.alcoholfree.presentation.ui.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -17,49 +26,83 @@ import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholLevelCard
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
+import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.H3
+import com.mashup.alcoholfree.presentation.ui.theme.OrangeGradient
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
 @Composable
 fun HomeScreen(
     state: HomeState,
 ) {
-    Column(
-        modifier = Modifier.padding(horizontal = 16.dp),
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painter = painterResource(id = R.drawable.sulsul_grain_background),
+                contentScale = ContentScale.FillBounds,
+            )
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(GrapeGradient, Color.Transparent),
+                    center = Offset(1400f, 1800f),
+                    radius = 1000f,
+                ),
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
     ) {
-        Text(
-            modifier = Modifier.padding(top = 40.dp),
-            text = stringResource(id = R.string.home_title, state.userName),
-            style = H2,
-            color = White,
-        )
-        AlcoholLevelCard(
-            modifier = Modifier.padding(top = 8.dp),
-            alcoholLevel = state.alcoholLevel,
-        )
-        Text(
-            modifier = Modifier.padding(top = 24.dp),
-            text = stringResource(id = R.string.home_alcohol_appointment_text),
-            style = H3,
-            color = White,
-        )
-        /* TODO: 술 약속 카드 컴포넌트가 들어와야함 */
         Box(
-            modifier = Modifier.padding(top = 16.dp),
-        ) {
-
-        }
-
-        SulSulIconStartButton(
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(top = 35.dp, bottom = 40.dp),
-            imageResId = R.drawable.ic_plus,
-            content = stringResource(id = R.string.home_button_text),
-            buttonColor = SulSulButtonColor.GREY300,
-            buttonSize = SulSulButtonSize.LARGE,
-        )
+                .fillMaxSize()
+                .background(
+                    brush = Brush.radialGradient(
+                        colors = listOf(OrangeGradient, Color.Transparent),
+                        center = Offset(200f, 800f),
+                        radius = 1200f,
+                    ),
+                    shape = RectangleShape,
+                    alpha = 0.5f,
+                ),
+            contentAlignment = Alignment.TopCenter,
+        ) {
+            Column(
+                modifier = Modifier.padding(horizontal = 16.dp),
+            ) {
+                Text(
+                    modifier = Modifier.padding(top = 40.dp),
+                    text = stringResource(id = R.string.home_title, state.userName),
+                    style = H2,
+                    color = White,
+                )
+                AlcoholLevelCard(
+                    modifier = Modifier.padding(top = 8.dp),
+                    alcoholLevel = state.alcoholLevel,
+                )
+                Text(
+                    modifier = Modifier.padding(top = 24.dp),
+                    text = stringResource(id = R.string.home_alcohol_appointment_text),
+                    style = H3,
+                    color = White,
+                )
+                /* TODO: 술 약속 카드 컴포넌트가 들어와야함 */
+                Box(
+                    modifier = Modifier.padding(top = 16.dp),
+                ) {
+                }
+
+                SulSulIconStartButton(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 35.dp, bottom = 40.dp),
+                    imageResId = R.drawable.ic_plus,
+                    content = stringResource(id = R.string.home_button_text),
+                    buttonColor = SulSulButtonColor.GREY300,
+                    buttonSize = SulSulButtonSize.LARGE,
+                )
+            }
+        }
     }
 }
 
@@ -70,6 +113,6 @@ fun HomeScreenPreview() {
         HomeState(
             userName = "우진",
             alcoholLevel = AlcoholLevel.LEVEL3,
-        )
+        ),
     )
 }

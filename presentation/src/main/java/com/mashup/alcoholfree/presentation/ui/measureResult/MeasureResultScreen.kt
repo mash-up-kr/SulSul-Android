@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.measure_result
+package com.mashup.alcoholfree.presentation.ui.measureResult
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,6 +26,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -34,10 +38,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
-import com.mashup.alcoholfree.presentation.measure_result.model.AlcoholType
-import com.mashup.alcoholfree.presentation.measure_result.model.MeasureResultState
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
+import com.mashup.alcoholfree.presentation.ui.measureResult.model.AlcoholType
+import com.mashup.alcoholfree.presentation.ui.measureResult.model.MeasureResultState
+import com.mashup.alcoholfree.presentation.ui.theme.BlueGradient
+import com.mashup.alcoholfree.presentation.ui.theme.GreenGradient
 import com.mashup.alcoholfree.presentation.ui.theme.Grey050
 import com.mashup.alcoholfree.presentation.ui.theme.Grey200
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
@@ -48,6 +54,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.H3
 import com.mashup.alcoholfree.presentation.ui.theme.H4
 import com.mashup.alcoholfree.presentation.ui.theme.H5
+import com.mashup.alcoholfree.presentation.ui.theme.PurpleGradient
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
@@ -62,16 +69,55 @@ fun MeasureResultScreen(
     onClickGoToHome: () -> Unit = {},
 ) {
     Box(
-        modifier = Modifier.fillMaxHeight().paint(
-            painterResource(id = R.drawable.sulsul_background),
-            contentScale = ContentScale.FillBounds,
-        ),
+        modifier = Modifier
+            .fillMaxHeight()
+            .paint(
+                painterResource(id = R.drawable.sulsul_grain_background),
+                contentScale = ContentScale.FillBounds,
+            )
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(PurpleGradient, Color.Transparent),
+                    center = Offset(100f, 1700f),
+                    radius = 1300f,
+                ),
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
     ) {
-        MeasureResultContent(state = state)
-        MeasureResultHomeButton(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            onClickGoToHome = onClickGoToHome,
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .background(
+                    brush = Brush.radialGradient(
+                        colors = listOf(GreenGradient, Color.Transparent),
+                        center = Offset(1500f, 1900f),
+                        radius = 700f,
+                    ),
+                    shape = RectangleShape,
+                    alpha = 0.5f,
+                ),
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .background(
+                        brush = Brush.radialGradient(
+                            colors = listOf(BlueGradient, Color.Transparent),
+                            center = Offset(200f, 2800f),
+                            radius = 900f,
+                        ),
+                        shape = RectangleShape,
+                        alpha = 0.5f,
+                    ),
+            ) {
+                MeasureResultContent(state = state)
+                MeasureResultHomeButton(
+                    modifier = Modifier.align(Alignment.BottomCenter),
+                    onClickGoToHome = onClickGoToHome,
+                )
+            }
+        }
     }
 }
 

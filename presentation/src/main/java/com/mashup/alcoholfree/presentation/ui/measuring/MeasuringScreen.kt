@@ -20,6 +20,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,8 +40,13 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.ui.theme.BlueGradient
+import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
+import com.mashup.alcoholfree.presentation.ui.theme.GreenGradient
 import com.mashup.alcoholfree.presentation.ui.theme.H1
+import com.mashup.alcoholfree.presentation.ui.theme.OrangeGradient
 import com.mashup.alcoholfree.presentation.ui.theme.Primary100
+import com.mashup.alcoholfree.presentation.ui.theme.PurpleGradient
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.White
@@ -48,64 +60,102 @@ fun MeasuringScreen(
     onMeasureFinishClick: () -> Unit = {},
     onBackButtonClick: () -> Unit = {},
 ) {
+    val gradientColorList = setGradientColor(state)
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painterResource(id = R.drawable.sulsul_grain_background),
+                contentScale = ContentScale.FillBounds,
+            )
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(gradientColorList.first(), Color.Transparent),
+                    center = Offset(100f, 2700f),
+                    radius = 800f,
+                ),
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
     ) {
-        SulSulBackButton(
+        Box(
             modifier = Modifier
-                .padding(top = 8.dp, start = 16.dp)
-                .align(Alignment.TopStart),
-            onClick = onBackButtonClick,
-        )
-
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
+                .fillMaxSize()
+                .background(
+                    brush = Brush.radialGradient(
+                        colors = listOf(gradientColorList.last(), Color.Transparent),
+                        center = Offset(1400f, 2800f),
+                        radius = 800f,
+                    ),
+                    shape = RectangleShape,
+                    alpha = 0.5f,
+                ),
         ) {
-            MeasuringHeader(
-                modifier = Modifier.padding(top = 38.dp),
-                totalCount = state.totalCount,
-                status = state.records,
+            SulSulBackButton(
+                modifier = Modifier
+                    .padding(top = 8.dp, start = 16.dp)
+                    .align(Alignment.TopStart),
+                onClick = onBackButtonClick,
             )
 
-            if (state.totalCount > 0) {
-                SulSulLargeBadge(
-                    modifier = Modifier.padding(top = 16.dp),
-                    type = SulSulBadgeType.PURPLE,
-                    text = state.level,
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                MeasuringHeader(
+                    modifier = Modifier.padding(top = 38.dp),
+                    totalCount = state.totalCount,
+                    status = state.records,
+                )
+
+                if (state.totalCount > 0) {
+                    SulSulLargeBadge(
+                        modifier = Modifier.padding(top = 16.dp),
+                        type = SulSulBadgeType.PURPLE,
+                        text = state.level,
+                    )
+                }
+
+                MeasuringBubblesContainer(
+                    modifier = Modifier
+                        .padding(top = 16.dp, bottom = 7.dp)
+                        .weight(1f),
+                )
+
+                AlcoholSelection(
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                    selectedIndex = state.currentAlcoholId,
+                    items = state.alcoholTypes,
+                    onLeftClick = {
+                        if (state.currentAlcoholId > 0) {
+                            onAlcoholSelectionChanged(state.currentAlcoholId - 1)
+                        }
+                    },
+                    onRightClick = {
+                        if (state.currentAlcoholId < state.alcoholTypes.lastIndex) {
+                            onAlcoholSelectionChanged(state.currentAlcoholId + 1)
+                        }
+                    },
+                )
+
+                MeasuringFinishButton(
+                    modifier = Modifier.padding(bottom = 40.dp),
+                    onMeasureClick = onMeasureFinishClick,
                 )
             }
-
-            MeasuringBubblesContainer(
-                modifier = Modifier
-                    .padding(top = 16.dp, bottom = 7.dp)
-                    .weight(1f),
-            )
-
-            AlcoholSelection(
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-                selectedIndex = state.currentAlcoholId,
-                items = state.alcoholTypes,
-                onLeftClick = {
-                    if (state.currentAlcoholId > 0) {
-                        onAlcoholSelectionChanged(state.currentAlcoholId - 1)
-                    }
-                },
-                onRightClick = {
-                    if (state.currentAlcoholId < state.alcoholTypes.lastIndex) {
-                        onAlcoholSelectionChanged(state.currentAlcoholId + 1)
-                    }
-                },
-            )
-
-            MeasuringFinishButton(
-                modifier = Modifier.padding(bottom = 40.dp),
-                onMeasureClick = onMeasureFinishClick,
-            )
         }
     }
 }
 
+private fun setGradientColor(state: MeasuringState): List<Color> {
+    return when (state.currentAlcoholId) {
+        1 -> listOf(OrangeGradient, GrapeGradient)
+        2 -> listOf(PurpleGradient, GrapeGradient)
+        3 -> listOf(GreenGradient, BlueGradient)
+        4 -> listOf(OrangeGradient, GreenGradient)
+        else -> listOf(BlueGradient, GrapeGradient)
+    }
+}
 
 @Composable
 private fun MeasuringHeader(
@@ -182,7 +232,7 @@ private fun MeasuringScreenPreview() {
                     level = "미쳤다",
                     currentAlcoholId = alcoholId,
                     alcoholTypes = listOf("소주", "맥주", "위스키", "와인", "고량주"),
-                )
+                ),
             )
         }
 
