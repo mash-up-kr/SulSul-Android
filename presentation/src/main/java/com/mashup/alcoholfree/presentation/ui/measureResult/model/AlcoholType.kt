@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.measure_result.model
+package com.mashup.alcoholfree.presentation.ui.measureResult.model
 
 import com.mashup.alcoholfree.presentation.R
 
