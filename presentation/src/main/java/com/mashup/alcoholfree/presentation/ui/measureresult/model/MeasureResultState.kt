@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.ui.measureResult.model
+package com.mashup.alcoholfree.presentation.ui.measureresult.model
 
 data class MeasureResultState(
     val headerStatus: String,

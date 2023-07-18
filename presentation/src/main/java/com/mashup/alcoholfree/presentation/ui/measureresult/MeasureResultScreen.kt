@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.ui.measureResult
+package com.mashup.alcoholfree.presentation.ui.measureresult
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -40,8 +40,8 @@ import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
-import com.mashup.alcoholfree.presentation.ui.measureResult.model.AlcoholType
-import com.mashup.alcoholfree.presentation.ui.measureResult.model.MeasureResultState
+import com.mashup.alcoholfree.presentation.ui.measureresult.model.AlcoholType
+import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultState
 import com.mashup.alcoholfree.presentation.ui.theme.BlueGradient
 import com.mashup.alcoholfree.presentation.ui.theme.GreenGradient
 import com.mashup.alcoholfree.presentation.ui.theme.Grey050
