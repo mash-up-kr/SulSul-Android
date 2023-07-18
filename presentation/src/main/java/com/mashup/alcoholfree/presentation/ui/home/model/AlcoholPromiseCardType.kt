@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.ui.component.model
+package com.mashup.alcoholfree.presentation.ui.home.model
 
 import androidx.compose.ui.graphics.Color
 import com.mashup.alcoholfree.presentation.R
