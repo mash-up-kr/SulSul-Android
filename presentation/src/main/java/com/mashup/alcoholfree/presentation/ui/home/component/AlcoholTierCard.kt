@@ -37,7 +37,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
 @Composable
-fun AlcoholLevelCard(
+fun AlcoholTierCard(
     modifier: Modifier = Modifier,
     alcoholLevel: AlcoholLevel,
 ) {
@@ -51,7 +51,7 @@ fun AlcoholLevelCard(
             modifier = Modifier.padding(start = 20.dp, top = 20.dp),
             horizontalArrangement = Arrangement.Start,
         ) {
-            AlcoholLevelTitle(
+            AlcoholTierTitle(
                 alcoholLevel = alcoholLevel,
             )
         }
@@ -68,7 +68,7 @@ fun AlcoholLevelCard(
 }
 
 @Composable
-private fun AlcoholLevelTitle(
+private fun AlcoholTierTitle(
     modifier: Modifier = Modifier,
     alcoholLevel: AlcoholLevel,
 ) {
@@ -126,38 +126,38 @@ fun EmptyTierCard(
 
 @Preview
 @Composable
-fun AlcoholLevelCardLevel1PreView() {
-    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL1)
+fun AlcoholTierCardLevel1PreView() {
+    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL1)
 }
 
 @Preview
 @Composable
-fun AlcoholLevelCardLevel2PreView() {
-    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL2)
+fun AlcoholTierCardLevel2PreView() {
+    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL2)
 }
 
 @Preview
 @Composable
-fun AlcoholLevelCardLevel3PreView() {
-    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL3)
+fun AlcoholTierCardLevel3PreView() {
+    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL3)
 }
 
 @Preview
 @Composable
-fun AlcoholLevelCardLevel4PreView() {
-    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL4)
+fun AlcoholTierCardLevel4PreView() {
+    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL4)
 }
 
 @Preview
 @Composable
-fun AlcoholLevelCardLevel5PreView() {
-    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL5)
+fun AlcoholTierCardLevel5PreView() {
+    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL5)
 }
 
 @Preview
 @Composable
-fun AlcoholLevelCardLevel6PreView() {
-    AlcoholLevelCard(alcoholLevel = AlcoholLevel.LEVEL6)
+fun AlcoholTierCardLevel6PreView() {
+    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL6)
 }
 
 @Preview

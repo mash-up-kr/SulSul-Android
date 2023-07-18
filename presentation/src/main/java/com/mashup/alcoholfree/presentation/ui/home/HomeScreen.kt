@@ -14,7 +14,7 @@ import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulIconStartButton
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
-import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholLevelCard
+import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholTierCard
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.H2
@@ -34,7 +34,7 @@ fun HomeScreen(
             style = H2,
             color = White,
         )
-        AlcoholLevelCard(
+        AlcoholTierCard(
             modifier = Modifier.padding(top = 8.dp),
             alcoholLevel = state.alcoholLevel,
         )
