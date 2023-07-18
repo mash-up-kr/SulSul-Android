@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.ui.component
+package com.mashup.alcoholfree.presentation.ui.home.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.PaddingValues
@@ -9,14 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import com.mashup.alcoholfree.presentation.ui.component.model.AlcoholPromiseCardState
-import com.mashup.alcoholfree.presentation.ui.component.model.AlcoholPromiseCardType
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun AlcoholPromiseCardView(
+fun AlcoholPromiseCardPager(
     modifier: Modifier = Modifier,
+    cardState: AlcoholPromiseCardState,
 ) {
     val pagerState = rememberPagerState()
     HorizontalPager(
@@ -47,13 +47,7 @@ fun AlcoholPromiseCardView(
                     fraction = 1f - pageOffset.coerceIn(0f, 1f),
                 )
             },
-            list = listOf(
-                AlcoholPromiseCardState("맥주", 1),
-                AlcoholPromiseCardState("소주", 2),
-            ),
-            alcohol = AlcoholPromiseCardType.BEER,
-            badgeTitle = "술좀치네",
-            date = "2021.08.01",
+            state = cardState,
         )
     }
 }

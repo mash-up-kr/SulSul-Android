@@ -10,12 +10,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
-import com.mashup.alcoholfree.presentation.ui.component.AlcoholPromiseCardView
 import com.mashup.alcoholfree.presentation.ui.component.SulSulIconStartButton
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholLevelCard
+import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholPromiseCardPager
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
+import com.mashup.alcoholfree.presentation.ui.home.model.Drink
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.H3
@@ -24,6 +26,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.White
 @Composable
 fun HomeScreen(
     state: HomeState,
+    cardState: AlcoholPromiseCardState,
 ) {
     Column(
         modifier = Modifier.padding(horizontal = 16.dp),
@@ -45,10 +48,11 @@ fun HomeScreen(
             color = White,
         )
 
-        AlcoholPromiseCardView(
+        AlcoholPromiseCardPager(
             modifier = Modifier
                 .padding(top = 16.dp)
                 .weight(1f),
+            cardState = cardState,
         )
 
         SulSulIconStartButton(
@@ -70,6 +74,14 @@ fun HomeScreenPreview() {
         HomeState(
             userName = "우진",
             alcoholLevel = AlcoholLevel.LEVEL3,
+        ),
+        AlcoholPromiseCardState(
+            drinks = listOf(
+                Drink("맥주", "1"),
+                Drink("와인", "2"),
+            ),
+            drankDate = "2023-08-21T04:00:00Z",
+            subTitleText = "술 좀 치네",
         ),
     )
 }
