@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -70,7 +70,7 @@ fun MeasureResultScreen(
 ) {
     Box(
         modifier = Modifier
-            .fillMaxHeight()
+            .fillMaxSize()
             .paint(
                 painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.FillBounds,
@@ -84,40 +84,40 @@ fun MeasureResultScreen(
                 shape = RectangleShape,
                 alpha = 0.5f,
             ),
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxHeight()
-                .background(
-                    brush = Brush.radialGradient(
-                        colors = listOf(GreenGradient, Color.Transparent),
-                        center = Offset(1500f, 1900f),
-                        radius = 700f,
-                    ),
-                    shape = RectangleShape,
-                    alpha = 0.5f,
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(GreenGradient, Color.Transparent),
+                    center = Offset(1500f, 1900f),
+                    radius = 700f,
                 ),
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .background(
-                        brush = Brush.radialGradient(
-                            colors = listOf(BlueGradient, Color.Transparent),
-                            center = Offset(200f, 2800f),
-                            radius = 900f,
-                        ),
-                        shape = RectangleShape,
-                        alpha = 0.5f,
-                    ),
-            ) {
-                MeasureResultContent(state = state)
-                MeasureResultHomeButton(
-                    modifier = Modifier.align(Alignment.BottomCenter),
-                    onClickGoToHome = onClickGoToHome,
-                )
-            }
-        }
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(BlueGradient, Color.Transparent),
+                    center = Offset(200f, 2800f),
+                    radius = 900f,
+                ),
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
+    ) {
+        MeasureResultContent(state = state)
+        MeasureResultHomeButton(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            onClickGoToHome = onClickGoToHome,
+        )
     }
 }
 

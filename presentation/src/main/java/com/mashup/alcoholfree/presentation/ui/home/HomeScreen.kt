@@ -52,56 +52,55 @@ fun HomeScreen(
                 shape = RectangleShape,
                 alpha = 0.5f,
             ),
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.radialGradient(
-                        colors = listOf(OrangeGradient, Color.Transparent),
-                        center = Offset(200f, 800f),
-                        radius = 1200f,
-                    ),
-                    shape = RectangleShape,
-                    alpha = 0.5f,
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(OrangeGradient, Color.Transparent),
+                    center = Offset(200f, 800f),
+                    radius = 1200f,
                 ),
-            contentAlignment = Alignment.TopCenter,
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
+        contentAlignment = Alignment.TopCenter,
+    ) {
+        Column(
+            modifier = Modifier.padding(horizontal = 16.dp),
         ) {
-            Column(
-                modifier = Modifier.padding(horizontal = 16.dp),
+            Text(
+                modifier = Modifier.padding(top = 40.dp),
+                text = stringResource(id = R.string.home_title, state.userName),
+                style = H2,
+                color = White,
+            )
+            AlcoholLevelCard(
+                modifier = Modifier.padding(top = 8.dp),
+                alcoholLevel = state.alcoholLevel,
+            )
+            Text(
+                modifier = Modifier.padding(top = 24.dp),
+                text = stringResource(id = R.string.home_alcohol_appointment_text),
+                style = H3,
+                color = White,
+            )
+            /* TODO: 술 약속 카드 컴포넌트가 들어와야함 */
+            Box(
+                modifier = Modifier.padding(top = 16.dp),
             ) {
-                Text(
-                    modifier = Modifier.padding(top = 40.dp),
-                    text = stringResource(id = R.string.home_title, state.userName),
-                    style = H2,
-                    color = White,
-                )
-                AlcoholLevelCard(
-                    modifier = Modifier.padding(top = 8.dp),
-                    alcoholLevel = state.alcoholLevel,
-                )
-                Text(
-                    modifier = Modifier.padding(top = 24.dp),
-                    text = stringResource(id = R.string.home_alcohol_appointment_text),
-                    style = H3,
-                    color = White,
-                )
-                /* TODO: 술 약속 카드 컴포넌트가 들어와야함 */
-                Box(
-                    modifier = Modifier.padding(top = 16.dp),
-                ) {
-                }
-
-                SulSulIconStartButton(
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(top = 35.dp, bottom = 40.dp),
-                    imageResId = R.drawable.ic_plus,
-                    content = stringResource(id = R.string.home_button_text),
-                    buttonColor = SulSulButtonColor.GREY300,
-                    buttonSize = SulSulButtonSize.LARGE,
-                )
             }
+
+            SulSulIconStartButton(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 35.dp, bottom = 40.dp),
+                imageResId = R.drawable.ic_plus,
+                content = stringResource(id = R.string.home_button_text),
+                buttonColor = SulSulButtonColor.GREY300,
+                buttonSize = SulSulButtonSize.LARGE,
+            )
         }
     }
 }

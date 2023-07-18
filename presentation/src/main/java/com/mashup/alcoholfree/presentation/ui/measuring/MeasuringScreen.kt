@@ -77,72 +77,72 @@ fun MeasuringScreen(
                 shape = RectangleShape,
                 alpha = 0.5f,
             ),
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.radialGradient(
-                        colors = listOf(gradientColorList.last(), Color.Transparent),
-                        center = Offset(1400f, 2800f),
-                        radius = 800f,
-                    ),
-                    shape = RectangleShape,
-                    alpha = 0.5f,
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(gradientColorList.last(), Color.Transparent),
+                    center = Offset(1400f, 2800f),
+                    radius = 800f,
                 ),
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
+    ) {
+        SulSulBackButton(
+            modifier = Modifier
+                .padding(top = 8.dp, start = 16.dp)
+                .align(Alignment.TopStart),
+            onClick = onBackButtonClick,
+        )
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            SulSulBackButton(
-                modifier = Modifier
-                    .padding(top = 8.dp, start = 16.dp)
-                    .align(Alignment.TopStart),
-                onClick = onBackButtonClick,
+            MeasuringHeader(
+                modifier = Modifier.padding(top = 38.dp),
+                totalCount = state.totalCount,
+                status = state.records,
             )
 
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                MeasuringHeader(
-                    modifier = Modifier.padding(top = 38.dp),
-                    totalCount = state.totalCount,
-                    status = state.records,
-                )
-
-                if (state.totalCount > 0) {
-                    SulSulLargeBadge(
-                        modifier = Modifier.padding(top = 16.dp),
-                        type = SulSulBadgeType.PURPLE,
-                        text = state.level,
-                    )
-                }
-
-                MeasuringBubblesContainer(
-                    modifier = Modifier
-                        .padding(top = 16.dp, bottom = 7.dp)
-                        .weight(1f),
-                )
-
-                AlcoholSelection(
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-                    selectedIndex = state.currentAlcoholId,
-                    items = state.alcoholTypes,
-                    onLeftClick = {
-                        if (state.currentAlcoholId > 0) {
-                            onAlcoholSelectionChanged(state.currentAlcoholId - 1)
-                        }
-                    },
-                    onRightClick = {
-                        if (state.currentAlcoholId < state.alcoholTypes.lastIndex) {
-                            onAlcoholSelectionChanged(state.currentAlcoholId + 1)
-                        }
-                    },
-                )
-
-                MeasuringFinishButton(
-                    modifier = Modifier.padding(bottom = 40.dp),
-                    onMeasureClick = onMeasureFinishClick,
+            if (state.totalCount > 0) {
+                SulSulLargeBadge(
+                    modifier = Modifier.padding(top = 16.dp),
+                    type = SulSulBadgeType.PURPLE,
+                    text = state.level,
                 )
             }
+
+            MeasuringBubblesContainer(
+                modifier = Modifier
+                    .padding(top = 16.dp, bottom = 7.dp)
+                    .weight(1f),
+            )
+
+            AlcoholSelection(
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                selectedIndex = state.currentAlcoholId,
+                items = state.alcoholTypes,
+                onLeftClick = {
+                    if (state.currentAlcoholId > 0) {
+                        onAlcoholSelectionChanged(state.currentAlcoholId - 1)
+                    }
+                },
+                onRightClick = {
+                    if (state.currentAlcoholId < state.alcoholTypes.lastIndex) {
+                        onAlcoholSelectionChanged(state.currentAlcoholId + 1)
+                    }
+                },
+            )
+
+            MeasuringFinishButton(
+                modifier = Modifier.padding(bottom = 40.dp),
+                onMeasureClick = onMeasureFinishClick,
+            )
         }
     }
 }
