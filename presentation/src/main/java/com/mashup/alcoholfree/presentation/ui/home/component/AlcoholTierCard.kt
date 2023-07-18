@@ -36,16 +36,23 @@ import com.mashup.alcoholfree.presentation.ui.theme.H5
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
+private val alcoholTierShape = RoundedCornerShape(16.dp)
+
 @Composable
 fun AlcoholTierCard(
     modifier: Modifier = Modifier,
     alcoholTier: AlcoholTier,
 ) {
-    /* TODO: grainy background 적용해야함 */
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(111.dp),
+            .height(111.dp)
+            .clip(shape = alcoholTierShape)
+            .border(width = 1.dp, color = Grey300, shape = alcoholTierShape)
+            .paint(
+                painter = painterResource(id = R.drawable.sulsul_grain_background),
+                contentScale = ContentScale.Crop,
+            ),
     ) {
         Row(
             modifier = Modifier.padding(start = 20.dp, top = 20.dp),
@@ -86,8 +93,6 @@ private fun AlcoholTierTitle(
     }
 }
 
-private val emptyTierShape = RoundedCornerShape(16.dp)
-
 @Composable
 fun EmptyTierCard(
     modifier: Modifier = Modifier,
@@ -96,8 +101,8 @@ fun EmptyTierCard(
         modifier = modifier
             .fillMaxWidth()
             .height(111.dp)
-            .clip(shape = emptyTierShape)
-            .border(width = 1.dp, color = Grey300, shape = emptyTierShape)
+            .clip(shape = alcoholTierShape)
+            .border(width = 1.dp, color = Grey300, shape = alcoholTierShape)
             .paint(
                 painter = painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.Crop,
