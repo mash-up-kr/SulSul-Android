@@ -27,7 +27,7 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.Grey600
@@ -39,7 +39,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.White
 @Composable
 fun AlcoholTierCard(
     modifier: Modifier = Modifier,
-    alcoholLevel: AlcoholLevel,
+    alcoholTier: AlcoholTier,
 ) {
     /* TODO: grainy background 적용해야함 */
     Box(
@@ -52,7 +52,7 @@ fun AlcoholTierCard(
             horizontalArrangement = Arrangement.Start,
         ) {
             AlcoholTierTitle(
-                alcoholLevel = alcoholLevel,
+                alcoholTier = alcoholTier,
             )
         }
         Row(
@@ -60,7 +60,7 @@ fun AlcoholTierCard(
             horizontalArrangement = Arrangement.End,
         ) {
             Image(
-                painter = painterResource(id = alcoholLevel.imageResId),
+                painter = painterResource(id = alcoholTier.imageResId),
                 contentDescription = null
             )
         }
@@ -70,18 +70,18 @@ fun AlcoholTierCard(
 @Composable
 private fun AlcoholTierTitle(
     modifier: Modifier = Modifier,
-    alcoholLevel: AlcoholLevel,
+    alcoholTier: AlcoholTier,
 ) {
     Column(modifier = modifier) {
         Text(
-            text = alcoholLevel.title,
+            text = alcoholTier.title,
             style = H2,
             color = White,
         )
         SulSulMiddleBadge(
             modifier = Modifier.padding(top = 4.dp),
             type = SulSulBadgeType.PURPLE,
-            text = alcoholLevel.badgeText,
+            text = alcoholTier.badgeText,
         )
     }
 }
@@ -127,37 +127,37 @@ fun EmptyTierCard(
 @Preview
 @Composable
 fun AlcoholTierCardLevel1PreView() {
-    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL1)
+    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL1)
 }
 
 @Preview
 @Composable
 fun AlcoholTierCardLevel2PreView() {
-    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL2)
+    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL2)
 }
 
 @Preview
 @Composable
 fun AlcoholTierCardLevel3PreView() {
-    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL3)
+    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL3)
 }
 
 @Preview
 @Composable
 fun AlcoholTierCardLevel4PreView() {
-    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL4)
+    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL4)
 }
 
 @Preview
 @Composable
 fun AlcoholTierCardLevel5PreView() {
-    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL5)
+    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL5)
 }
 
 @Preview
 @Composable
 fun AlcoholTierCardLevel6PreView() {
-    AlcoholTierCard(alcoholLevel = AlcoholLevel.LEVEL6)
+    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL6)
 }
 
 @Preview

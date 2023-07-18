@@ -15,7 +15,7 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulIconStartButton
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholTierCard
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.H3
@@ -36,7 +36,7 @@ fun HomeScreen(
         )
         AlcoholTierCard(
             modifier = Modifier.padding(top = 8.dp),
-            alcoholLevel = state.alcoholLevel,
+            alcoholTier = state.alcoholTier,
         )
         Text(
             modifier = Modifier.padding(top = 24.dp),
@@ -69,7 +69,7 @@ fun HomeScreenPreview() {
     HomeScreen(
         HomeState(
             userName = "우진",
-            alcoholLevel = AlcoholLevel.LEVEL3,
+            alcoholTier = AlcoholTier.LEVEL3,
         )
     )
 }
