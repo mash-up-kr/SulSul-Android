@@ -22,9 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -106,7 +103,6 @@ private fun LoginIntroImage(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxWidth(),
         painter = painterResource(id = R.drawable.img_main),
         contentDescription = null,
-        alpha = 0.99f,
     )
 }
 
