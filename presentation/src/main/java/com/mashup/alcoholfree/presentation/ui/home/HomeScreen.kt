@@ -25,7 +25,6 @@ import com.mashup.alcoholfree.presentation.ui.theme.White
 @Composable
 fun HomeScreen(
     state: HomeState,
-    cardList: List<AlcoholPromiseCardState>,
 ) {
     Column(
         modifier = Modifier.padding(horizontal = 16.dp),
@@ -51,7 +50,7 @@ fun HomeScreen(
             modifier = Modifier
                 .padding(top = 16.dp)
                 .weight(1f),
-            cardList = cardList,
+            cardList = state.cardList,
         )
 
         SulSulIconStartButton(
@@ -73,7 +72,7 @@ fun HomeScreenPreview() {
         state = HomeState(
             userName = "우진",
             alcoholLevel = AlcoholLevel.LEVEL3,
+            cardList = AlcoholPromiseCardState.sampleCardList(),
         ),
-        cardList = AlcoholPromiseCardState.sampleCardList(),
     )
 }

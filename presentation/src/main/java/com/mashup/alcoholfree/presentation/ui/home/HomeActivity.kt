@@ -16,8 +16,8 @@ class HomeActivity : ComponentActivity() {
                 state = HomeState(
                     userName = "우진",
                     alcoholLevel = AlcoholLevel.LEVEL3,
+                    cardList = AlcoholPromiseCardState.sampleCardList(),
                 ),
-                cardList = AlcoholPromiseCardState.sampleCardList(),
             )
         }
     }
