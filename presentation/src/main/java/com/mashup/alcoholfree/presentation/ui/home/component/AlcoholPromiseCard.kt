@@ -34,7 +34,6 @@ import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.ParagraphLg
 import com.mashup.alcoholfree.presentation.ui.theme.White
-import com.mashup.alcoholfree.presentation.utils.DateFormatter
 
 @Composable
 fun AlcoholPromiseCard(
@@ -83,7 +82,7 @@ fun AlcoholPromiseCard(
         )
         Text(
             modifier = Modifier.padding(start = 32.dp),
-            text = DateFormatter.dateFormat(state.drankDate),
+            text = state.drankDate,
             style = ParagraphLg,
             color = White,
         )
@@ -132,10 +131,10 @@ private fun AlcoholPromiseCardPreview() {
         AlcoholPromiseCard(
             state = AlcoholPromiseCardState(
                 drinks = listOf(
-                    Drink("맥주", "1"),
-                    Drink("와인", "2"),
+                    Drink("맥주", 1),
+                    Drink("와인", 2),
                 ),
-                drankDate = "2023-08-21T04:00:00Z",
+                drankDate = "2023.08.21",
                 subTitleText = "술 좀 치네",
             ),
         )
