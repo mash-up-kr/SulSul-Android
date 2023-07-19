@@ -16,11 +16,11 @@ import kotlin.math.absoluteValue
 @Composable
 fun AlcoholPromiseCardPager(
     modifier: Modifier = Modifier,
-    cardState: AlcoholPromiseCardState,
+    cardList: List<AlcoholPromiseCardState>,
 ) {
     val pagerState = rememberPagerState()
     HorizontalPager(
-        pageCount = 5,
+        pageCount = cardList.size,
         modifier = modifier,
         state = pagerState,
         contentPadding = PaddingValues(horizontal = 40.dp),
@@ -47,7 +47,7 @@ fun AlcoholPromiseCardPager(
                     fraction = 1f - pageOffset.coerceIn(0f, 1f),
                 )
             },
-            state = cardState,
+            state = cardList[page],
         )
     }
 }

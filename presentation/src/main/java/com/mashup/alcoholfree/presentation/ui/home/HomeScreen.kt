@@ -17,7 +17,6 @@ import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholLevelCard
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholPromiseCardPager
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
-import com.mashup.alcoholfree.presentation.ui.home.model.Drink
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.H3
@@ -26,7 +25,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.White
 @Composable
 fun HomeScreen(
     state: HomeState,
-    cardState: AlcoholPromiseCardState,
+    cardList: List<AlcoholPromiseCardState>,
 ) {
     Column(
         modifier = Modifier.padding(horizontal = 16.dp),
@@ -52,7 +51,7 @@ fun HomeScreen(
             modifier = Modifier
                 .padding(top = 16.dp)
                 .weight(1f),
-            cardState = cardState,
+            cardList = cardList,
         )
 
         SulSulIconStartButton(
@@ -71,17 +70,10 @@ fun HomeScreen(
 @Composable
 fun HomeScreenPreview() {
     HomeScreen(
-        HomeState(
+        state = HomeState(
             userName = "우진",
             alcoholLevel = AlcoholLevel.LEVEL3,
         ),
-        AlcoholPromiseCardState(
-            drinks = listOf(
-                Drink("맥주", "1"),
-                Drink("와인", "2"),
-            ),
-            drankDate = "2023-08-21T04:00:00Z",
-            subTitleText = "술 좀 치네",
-        ),
+        cardList = AlcoholPromiseCardState.sampleCardList(),
     )
 }
