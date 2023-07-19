@@ -60,7 +60,7 @@ fun MeasuringScreen(
     onMeasureFinishClick: () -> Unit = {},
     onBackButtonClick: () -> Unit = {},
 ) {
-    val gradientColorList = setGradientColor(state)
+    val gradientColorList = setGradientColor(state.currentAlcoholId)
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -147,8 +147,8 @@ fun MeasuringScreen(
     }
 }
 
-private fun setGradientColor(state: MeasuringState): List<Color> {
-    return when (state.currentAlcoholId) {
+private fun setGradientColor(currentAlcohol: Int): List<Color> {
+    return when (currentAlcohol) {
         1 -> listOf(OrangeGradient, GrapeGradient)
         2 -> listOf(PurpleGradient, GrapeGradient)
         3 -> listOf(GreenGradient, BlueGradient)
