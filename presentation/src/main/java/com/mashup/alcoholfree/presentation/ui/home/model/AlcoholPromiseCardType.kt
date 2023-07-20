@@ -2,10 +2,9 @@ package com.mashup.alcoholfree.presentation.ui.home.model
 
 import androidx.compose.ui.graphics.Color
 import com.mashup.alcoholfree.presentation.R
-import com.mashup.alcoholfree.presentation.ui.theme.BeerGradient
-import com.mashup.alcoholfree.presentation.ui.theme.GoryangjuGradient
-import com.mashup.alcoholfree.presentation.ui.theme.SojuGradient
-import com.mashup.alcoholfree.presentation.ui.theme.WineGradient
+import com.mashup.alcoholfree.presentation.ui.theme.GreenGradient2
+import com.mashup.alcoholfree.presentation.ui.theme.OrangeGradient2
+import com.mashup.alcoholfree.presentation.ui.theme.PurpleGradient2
 
 enum class AlcoholPromiseCardType(
     val imageResId: Int,
@@ -13,18 +12,18 @@ enum class AlcoholPromiseCardType(
 ) {
     SOJU(
         imageResId = R.drawable.card_soju,
-        color = SojuGradient,
+        color = GreenGradient2,
     ),
     WINE(
         imageResId = R.drawable.card_wine,
-        color = WineGradient,
+        color = PurpleGradient2,
     ),
     BEER(
         imageResId = R.drawable.card_beer,
-        color = BeerGradient,
+        color = OrangeGradient2,
     ),
     GORYANGJU(
         imageResId = R.drawable.card_goryangju,
-        color = GoryangjuGradient,
+        color = GreenGradient2,
     ),
 }
