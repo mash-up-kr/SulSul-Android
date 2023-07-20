@@ -36,6 +36,8 @@ import com.mashup.alcoholfree.presentation.ui.theme.ParagraphLg
 import com.mashup.alcoholfree.presentation.ui.theme.White
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
+private val cardShape = RoundedCornerShape(16.dp)
+
 @Composable
 fun AlcoholPromiseCard(
     modifier: Modifier = Modifier,
@@ -44,8 +46,8 @@ fun AlcoholPromiseCard(
     val alcoholType = AlcoholPromiseCardState.getAlcoholType(state.drinks.list.first())
     Column(
         modifier = modifier
-            .clip(shape = RoundedCornerShape(16.dp))
-            .border(width = 1.dp, color = Grey300)
+            .clip(shape = cardShape)
+            .border(width = 1.dp, color = Grey300, shape = cardShape)
             .paint(
                 painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.Crop,
