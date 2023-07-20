@@ -23,7 +23,9 @@ import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulIconStartButton
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
+import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholPromiseCardPager
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholTierCard
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
@@ -31,6 +33,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.H3
 import com.mashup.alcoholfree.presentation.ui.theme.OrangeGradient
 import com.mashup.alcoholfree.presentation.ui.theme.White
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 @Composable
 fun HomeScreen(
@@ -86,11 +89,13 @@ fun HomeScreen(
                 style = H3,
                 color = White,
             )
-            /* TODO: 술 약속 카드 컴포넌트가 들어와야함 */
-            Box(
-                modifier = Modifier.padding(top = 16.dp),
-            ) {
-            }
+
+            AlcoholPromiseCardPager(
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .weight(1f),
+                cardList = state.cardList,
+            )
 
             SulSulIconStartButton(
                 modifier = Modifier
@@ -109,9 +114,10 @@ fun HomeScreen(
 @Composable
 fun HomeScreenPreview() {
     HomeScreen(
-        HomeState(
+        state = HomeState(
             userName = "우진",
             alcoholTier = AlcoholTier.LEVEL3,
-        )
+            cardList = ImmutableList(AlcoholPromiseCardState.sampleCardList()),
+        ),
     )
 }

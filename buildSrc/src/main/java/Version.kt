@@ -47,6 +47,7 @@ object Dependencies {
 
         const val COMPOSE_ACTIVITY = "androidx.activity:activity-compose:$ACTIVITY_VERSION"
         const val COMPOSE_UI = "androidx.compose.ui:ui:$UI_VERISON"
+        const val COMPOSE_UI_UTIL = "androidx.compose.ui:ui-util:$UI_VERISON"
         const val COMPOSE_PREVIEW = "androidx.compose.ui:ui-tooling-preview:$UI_VERISON"
         const val COMPOSE_MATERIAL = "androidx.compose.material:material:$UI_VERISON"
 

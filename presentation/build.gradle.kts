@@ -16,7 +16,8 @@ android {
 
         testInstrumentationRunner = AppConfig.TEST_RUNNER
         consumerProguardFiles("consumer-rules.pro")
-        manifestPlaceholders["KAKAO_KEY"] = gradleLocalProperties(rootDir).getProperty("kakao_native_key")
+        manifestPlaceholders["KAKAO_KEY"] =
+            gradleLocalProperties(rootDir).getProperty("kakao_native_key")
     }
 
     buildTypes {
@@ -53,6 +54,7 @@ dependencies {
     // compose
     implementation(Dependencies.Compose.COMPOSE_ACTIVITY)
     implementation(Dependencies.Compose.COMPOSE_UI)
+    implementation(Dependencies.Compose.COMPOSE_UI_UTIL)
     implementation(Dependencies.Compose.COMPOSE_PREVIEW)
     implementation(Dependencies.Compose.COMPOSE_MATERIAL)
     implementation(Dependencies.Accompanist.ACCOMPANIST_WEBVIEW)
