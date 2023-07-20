@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -20,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -41,10 +43,16 @@ fun LoginScreen(
     onKakaoLoginClick: () -> Unit,
 ) {
     Column(
-        modifier = Modifier.padding(top = 120.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painterResource(id = R.drawable.sulsul_grain_background),
+                contentScale = ContentScale.FillBounds,
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        LoginIntroTitle(modifier = Modifier.padding(bottom = 40.dp))
+        LoginIntroTitle(modifier = Modifier.padding(top = 120.dp, bottom = 40.dp))
+
         LoginIntroImage(
             modifier = Modifier
                 .weight(1f)
