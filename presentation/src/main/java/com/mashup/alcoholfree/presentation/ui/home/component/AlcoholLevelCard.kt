@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,8 +15,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
@@ -29,8 +28,8 @@ fun AlcoholLevelCard(
     /* TODO: grainy background 적용해야함 */
     Box(
         modifier = modifier
-        .fillMaxWidth()
-        .height(111.dp),
+            .fillMaxWidth()
+            .height(111.dp),
     ) {
         Row(
             modifier = Modifier.padding(start = 20.dp, top = 20.dp),
@@ -44,7 +43,10 @@ fun AlcoholLevelCard(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End,
         ) {
-            Image(painter = painterResource(id = alcoholLevel.imageResId), contentDescription = null)
+            Image(
+                painter = painterResource(id = alcoholLevel.imageResId),
+                contentDescription = null,
+            )
         }
     }
 }
