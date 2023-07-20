@@ -13,4 +13,5 @@ enum class SulSulButtonColor(
     PRIMARY200(color = Primary200),
     GREY300(color = Grey300),
     GREY200(color = Grey200),
+    TRANSPARENT(color = Color.Transparent)
 }

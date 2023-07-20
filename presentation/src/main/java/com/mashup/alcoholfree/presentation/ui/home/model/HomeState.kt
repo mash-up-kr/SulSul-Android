@@ -4,6 +4,6 @@ import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 data class HomeState(
     val userName: String,
-    val alcoholLevel: AlcoholLevel,
+    val alcoholTier: AlcoholTier,
     val cardList: ImmutableList<AlcoholPromiseCardState>,
 )

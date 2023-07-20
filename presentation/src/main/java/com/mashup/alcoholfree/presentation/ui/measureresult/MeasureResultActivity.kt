@@ -1,9 +1,9 @@
-package com.mashup.alcoholfree.presentation.measure_result
+package com.mashup.alcoholfree.presentation.ui.measureresult
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.mashup.alcoholfree.presentation.measure_result.model.MeasureResultState
+import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultState
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 
 class MeasureResultActivity : ComponentActivity() {
