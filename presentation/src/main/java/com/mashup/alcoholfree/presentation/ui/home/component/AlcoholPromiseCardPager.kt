@@ -10,17 +10,18 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AlcoholPromiseCardPager(
     modifier: Modifier = Modifier,
-    cardList: List<AlcoholPromiseCardState>,
+    cardList: ImmutableList<AlcoholPromiseCardState>,
 ) {
     val pagerState = rememberPagerState()
     HorizontalPager(
-        pageCount = cardList.size,
+        pageCount = cardList.list.size,
         modifier = modifier,
         state = pagerState,
         contentPadding = PaddingValues(horizontal = 40.dp),
@@ -47,7 +48,7 @@ fun AlcoholPromiseCardPager(
                     fraction = 1f - pageOffset.coerceIn(0f, 1f),
                 )
             },
-            state = cardList[page],
+            state = cardList.list[page],
         )
     }
 }

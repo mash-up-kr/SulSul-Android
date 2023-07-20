@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholLevel
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +17,7 @@ class HomeActivity : ComponentActivity() {
                 state = HomeState(
                     userName = "우진",
                     alcoholLevel = AlcoholLevel.LEVEL3,
-                    cardList = AlcoholPromiseCardState.sampleCardList(),
+                    cardList = ImmutableList(AlcoholPromiseCardState.sampleCardList()),
                 ),
             )
         }

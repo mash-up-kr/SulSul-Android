@@ -34,13 +34,14 @@ import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.ParagraphLg
 import com.mashup.alcoholfree.presentation.ui.theme.White
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 @Composable
 fun AlcoholPromiseCard(
     modifier: Modifier = Modifier,
     state: AlcoholPromiseCardState,
 ) {
-    val alcoholType = AlcoholPromiseCardState.getAlcoholType(state.drinks.first())
+    val alcoholType = AlcoholPromiseCardState.getAlcoholType(state.drinks.list.first())
     Column(
         modifier = modifier
             .clip(shape = RoundedCornerShape(16.dp))
@@ -78,7 +79,7 @@ fun AlcoholPromiseCard(
         )
         AlcoholTypeCount(
             modifier = Modifier.padding(horizontal = 32.dp),
-            list = state.drinks,
+            list = state.drinks.list,
         )
         Text(
             modifier = Modifier.padding(start = 32.dp),
@@ -130,9 +131,11 @@ private fun AlcoholPromiseCardPreview() {
     AlcoholFreeAndroidTheme {
         AlcoholPromiseCard(
             state = AlcoholPromiseCardState(
-                drinks = listOf(
-                    Drink("맥주", 1),
-                    Drink("와인", 2),
+                drinks = ImmutableList(
+                    listOf(
+                        Drink("맥주", 1),
+                        Drink("와인", 2),
+                    ),
                 ),
                 drankDate = "2023.08.21",
                 subTitleText = "술 좀 치네",
