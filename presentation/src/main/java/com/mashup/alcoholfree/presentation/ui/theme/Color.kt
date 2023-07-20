@@ -39,11 +39,6 @@ val WhiteTransparent32 = Color(0x52FFFFFF)
 
 val EmptyGradient = Color(0x33747474)
 
-val SojuGradient = Color(0x336BD7D1)
-val WineGradient = Color(0xFF46265F)
-val BeerGradient = Color(0xFF4F3F17)
-val GoryangjuGradient = Color(0xFF364F17)
-
 val BlueGradient = Color(0x804C94FF)
 val BlueGradient2 = Color(0x404C94FF)
 val GrapeGradient = Color(0x80E05FFE)
