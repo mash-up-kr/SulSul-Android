@@ -19,6 +19,7 @@ data class AlcoholPromiseCardState(
             }
         }
 
+        // TODO : 나중에 지워야 할 함수 입니다~ api 붙이고 모델 확정 되면 지우 시죵~
         fun sampleCardList(): List<AlcoholPromiseCardState> {
             return listOf(
                 AlcoholPromiseCardState(
