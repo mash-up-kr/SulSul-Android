@@ -2,6 +2,7 @@ package com.mashup.alcoholfree.presentation.ui.home.model
 
 import androidx.compose.ui.graphics.Color
 import com.mashup.alcoholfree.presentation.R
+import com.mashup.alcoholfree.presentation.ui.theme.BlueGradient2
 import com.mashup.alcoholfree.presentation.ui.theme.GreenGradient2
 import com.mashup.alcoholfree.presentation.ui.theme.OrangeGradient2
 import com.mashup.alcoholfree.presentation.ui.theme.PurpleGradient2
@@ -25,5 +26,9 @@ enum class AlcoholPromiseCardType(
     GORYANGJU(
         imageResId = R.drawable.card_goryangju,
         color = GreenGradient2,
+    ),
+    WHISKY(
+        imageResId = R.drawable.card_whisky,
+        color = BlueGradient2,
     ),
 }
