@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.data.model.measure
+package com.mashup.alcoholfree.data.model
 
 import com.mashup.alcoholfree.data.dto.remote.response.DrinkResponse
 import com.mashup.alcoholfree.domain.model.Drink
