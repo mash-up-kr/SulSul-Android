@@ -1,6 +1,6 @@
-package com.mashup.alcoholfree.domain.usecase.login
+package com.mashup.alcoholfree.domain.usecase
 
-import com.mashup.alcoholfree.domain.repository.login.LoginRepository
+import com.mashup.alcoholfree.domain.repository.LoginRepository
 import dagger.Reusable
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

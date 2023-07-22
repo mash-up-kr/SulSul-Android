@@ -1,7 +1,7 @@
-package com.mashup.alcoholfree.data.repository.login
+package com.mashup.alcoholfree.data.repository
 
 import com.mashup.alcoholfree.data.datasource.LocalLoginDataSource
-import com.mashup.alcoholfree.domain.repository.login.LoginRepository
+import com.mashup.alcoholfree.domain.repository.LoginRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
