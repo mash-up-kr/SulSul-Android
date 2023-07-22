@@ -70,21 +70,21 @@ fun HomeScreen(
             ),
         contentAlignment = Alignment.TopCenter,
     ) {
-        Column(
-            modifier = Modifier.padding(horizontal = 16.dp),
-        ) {
+        Column {
             Text(
-                modifier = Modifier.padding(top = 40.dp),
+                modifier = Modifier.padding(top = 40.dp, start = 16.dp),
                 text = stringResource(id = R.string.home_title, state.userName),
                 style = H2,
                 color = White,
             )
+
             AlcoholTierCard(
-                modifier = Modifier.padding(top = 8.dp),
+                modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
                 alcoholTier = state.alcoholTier,
             )
+
             Text(
-                modifier = Modifier.padding(top = 24.dp),
+                modifier = Modifier.padding(top = 24.dp, start = 16.dp),
                 text = stringResource(id = R.string.home_alcohol_appointment_text),
                 style = H3,
                 color = White,

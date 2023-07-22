@@ -1,7 +1,6 @@
 package com.mashup.alcoholfree.presentation.ui.home.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,7 +28,6 @@ import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
-import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.Grey600
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.H5
@@ -48,7 +46,6 @@ fun AlcoholTierCard(
             .fillMaxWidth()
             .height(111.dp)
             .clip(shape = alcoholTierShape)
-            .border(width = 1.dp, color = Grey300, shape = alcoholTierShape)
             .paint(
                 painter = painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.Crop,
@@ -102,7 +99,6 @@ fun EmptyTierCard(
             .fillMaxWidth()
             .height(111.dp)
             .clip(shape = alcoholTierShape)
-            .border(width = 1.dp, color = Grey300, shape = alcoholTierShape)
             .paint(
                 painter = painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.Crop,
