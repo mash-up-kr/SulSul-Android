@@ -1,9 +1,8 @@
 package com.mashup.alcoholfree.data.di
 
 import com.mashup.alcoholfree.data.BuildConfig
-import com.mashup.alcoholfree.data.TimeOutPolicy
 import com.mashup.alcoholfree.data.datasource.LocalLoginDataSource
-import com.mashup.alcoholfree.data.remote.measure.MeasureService
+import com.mashup.alcoholfree.data.service.SulSulService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,13 +20,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal class NetworkModule {
-
-    @Singleton
-    @Provides
-    @TimeOutPolicy
-    fun provideConnectTimeoutPolicy(): Long {
-        return 10_000L
-    }
 
     @Singleton
     @Provides
@@ -62,15 +54,13 @@ internal class NetworkModule {
     fun provideOkHttpClient(
         authInterceptor: Interceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        @TimeOutPolicy
-        connectTimeoutPolicy: Long,
     ): OkHttpClient =
         OkHttpClient
             .Builder()
             .addInterceptor(authInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .connectTimeout(
-                connectTimeoutPolicy,
+                TIME_OUT_POLICY,
                 TimeUnit.MILLISECONDS,
             )
             .build()
@@ -79,13 +69,18 @@ internal class NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://sulsul.app")
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
     @Provides
     @Singleton
-    fun provideMeasureService(retrofit: Retrofit): MeasureService =
-        retrofit.create(MeasureService::class.java)
+    fun provideMeasureService(retrofit: Retrofit): SulSulService =
+        retrofit.create(SulSulService::class.java)
+
+    companion object {
+        private const val BASE_URL = "https://sulsul.app"
+        private const val TIME_OUT_POLICY = 10_000L
+    }
 }
