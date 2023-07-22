@@ -1,7 +1,7 @@
 package com.mashup.alcoholfree.domain.repository.measure
 
-import com.mashup.alcoholfree.domain.model.MeasureResult
+import com.mashup.alcoholfree.domain.model.MeasureResultDomainModel
 
 interface MeasureRepository {
-    suspend fun getMeasureResult(reportId: String): MeasureResult
+    suspend fun getMeasureResult(reportId: String): MeasureResultDomainModel
 }

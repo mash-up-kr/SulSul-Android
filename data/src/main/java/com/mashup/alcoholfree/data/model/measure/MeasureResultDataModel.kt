@@ -1,7 +1,7 @@
 package com.mashup.alcoholfree.data.model.measure
 
 import com.mashup.alcoholfree.data.remote.response.MeasureResultResponse
-import com.mashup.alcoholfree.domain.model.MeasureResult
+import com.mashup.alcoholfree.domain.model.MeasureResultDomainModel
 
 data class MeasureResultDataModel(
     val alcoholCalorie: Int,
@@ -25,8 +25,8 @@ data class MeasureResultDataModel(
             )
         }
 
-        fun toDomainModel(data: MeasureResultDataModel): MeasureResult {
-            return MeasureResult(
+        fun toDomainModel(data: MeasureResultDataModel): MeasureResultDomainModel {
+            return MeasureResultDomainModel(
                 alcoholCalorie = data.alcoholCalorie,
                 averageAlcoholContent = data.averageAlcoholContent,
                 drankAt = data.drankAt,
