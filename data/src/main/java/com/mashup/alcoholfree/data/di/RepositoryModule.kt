@@ -1,9 +1,9 @@
 package com.mashup.alcoholfree.data.di
 
-import com.mashup.alcoholfree.data.repository.login.LoginRepositoryImpl
-import com.mashup.alcoholfree.data.repository.measure.MeasureRepositoryImpl
-import com.mashup.alcoholfree.domain.repository.login.LoginRepository
-import com.mashup.alcoholfree.domain.repository.measure.MeasureRepository
+import com.mashup.alcoholfree.data.repository.LoginRepositoryImpl
+import com.mashup.alcoholfree.data.repository.MeasureRepositoryImpl
+import com.mashup.alcoholfree.domain.repository.LoginRepository
+import com.mashup.alcoholfree.domain.repository.MeasureRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
