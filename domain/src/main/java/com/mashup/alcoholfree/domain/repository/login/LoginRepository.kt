@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.domain.repository
+package com.mashup.alcoholfree.domain.repository.login
 
 import kotlinx.coroutines.flow.Flow
 
