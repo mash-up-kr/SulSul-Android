@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.measure_result
+package com.mashup.alcoholfree.presentation.ui.measureresult
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,6 +25,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -32,10 +38,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
-import com.mashup.alcoholfree.presentation.measure_result.model.AlcoholType
-import com.mashup.alcoholfree.presentation.measure_result.model.MeasureResultState
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
+import com.mashup.alcoholfree.presentation.ui.measureresult.model.AlcoholType
+import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultState
+import com.mashup.alcoholfree.presentation.ui.theme.BlueGradient
+import com.mashup.alcoholfree.presentation.ui.theme.GreenGradient
 import com.mashup.alcoholfree.presentation.ui.theme.Grey050
 import com.mashup.alcoholfree.presentation.ui.theme.Grey200
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
@@ -46,6 +54,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.H3
 import com.mashup.alcoholfree.presentation.ui.theme.H4
 import com.mashup.alcoholfree.presentation.ui.theme.H5
+import com.mashup.alcoholfree.presentation.ui.theme.PurpleGradient
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
@@ -59,7 +68,51 @@ fun MeasureResultScreen(
     state: MeasureResultState,
     onClickGoToHome: () -> Unit = {},
 ) {
-    Box(modifier = Modifier.fillMaxHeight()) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painterResource(id = R.drawable.sulsul_grain_background),
+                contentScale = ContentScale.FillBounds,
+            )
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(PurpleGradient, Color.Transparent),
+                    center = Offset(100f, 1700f),
+                    radius = 1300f,
+                ),
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(GreenGradient, Color.Transparent),
+                    center = Offset(1500f, 1900f),
+                    radius = 700f,
+                ),
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.radialGradient(
+                    colors = listOf(BlueGradient, Color.Transparent),
+                    center = Offset(200f, 2800f),
+                    radius = 900f,
+                ),
+                shape = RectangleShape,
+                alpha = 0.5f,
+            ),
+    ) {
         MeasureResultContent(state = state)
         MeasureResultHomeButton(
             modifier = Modifier.align(Alignment.BottomCenter),
@@ -161,7 +214,7 @@ private fun MeasureResultInfoItems(
         /* TODO: icon 변경 되어야함 */
         MeasureResultInfoItem(
             imageResId = R.drawable.ic_clock,
-            mainText = "${alcohol}%",
+            mainText = "$alcohol%",
             subText = stringResource(id = R.string.average_alcohol_level),
         )
         MeasureResultInfoItem(
@@ -194,7 +247,11 @@ private fun MeasureResultDrinkAlcoholCollectAndSeeLayer(
     drinkCountOfWine: Int,
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(text = stringResource(id = R.string.drink_alcohol_collect_and_see), style = H3, color = White)
+        Text(
+            text = stringResource(id = R.string.drink_alcohol_collect_and_see),
+            style = H3,
+            color = White,
+        )
         MeasureResultDrinkAlcoholCupLayer(
             modifier = Modifier.padding(top = 20.dp, bottom = 125.dp),
             drinkCountOfSoju = drinkCountOfSoju,
@@ -229,7 +286,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
 
             Divider(
                 modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200
+                color = Grey200,
             )
         }
 
@@ -242,7 +299,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
 
             Divider(
                 modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200
+                color = Grey200,
             )
         }
 
@@ -255,7 +312,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
 
             Divider(
                 modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200
+                color = Grey200,
             )
         }
 
@@ -283,7 +340,7 @@ private fun MeasureResultDrinkAlcoholCupCountItem(
             text = stringResource(
                 id = R.string.drink_type_and_count,
                 alcoholType.title,
-                drinkCount
+                drinkCount,
             ),
             style = H5,
             color = White,
@@ -309,7 +366,7 @@ private fun MeasureResultDrinkAlcoholCups(
         for (i in 0 until drinkCount.coerceAtMost(maxCountToDisplay)) {
             Image(
                 painter = painterResource(id = alcoholIconResId),
-                contentDescription = null
+                contentDescription = null,
             )
         }
 
@@ -319,7 +376,7 @@ private fun MeasureResultDrinkAlcoholCups(
                 text = "+${drinkCount - maxCountToDisplay}",
                 style = H4,
                 color = Grey700,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }
@@ -365,6 +422,6 @@ private fun MeasureResultScreenPreview() {
             drinkCountOfBeer = 0,
             drinkCountOfKaoliangju = 3,
             drinkCountOfWine = 3,
-        )
+        ),
     )
 }

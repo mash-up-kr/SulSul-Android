@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.ui.component
+package com.mashup.alcoholfree.presentation.ui.home.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,34 +25,39 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
-import com.mashup.alcoholfree.presentation.ui.component.model.AlcoholPromiseCardState
-import com.mashup.alcoholfree.presentation.ui.component.model.AlcoholPromiseCardType
+import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
+import com.mashup.alcoholfree.presentation.ui.home.model.Drink
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.ParagraphLg
 import com.mashup.alcoholfree.presentation.ui.theme.White
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
+
+private val cardShape = RoundedCornerShape(16.dp)
 
 @Composable
-private fun AlcoholPromiseCard(
+fun AlcoholPromiseCard(
     modifier: Modifier = Modifier,
-    alcohol: AlcoholPromiseCardType,
-    list: List<AlcoholPromiseCardState>,
-    badgeTitle: String,
-    date: String,
+    state: AlcoholPromiseCardState,
 ) {
+    val alcoholType = AlcoholPromiseCardState.getAlcoholType(state.drinks.list.first())
     Column(
         modifier = modifier
-            .clip(shape = RoundedCornerShape(16.dp))
-            .border(width = 1.dp, color = Grey300)
+            .clip(shape = cardShape)
+            .border(width = 1.dp, color = Grey300, shape = cardShape)
             .paint(
                 painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.Crop,
             )
             .background(
                 brush = Brush.radialGradient(
-                    colors = listOf(alcohol.color, Color.Transparent),
+                    colors = listOf(
+                        alcoholType.color,
+                        Color.Transparent,
+                    ),
                     center = Offset(500f, 1300f),
                     radius = 800f,
                 ),
@@ -69,25 +74,25 @@ private fun AlcoholPromiseCard(
                     top = 32.dp,
                     bottom = 16.dp,
                 ),
-            painter = painterResource(id = alcohol.imageResId),
+            painter = painterResource(id = alcoholType.imageResId),
             alignment = Alignment.Center,
             contentScale = ContentScale.Fit,
             contentDescription = null,
         )
         AlcoholTypeCount(
             modifier = Modifier.padding(horizontal = 32.dp),
-            list = list,
+            list = state.drinks.list,
         )
         Text(
             modifier = Modifier.padding(start = 32.dp),
-            text = date,
+            text = state.drankDate,
             style = ParagraphLg,
             color = White,
         )
         SulSulMiddleBadge(
             modifier = Modifier.padding(start = 32.dp, top = 8.dp, bottom = 32.dp),
             type = SulSulBadgeType.PURPLE,
-            text = badgeTitle,
+            text = state.subTitleText,
         )
     }
 }
@@ -95,7 +100,7 @@ private fun AlcoholPromiseCard(
 @Composable
 private fun AlcoholTypeCount(
     modifier: Modifier = Modifier,
-    list: List<AlcoholPromiseCardState>,
+    list: List<Drink>,
 ) {
     Row(
         modifier = modifier,
@@ -103,8 +108,8 @@ private fun AlcoholTypeCount(
         list.forEachIndexed { index, alcohol ->
             val text = stringResource(
                 id = R.string.alcohol_record_count,
-                alcohol.alcohol,
-                alcohol.amount,
+                alcohol.alcoholType,
+                alcohol.glasses,
             )
 
             Text(
@@ -127,13 +132,16 @@ private fun AlcoholTypeCount(
 private fun AlcoholPromiseCardPreview() {
     AlcoholFreeAndroidTheme {
         AlcoholPromiseCard(
-            list = listOf(
-                AlcoholPromiseCardState("맥주", 1),
-                AlcoholPromiseCardState("와인", 2),
+            state = AlcoholPromiseCardState(
+                drinks = ImmutableList(
+                    listOf(
+                        Drink("맥주", 1),
+                        Drink("와인", 2),
+                    ),
+                ),
+                drankDate = "2023.08.21",
+                subTitleText = "술 좀 치네",
             ),
-            alcohol = AlcoholPromiseCardType.WINE,
-            badgeTitle = "술 좀 치네",
-            date = "2013.12.20",
         )
     }
 }

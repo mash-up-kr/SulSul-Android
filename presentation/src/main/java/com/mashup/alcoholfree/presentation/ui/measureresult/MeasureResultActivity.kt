@@ -1,15 +1,19 @@
-package com.mashup.alcoholfree.presentation.measure_result
+package com.mashup.alcoholfree.presentation.ui.measureresult
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.mashup.alcoholfree.presentation.measure_result.model.MeasureResultState
+import androidx.activity.viewModels
+import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultState
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MeasureResultActivity : ComponentActivity() {
+    private val viewModel: MeasureResultViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             AlcoholFreeAndroidTheme {
                 MeasureResultScreen(
@@ -29,5 +33,6 @@ class MeasureResultActivity : ComponentActivity() {
                 )
             }
         }
+        viewModel.getMeasureResultReport()
     }
 }
