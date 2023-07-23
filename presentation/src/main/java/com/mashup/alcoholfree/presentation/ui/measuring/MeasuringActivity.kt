@@ -9,7 +9,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MeasuringActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

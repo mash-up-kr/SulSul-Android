@@ -8,7 +8,7 @@ import javax.inject.Inject
 internal class TierRepositoryImpl @Inject constructor(
     private val sulSulService: SulSulService,
 ): TierRepository {
-    override fun getTiers(): List<AlcoholTier> {
+    override suspend fun getTiers(): List<AlcoholTier> {
         return sulSulService.getSulSulTiers().titles.map {
             it.toDomainModel()
         }
