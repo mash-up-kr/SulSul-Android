@@ -1,6 +1,6 @@
 package com.mashup.alcoholfree.data.datasource
 
-import com.mashup.alcoholfree.data.model.MeasureResultDataModel
+import com.mashup.alcoholfree.data.dto.remote.response.MeasureResultResponse
 import com.mashup.alcoholfree.data.service.SulSulService
 import retrofit2.await
 import javax.inject.Inject
@@ -8,11 +8,9 @@ import javax.inject.Inject
 class MeasureDataSource @Inject constructor(
     private val sulSulService: SulSulService,
 ) {
-    suspend fun getMeasureResult(reportId: String): MeasureResultDataModel {
-        return MeasureResultDataModel.toDataModel(
-            sulSulService
-                .getMeasuringResult(reportId)
-                .await(),
-        )
+    suspend fun getMeasureResult(reportId: String): MeasureResultResponse {
+        return sulSulService
+            .getMeasuringResult(reportId)
+            .await()
     }
 }
