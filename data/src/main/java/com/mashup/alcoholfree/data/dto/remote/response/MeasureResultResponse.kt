@@ -19,17 +19,15 @@ data class MeasureResultResponse(
     @SerializedName("totalDrinkGlasses")
     val totalDrinkGlasses: Int,
 ) {
-    companion object {
-        fun toDomainModel(response: MeasureResultResponse): MeasureResult {
-            return MeasureResult(
-                alcoholCalorie = response.alcoholCalorie,
-                averageAlcoholContent = response.averageAlcoholContent,
-                drankAt = response.drankAt,
-                drinkingDuration = response.drinkingDuration,
-                drinks = response.drinks.map { DrinkResponse.toDomainModel(it) },
-                id = response.id,
-                totalDrinkGlasses = response.totalDrinkGlasses,
-            )
-        }
+    fun toDomainModel(): MeasureResult {
+        return MeasureResult(
+            alcoholCalorie = alcoholCalorie,
+            averageAlcoholContent = averageAlcoholContent,
+            drankAt = drankAt,
+            drinkingDuration = drinkingDuration,
+            drinks = drinks.map { it.toDomainModel() },
+            id = id,
+            totalDrinkGlasses = totalDrinkGlasses,
+        )
     }
 }

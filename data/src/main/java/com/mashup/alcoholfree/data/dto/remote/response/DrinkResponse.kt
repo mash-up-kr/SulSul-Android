@@ -9,12 +9,10 @@ data class DrinkResponse(
     @SerializedName("glasses")
     val glasses: Int,
 ) {
-    companion object {
-        fun toDomainModel(response: DrinkResponse): Drink {
-            return Drink(
-                drinkType = response.drinkType,
-                glasses = response.glasses,
-            )
-        }
+    fun toDomainModel(): Drink {
+        return Drink(
+            drinkType = drinkType,
+            glasses = glasses,
+        )
     }
 }
