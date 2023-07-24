@@ -28,7 +28,7 @@ import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
-import com.mashup.alcoholfree.presentation.ui.home.model.Drink
+import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.H2
@@ -100,7 +100,7 @@ fun AlcoholPromiseCard(
 @Composable
 private fun AlcoholTypeCount(
     modifier: Modifier = Modifier,
-    list: List<Drink>,
+    list: List<DrinkUiModel>,
 ) {
     Row(
         modifier = modifier,
@@ -135,8 +135,8 @@ private fun AlcoholPromiseCardPreview() {
             state = AlcoholPromiseCardState(
                 drinks = ImmutableList(
                     listOf(
-                        Drink("맥주", 1),
-                        Drink("와인", 2),
+                        DrinkUiModel("맥주", 1),
+                        DrinkUiModel("와인", 2),
                     ),
                 ),
                 drankDate = "2023.08.21",
