@@ -57,6 +57,7 @@ dependencies {
     implementation(Dependencies.Compose.COMPOSE_UI_UTIL)
     implementation(Dependencies.Compose.COMPOSE_PREVIEW)
     implementation(Dependencies.Compose.COMPOSE_MATERIAL)
+    implementation(Dependencies.Compose.COMPOSE_LIFECYCLE_RUNTIME)
     implementation(Dependencies.Accompanist.ACCOMPANIST_WEBVIEW)
 
     // dagger hilt

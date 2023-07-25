@@ -25,7 +25,6 @@ import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholPromiseCardPager
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholTierCard
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
@@ -117,7 +116,7 @@ fun HomeScreenPreview() {
         state = HomeState(
             userName = "우진",
             alcoholTier = AlcoholTier.LEVEL3,
-            cardList = ImmutableList(AlcoholPromiseCardState.sampleCardList()),
+            cardList = ImmutableList(emptyList()),
         ),
     )
 }
