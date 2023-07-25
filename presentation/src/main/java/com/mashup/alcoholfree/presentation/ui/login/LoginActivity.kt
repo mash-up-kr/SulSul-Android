@@ -75,6 +75,7 @@ class LoginActivity : ComponentActivity() {
                     " 로그인 성공",
                     Toast.LENGTH_SHORT,
                 ).show()
+                Log.d("Kakao Token : ", token.accessToken)
                 viewModel.addKakaoToken(token)
             }
         }

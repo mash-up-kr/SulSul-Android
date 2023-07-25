@@ -3,12 +3,12 @@ package com.mashup.alcoholfree.presentation.ui.home.model
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 data class AlcoholPromiseCardState(
-    val drinks: ImmutableList<Drink>,
+    val drinks: ImmutableList<DrinkUiModel>,
     val drankDate: String,
     val subTitleText: String,
 ) {
     companion object {
-        fun getAlcoholType(type: Drink): AlcoholPromiseCardType {
+        fun getAlcoholType(type: DrinkUiModel): AlcoholPromiseCardType {
             return when (type.alcoholType) {
                 "소주" -> AlcoholPromiseCardType.SOJU
                 "와인" -> AlcoholPromiseCardType.WINE
@@ -26,8 +26,8 @@ data class AlcoholPromiseCardState(
                 AlcoholPromiseCardState(
                     drinks = ImmutableList(
                         listOf(
-                            Drink("맥주", 2),
-                            Drink("와인", 1),
+                            DrinkUiModel("맥주", 2),
+                            DrinkUiModel("와인", 1),
                         ),
                     ),
                     drankDate = "2023.08.21",
@@ -36,8 +36,8 @@ data class AlcoholPromiseCardState(
                 AlcoholPromiseCardState(
                     drinks = ImmutableList(
                         listOf(
-                            Drink("소주", 3),
-                            Drink("와인", 1),
+                            DrinkUiModel("소주", 3),
+                            DrinkUiModel("와인", 1),
                         ),
                     ),
                     drankDate = "2023.08.22",
@@ -47,8 +47,8 @@ data class AlcoholPromiseCardState(
                     drinks =
                     ImmutableList(
                         listOf(
-                            Drink("와인", 4),
-                            Drink("맥주", 1),
+                            DrinkUiModel("와인", 4),
+                            DrinkUiModel("맥주", 1),
                         ),
                     ),
                     drankDate = "2023.08.23",
@@ -58,8 +58,8 @@ data class AlcoholPromiseCardState(
                     drinks =
                     ImmutableList(
                         listOf(
-                            Drink("고량주", 5),
-                            Drink("와인", 1),
+                            DrinkUiModel("고량주", 5),
+                            DrinkUiModel("와인", 1),
                         ),
                     ),
                     drankDate = "2023.08.24",
@@ -69,8 +69,8 @@ data class AlcoholPromiseCardState(
                     drinks =
                     ImmutableList(
                         listOf(
-                            Drink("위스키", 5),
-                            Drink("와인", 1),
+                            DrinkUiModel("위스키", 5),
+                            DrinkUiModel("와인", 1),
                         ),
                     ),
                     drankDate = "2023.08.24",
