@@ -25,6 +25,7 @@ import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholPromiseCardPager
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholTierCard
+import com.mashup.alcoholfree.presentation.ui.home.component.EmptyPromiseCard
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
@@ -89,22 +90,34 @@ fun HomeScreen(
                 color = White,
             )
 
-            AlcoholPromiseCardPager(
-                modifier = Modifier
-                    .padding(top = 16.dp)
-                    .weight(1f),
-                cardList = state.cardList,
-            )
+            if (state.isCardListEmpty) {
+                EmptyPromiseCard(
+                    modifier = Modifier
+                        .padding(
+                            top = 16.dp,
+                            start = 16.dp,
+                            end = 16.dp,
+                            bottom = 80.dp
+                        ),
+                )
+            } else {
+                AlcoholPromiseCardPager(
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .weight(1f),
+                    cardList = state.cardList,
+                )
 
-            SulSulIconStartButton(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = 35.dp, bottom = 40.dp),
-                imageResId = R.drawable.ic_plus,
-                content = stringResource(id = R.string.home_button_text),
-                buttonColor = SulSulButtonColor.GREY300,
-                buttonSize = SulSulButtonSize.LARGE,
-            )
+                SulSulIconStartButton(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 35.dp, bottom = 40.dp),
+                    imageResId = R.drawable.ic_plus,
+                    content = stringResource(id = R.string.home_button_text),
+                    buttonColor = SulSulButtonColor.GREY300,
+                    buttonSize = SulSulButtonSize.LARGE,
+                )
+            }
         }
     }
 }

@@ -6,4 +6,6 @@ data class HomeState(
     val userName: String,
     val alcoholTier: AlcoholTier,
     val cardList: ImmutableList<AlcoholPromiseCardState>,
-)
+) {
+    val isCardListEmpty: Boolean get() = cardList.list.isEmpty()
+}
