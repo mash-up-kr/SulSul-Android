@@ -9,7 +9,7 @@ data class PromiseCardsResponse(
 )
 
 data class CardResponse(
-    @SerializedName("cards")
+    @SerializedName("drinkingReportId")
     val drinkingReportId: String,
     @SerializedName("cardImageUrl")
     val cardImageUrl: String,
@@ -22,6 +22,7 @@ data class CardResponse(
 ) {
     fun toDomainModel() = PromiseCard(
         reportId = drinkingReportId,
+        cardType = drinks.first().drinkType,
         drinks = drinks.map { it.toDomainModel() },
         drankDate = drankDate,
         subTitleText = subTitleText,
