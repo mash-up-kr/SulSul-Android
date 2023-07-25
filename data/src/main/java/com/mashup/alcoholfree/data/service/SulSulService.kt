@@ -16,5 +16,5 @@ internal interface SulSulService {
     ): Call<MeasureResultResponse>
 
     @GET("api/v1/title")
-    fun getSulSulTiers(): TiersResponse
+    suspend fun getSulSulTiers(): TiersResponse
 }

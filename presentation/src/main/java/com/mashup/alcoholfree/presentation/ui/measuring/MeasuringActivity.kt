@@ -3,6 +3,7 @@ package com.mashup.alcoholfree.presentation.ui.measuring
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -13,6 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MeasuringActivity : ComponentActivity() {
+    private val viewModel: MeasuringViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -38,5 +41,7 @@ class MeasuringActivity : ComponentActivity() {
                 onAlcoholSelectionChanged = { alcoholId = it },
             )
         }
+
+        viewModel.loadTierSubtitles()
     }
 }

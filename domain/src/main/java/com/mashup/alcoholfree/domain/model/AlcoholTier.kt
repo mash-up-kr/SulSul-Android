@@ -5,5 +5,5 @@ data class AlcoholTier(
     val subTitleText: String,
     val badgeImageUrl: String,
     val cardImageUrl: String,
-    val alcoholAmount: Int,
+    val alcoholAmount: Float,
 )

@@ -12,7 +12,7 @@ internal data class TierResponse(
     @SerializedName("subTitleText") val subTitleText: String,
     @SerializedName("badgeImageUrl") val badgeImageUrl: String,
     @SerializedName("cardImageUrl") val cardImageUrl: String,
-    @SerializedName("alcoholAmount") val alcoholAmount: Int,
+    @SerializedName("alcoholAmount") val alcoholAmount: Float,
 ) {
     fun toDomainModel(): AlcoholTier {
         return AlcoholTier(
