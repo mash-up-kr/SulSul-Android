@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,29 +20,22 @@ class MeasuringActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var alcoholId by remember { mutableStateOf(0) }
-            var state by remember {
-                mutableStateOf(
-                    MeasuringState(
-                        totalCount = 25,
-                        records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
-                        level = "미쳤다",
-                        currentAlcoholId = alcoholId,
-                        alcoholTypes = listOf("소주", "맥주", "위스키", "와인", "고량주"),
-                    )
-                )
-            }
-
-            LaunchedEffect(key1 = alcoholId) {
-                state = state.copy(currentAlcoholId = alcoholId)
-            }
+            val state = viewModel.state.collectAsStateWithLifecycle()
 
             MeasuringScreen(
-                state = state,
-                onAlcoholSelectionChanged = { alcoholId = it },
+                state = state.value,
+                onAlcoholSelectionChanged = { viewModel.onAlcoholSelectionChanged(it) },
             )
         }
 
+        observeViewModel()
         viewModel.loadTierSubtitles()
+    }
+
+    private fun observeViewModel() {
+        viewModel.tierSubTitles.observe(this) {
+            /* TODO: 알콜 양에 따라 tierBadgeTitle 변경해줘야함 */
+//            viewModel.updateTierBadgeTitle()
+        }
     }
 }
