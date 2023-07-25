@@ -9,22 +9,21 @@ data class PromiseCardsResponse(
 )
 
 data class CardResponse(
-    @SerializedName("drinkingReportId")
-    val drinkingReportId: String,
-    @SerializedName("cardImageUrl")
-    val cardImageUrl: String,
+    @SerializedName("id")
+    val id: String,
+    @SerializedName("totalAlcoholAmount")
+    val totalAlcoholAmount: Double,
+    @SerializedName("totalDrinkGlasses")
+    val totalDrinkGlasses: Int,
     @SerializedName("drinks")
     val drinks: List<DrinkResponse>,
-    @SerializedName("drankDate")
-    val drankDate: String,
-    @SerializedName("subTitleText")
-    val subTitleText: String,
+    @SerializedName("drankAt")
+    val drankAt: String,
 ) {
     fun toDomainModel() = PromiseCard(
-        reportId = drinkingReportId,
+        reportId = id,
         cardType = drinks.first().drinkType,
         drinks = drinks.map { it.toDomainModel() },
-        drankDate = drankDate,
-        subTitleText = subTitleText,
+        drankDate = drankAt,
     )
 }

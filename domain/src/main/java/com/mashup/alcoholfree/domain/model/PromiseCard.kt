@@ -5,5 +5,4 @@ data class PromiseCard(
     val cardType: String,
     val drinks: List<Drink>,
     val drankDate: String,
-    val subTitleText: String,
 )

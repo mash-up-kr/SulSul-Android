@@ -15,17 +15,18 @@ fun PromiseCard.toUiModel(): AlcoholPromiseCardUiModel {
         cardType = getAlcoholPromiseCardType(cardType),
         drinks = drinks.map { it.toUiModel() },
         drankDate = drankDate,
-        subTitleText = subTitleText,
+        // TODO("칭호 필요합니당")
+        subTitleText = "임시",
     )
 }
 
 fun getAlcoholPromiseCardType(type: String): AlcoholPromiseCardType {
     return when (type) {
-        "소주", "SOJU" -> AlcoholPromiseCardType.SOJU
-        "와인", "WINE" -> AlcoholPromiseCardType.WINE
-        "맥주", "BEER" -> AlcoholPromiseCardType.BEER
-        "고량주", "KAOLIANG" -> AlcoholPromiseCardType.GORYANGJU
-        "위스키", "WHISKY" -> AlcoholPromiseCardType.WHISKY
+        "소주" -> AlcoholPromiseCardType.SOJU
+        "와인" -> AlcoholPromiseCardType.WINE
+        "맥주" -> AlcoholPromiseCardType.BEER
+        "고량주" -> AlcoholPromiseCardType.GORYANGJU
+        "위스키" -> AlcoholPromiseCardType.WHISKY
         else -> throw IllegalArgumentException()
     }
 }

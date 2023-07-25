@@ -18,6 +18,6 @@ interface SulSulService {
     /**
      *  술약속 카드 조회
      */
-    @GET("/api/v1/drinking/card")
+    @GET("/api/v1/drinkingReport")
     fun getPromiseCardsResponse(): Call<PromiseCardsResponse>
 }
