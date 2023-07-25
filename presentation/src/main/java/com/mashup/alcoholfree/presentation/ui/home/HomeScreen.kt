@@ -38,6 +38,7 @@ import com.mashup.alcoholfree.presentation.utils.ImmutableList
 @Composable
 fun HomeScreen(
     state: HomeState,
+    onAlcoholCardClick: () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -95,6 +96,7 @@ fun HomeScreen(
                     .padding(top = 16.dp)
                     .weight(1f),
                 cardList = state.cardList,
+                onAlcoholCardClick = onAlcoholCardClick,
             )
 
             SulSulIconStartButton(
@@ -119,5 +121,6 @@ fun HomeScreenPreview() {
             alcoholTier = AlcoholTier.LEVEL3,
             cardList = ImmutableList(AlcoholPromiseCardState.sampleCardList()),
         ),
+        onAlcoholCardClick = {},
     )
 }

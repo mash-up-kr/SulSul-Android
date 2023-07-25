@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
+import com.mashup.alcoholfree.presentation.ui.measureresult.MeasureResultActivity
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
+import com.mashup.alcoholfree.presentation.utils.moveToActivity
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +21,7 @@ class HomeActivity : ComponentActivity() {
                     alcoholTier = AlcoholTier.LEVEL3,
                     cardList = ImmutableList(AlcoholPromiseCardState.sampleCardList()),
                 ),
+                onAlcoholCardClick = { moveToActivity(MeasureResultActivity::class.java) },
             )
         }
     }
