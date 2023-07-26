@@ -26,7 +26,7 @@ class MeasuringWebViewBridge(
     }
 
     @JavascriptInterface
-    fun addBallClick(alcoholType: String) {
+    fun addBallClickListener(alcoholType: String) {
         webView.evaluateJavascript(
             publishEvent(WebViewConstant.WEB_FUNCTION_NAME, alcoholType),
         ) {}
