@@ -60,6 +60,7 @@ object Dependencies {
         private const val VERSION = "0.30.1"
 
         const val ACCOMPANIST_WEBVIEW = "com.google.accompanist:accompanist-webview:$VERSION"
+        const val ACCOMPANIST_SYSTEM_UI_CONTROLLER = "com.google.accompanist:accompanist-systemuicontroller:$VERSION"
     }
 
     object Coil {
