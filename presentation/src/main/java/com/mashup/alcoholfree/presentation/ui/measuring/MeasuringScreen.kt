@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.web.WebContent
 import com.google.accompanist.web.WebViewState
 import com.mashup.alcoholfree.presentation.R
+import com.mashup.alcoholfree.presentation.constants.WebViewConstant
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
@@ -79,6 +80,11 @@ fun MeasuringScreen(
             ),
     )
 
+    MeasuringBubblesContainer(
+        modifier = Modifier.fillMaxSize(),
+        currentAlcoholType = state.alcoholTypes[state.currentAlcoholId],
+    )
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -100,11 +106,12 @@ fun MeasuringScreen(
         )
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .padding(top = 38.dp)
+                .align(Alignment.TopCenter),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             MeasuringHeader(
-                modifier = Modifier.padding(top = 38.dp),
                 totalCount = state.totalCount,
                 status = state.records,
             )
@@ -116,13 +123,14 @@ fun MeasuringScreen(
                     text = state.level,
                 )
             }
+        }
 
-            MeasuringBubblesContainer(
-                modifier = Modifier
-                    .padding(top = 16.dp, bottom = 7.dp)
-                    .weight(1f),
-            )
-
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
             AlcoholSelection(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 selectedIndex = state.currentAlcoholId,
@@ -184,10 +192,12 @@ private fun MeasuringHeader(
 @Composable
 private fun MeasuringBubblesContainer(
     modifier: Modifier = Modifier,
+    currentAlcoholType: String,
 ) {
     SulSulWebView(
         modifier = modifier,
-        state = WebViewState(WebContent.Url("https://feat-test-webview.d1odkcnw7yeu9w.amplifyapp.com/")),
+        state = WebViewState(WebContent.Url(WebViewConstant.WEB_FALLING_URL)),
+        currentAlcoholType = currentAlcoholType,
     )
 }
 
