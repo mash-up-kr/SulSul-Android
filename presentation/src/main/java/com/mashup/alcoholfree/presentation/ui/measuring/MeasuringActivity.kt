@@ -23,7 +23,7 @@ class MeasuringActivity : ComponentActivity() {
                         level = "미쳤다",
                         currentAlcoholId = alcoholId,
                         alcoholTypes = listOf("소주", "맥주", "위스키", "와인", "고량주"),
-                    )
+                    ),
                 )
             }
 
