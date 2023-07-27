@@ -23,14 +23,10 @@ class HomeViewModel @Inject constructor(
 
     fun getAlcoholPromiseCards() {
         viewModelScope.launch {
-            runCatching {
-                val cards = getAlcoholPromiseCardsUseCase().map {
-                    it.toUiModel().toUiState()
-                }
-                _cardList.value = ImmutableList(cards)
-            }.onFailure {
-                println(it)
+            val cards = getAlcoholPromiseCardsUseCase().map {
+                it.toUiModel().toUiState()
             }
+            _cardList.value = ImmutableList(cards)
         }
     }
 }
