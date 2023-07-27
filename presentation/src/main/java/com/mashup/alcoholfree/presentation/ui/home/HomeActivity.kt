@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeActivity : ComponentActivity() {
-    private val vieWModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class HomeActivity : ComponentActivity() {
         initData()
 
         setContent {
-            val state by vieWModel.state.collectAsStateWithLifecycle()
+            val state by viewModel.state.collectAsStateWithLifecycle()
 
             HomeScreen(
                 state = state,
@@ -26,7 +26,7 @@ class HomeActivity : ComponentActivity() {
         }
     }
 
-    private fun initData() = with(vieWModel) {
+    private fun initData() = with(viewModel) {
         getUserInfo()
         getAlcoholPromiseCards()
     }
