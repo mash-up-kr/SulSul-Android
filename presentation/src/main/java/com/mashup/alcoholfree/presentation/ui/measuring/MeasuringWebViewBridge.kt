@@ -2,6 +2,7 @@ package com.mashup.alcoholfree.presentation.ui.measuring
 
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
+import android.widget.Toast
 import com.mashup.alcoholfree.presentation.constants.WebViewConstant
 
 class MeasuringWebViewBridge(
@@ -28,7 +29,9 @@ class MeasuringWebViewBridge(
     @JavascriptInterface
     fun addBallClickListener(alcoholType: String) {
         webView.evaluateJavascript(
-            publishEvent(WebViewConstant.WEB_FUNCTION_NAME, alcoholType),
-        ) {}
+            publishEvent(WebViewConstant.WEB_FUNCTION_NAME, "\"$alcoholType\""),
+        ) {
+            Toast.makeText(webView.context, alcoholType, Toast.LENGTH_SHORT).show()
+        }
     }
 }
