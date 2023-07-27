@@ -6,8 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
-import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,14 +18,10 @@ class HomeActivity : ComponentActivity() {
         vieWModel.getAlcoholPromiseCards()
 
         setContent {
-            val cardList by vieWModel.cardList.collectAsStateWithLifecycle()
+            val state by vieWModel.state.collectAsStateWithLifecycle()
 
             HomeScreen(
-                state = HomeState(
-                    userName = "우진",
-                    alcoholTier = AlcoholTier.LEVEL3,
-                    cardList = cardList,
-                ),
+                state = state,
             )
         }
     }
