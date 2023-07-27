@@ -26,6 +26,7 @@ import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholPromiseCardPager
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholTierCard
 import com.mashup.alcoholfree.presentation.ui.home.component.EmptyPromiseCard
+import com.mashup.alcoholfree.presentation.ui.home.component.EmptyTierCard
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
@@ -78,10 +79,16 @@ fun HomeScreen(
                 color = White,
             )
 
-            AlcoholTierCard(
-                modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
-                alcoholTier = state.alcoholTier,
-            )
+            if (state.isTierEmpty) {
+                EmptyTierCard(
+                    modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
+                )
+            } else {
+                AlcoholTierCard(
+                    modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
+                    alcoholTier = state.alcoholTier,
+                )
+            }
 
             Text(
                 modifier = Modifier.padding(top = 24.dp, start = 16.dp),

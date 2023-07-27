@@ -15,7 +15,7 @@ class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        vieWModel.getAlcoholPromiseCards()
+        initData()
 
         setContent {
             val state by vieWModel.state.collectAsStateWithLifecycle()
@@ -24,5 +24,10 @@ class HomeActivity : ComponentActivity() {
                 state = state,
             )
         }
+    }
+
+    private fun initData() = with(vieWModel) {
+        getUserInfo()
+        getAlcoholPromiseCards()
     }
 }
