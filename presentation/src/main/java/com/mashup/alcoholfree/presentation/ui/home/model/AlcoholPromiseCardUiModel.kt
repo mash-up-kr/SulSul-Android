@@ -15,7 +15,7 @@ fun PromiseCard.toUiModel(): AlcoholPromiseCardUiModel {
     return AlcoholPromiseCardUiModel(
         cardType = getAlcoholPromiseCardType(cardType),
         drinks = drinks.map { it.toUiModel() },
-        drankDate = drankDate,
+        drankDate = DateFormatter.dateFormat(drankDate),
         // TODO("칭호 필요합니당")
         subTitleText = "임시",
     )
@@ -36,7 +36,7 @@ fun AlcoholPromiseCardUiModel.toUiState(): AlcoholPromiseCardState {
     return AlcoholPromiseCardState(
         cardType = cardType,
         drinks = ImmutableList(drinks),
-        drankDate = DateFormatter.dateFormat(drankDate),
+        drankDate = drankDate,
         subTitleText = subTitleText,
     )
 }
