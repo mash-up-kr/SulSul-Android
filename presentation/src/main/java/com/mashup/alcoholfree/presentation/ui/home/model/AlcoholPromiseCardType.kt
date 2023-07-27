@@ -31,4 +31,18 @@ enum class AlcoholPromiseCardType(
         imageResId = R.drawable.card_whisky,
         color = BlueGradient2,
     ),
+    ;
+
+    companion object {
+        fun getAlcoholPromiseCardType(type: String): AlcoholPromiseCardType {
+            return when (type) {
+                "소주" -> SOJU
+                "와인" -> WINE
+                "맥주" -> BEER
+                "고량주" -> GORYANGJU
+                "위스키" -> WHISKY
+                else -> throw IllegalArgumentException()
+            }
+        }
+    }
 }

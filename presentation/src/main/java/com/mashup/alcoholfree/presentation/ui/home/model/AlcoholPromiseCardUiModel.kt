@@ -1,6 +1,7 @@
 package com.mashup.alcoholfree.presentation.ui.home.model
 
 import com.mashup.alcoholfree.domain.model.PromiseCard
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardType.Companion.getAlcoholPromiseCardType
 import com.mashup.alcoholfree.presentation.utils.DateFormatter
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
@@ -19,17 +20,6 @@ fun PromiseCard.toUiModel(): AlcoholPromiseCardUiModel {
         // TODO("칭호 필요합니당")
         subTitleText = "임시",
     )
-}
-
-fun getAlcoholPromiseCardType(type: String): AlcoholPromiseCardType {
-    return when (type) {
-        "소주" -> AlcoholPromiseCardType.SOJU
-        "와인" -> AlcoholPromiseCardType.WINE
-        "맥주" -> AlcoholPromiseCardType.BEER
-        "고량주" -> AlcoholPromiseCardType.GORYANGJU
-        "위스키" -> AlcoholPromiseCardType.WHISKY
-        else -> throw IllegalArgumentException()
-    }
 }
 
 fun AlcoholPromiseCardUiModel.toUiState(): AlcoholPromiseCardState {
