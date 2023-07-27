@@ -34,5 +34,6 @@ class MeasureResultActivity : ComponentActivity() {
             }
         }
         viewModel.getMeasureResultReport()
+        viewModel.createMeasureResultReport()
     }
 }

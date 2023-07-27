@@ -322,6 +322,19 @@ private fun MeasureResultDrinkAlcoholCupLayer(
                 alcoholType = AlcoholType.WINE,
                 drinkCount = drinkCountOfWine,
             )
+
+            Divider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = Grey200,
+            )
+        }
+
+        if (drinkCountOfKaoliangju > zero) {
+            MeasureResultDrinkAlcoholCupCountItem(
+                modifier = Modifier.padding(vertical = 16.dp),
+                alcoholType = AlcoholType.WHISKY,
+                drinkCount = drinkCountOfKaoliangju,
+            )
         }
     }
 }

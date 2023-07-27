@@ -3,6 +3,7 @@ package com.mashup.alcoholfree.presentation.ui.home.component
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -43,9 +44,11 @@ private val cardShape = RoundedCornerShape(16.dp)
 fun AlcoholPromiseCard(
     modifier: Modifier = Modifier,
     state: AlcoholPromiseCardState,
+    onAlcoholCardClick: () -> Unit,
 ) {
     Column(
         modifier = modifier
+            .clickable { onAlcoholCardClick() }
             .clip(shape = cardShape)
             .border(width = 1.dp, color = Grey300, shape = cardShape)
             .paint(
@@ -143,6 +146,7 @@ private fun AlcoholPromiseCardPreview() {
                 drankDate = "2023.08.21",
                 subTitleText = "술 좀 치네",
             ),
+            onAlcoholCardClick = {},
         )
     }
 }

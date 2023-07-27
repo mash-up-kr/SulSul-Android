@@ -13,3 +13,10 @@ fun Drink.toUiModel(): DrinkUiModel {
         glasses = glasses
     )
 }
+
+fun DrinkUiModel.toDomainModel(): Drink {
+    return Drink(
+        drinkType = alcoholType,
+        glasses = glasses,
+    )
+}

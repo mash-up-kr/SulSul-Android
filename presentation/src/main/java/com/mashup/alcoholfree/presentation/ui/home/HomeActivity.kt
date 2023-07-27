@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mashup.alcoholfree.presentation.utils.moveToActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +23,7 @@ class HomeActivity : ComponentActivity() {
 
             HomeScreen(
                 state = state,
+                onAlcoholCardClick = { moveToActivity(MeasureResultActivity::class.java) },
             )
         }
     }
