@@ -26,7 +26,8 @@ import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholPromiseCardPager
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholTierCard
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
+import com.mashup.alcoholfree.presentation.ui.home.component.EmptyPromiseCard
+import com.mashup.alcoholfree.presentation.ui.home.component.EmptyTierCard
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
@@ -83,10 +84,16 @@ fun HomeScreen(
                 color = White,
             )
 
-            AlcoholTierCard(
-                modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
-                alcoholTier = state.alcoholTier,
-            )
+            if (state.isTierEmpty) {
+                EmptyTierCard(
+                    modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
+                )
+            } else {
+                AlcoholTierCard(
+                    modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
+                    alcoholTier = state.alcoholTier,
+                )
+            }
 
             Text(
                 modifier = Modifier.padding(top = 24.dp, start = 16.dp),
@@ -95,23 +102,35 @@ fun HomeScreen(
                 color = White,
             )
 
-            AlcoholPromiseCardPager(
-                modifier = Modifier
-                    .padding(top = 16.dp)
-                    .weight(1f),
-                cardList = state.cardList,
-                onAlcoholCardClick = onAlcoholCardClick,
-            )
+            if (state.isCardListEmpty) {
+                EmptyPromiseCard(
+                    modifier = Modifier
+                        .padding(
+                            top = 16.dp,
+                            start = 16.dp,
+                            end = 16.dp,
+                            bottom = 80.dp
+                        ),
+                )
+            } else {
+                AlcoholPromiseCardPager(
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .weight(1f),
+                    cardList = state.cardList,
+                    onAlcoholCardClick = onAlcoholCardClick,
+                )
 
-            SulSulIconStartButton(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = 35.dp, bottom = 40.dp),
-                imageResId = R.drawable.ic_plus,
-                content = stringResource(id = R.string.home_button_text),
-                buttonColor = SulSulButtonColor.GREY300,
-                buttonSize = SulSulButtonSize.LARGE,
-            )
+                SulSulIconStartButton(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 35.dp, bottom = 40.dp),
+                    imageResId = R.drawable.ic_plus,
+                    content = stringResource(id = R.string.home_button_text),
+                    buttonColor = SulSulButtonColor.GREY300,
+                    buttonSize = SulSulButtonSize.LARGE,
+                )
+            }
         }
     }
 }
@@ -123,7 +142,7 @@ fun HomeScreenPreview() {
         state = HomeState(
             userName = "우진",
             alcoholTier = AlcoholTier.LEVEL3,
-            cardList = ImmutableList(AlcoholPromiseCardState.sampleCardList()),
+            cardList = ImmutableList(emptyList()),
         ),
         onAlcoholCardClick = {},
     )

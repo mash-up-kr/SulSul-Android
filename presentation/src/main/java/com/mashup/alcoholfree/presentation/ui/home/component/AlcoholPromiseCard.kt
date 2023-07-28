@@ -29,6 +29,7 @@ import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardType
 import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
@@ -45,7 +46,6 @@ fun AlcoholPromiseCard(
     state: AlcoholPromiseCardState,
     onAlcoholCardClick: () -> Unit,
 ) {
-    val alcoholType = AlcoholPromiseCardState.getAlcoholType(state.drinks.list.first())
     Column(
         modifier = modifier
             .clickable { onAlcoholCardClick() }
@@ -58,7 +58,7 @@ fun AlcoholPromiseCard(
             .background(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        alcoholType.color,
+                        state.cardType.color,
                         Color.Transparent,
                     ),
                     center = Offset(500f, 1300f),
@@ -77,7 +77,7 @@ fun AlcoholPromiseCard(
                     top = 32.dp,
                     bottom = 16.dp,
                 ),
-            painter = painterResource(id = alcoholType.imageResId),
+            painter = painterResource(id = state.cardType.imageResId),
             alignment = Alignment.Center,
             contentScale = ContentScale.Fit,
             contentDescription = null,
@@ -136,6 +136,7 @@ private fun AlcoholPromiseCardPreview() {
     AlcoholFreeAndroidTheme {
         AlcoholPromiseCard(
             state = AlcoholPromiseCardState(
+                cardType = AlcoholPromiseCardType.SOJU,
                 drinks = ImmutableList(
                     listOf(
                         DrinkUiModel("맥주", 1),

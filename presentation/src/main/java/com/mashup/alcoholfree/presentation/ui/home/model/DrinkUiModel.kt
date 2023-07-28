@@ -7,7 +7,16 @@ data class DrinkUiModel(
     val glasses: Int,
 )
 
-fun DrinkUiModel.toDomainModel() = Drink(
-    drinkType = alcoholType,
-    glasses = glasses,
-)
+fun Drink.toUiModel(): DrinkUiModel {
+    return DrinkUiModel(
+        alcoholType = drinkType,
+        glasses = glasses
+    )
+}
+
+fun DrinkUiModel.toDomainModel(): Drink {
+    return Drink(
+        drinkType = alcoholType,
+        glasses = glasses,
+    )
+}
