@@ -35,7 +35,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
 import com.mashup.alcoholfree.presentation.ui.theme.White
 
 @Composable
-fun AlcoholExceedDialog(missionName: String = stringResource(R.string.mission_content)) {
+fun AlcoholExceedDialog() {
     var dialogVisible by remember { mutableStateOf(true) }
 
     if (dialogVisible) {
@@ -65,7 +65,6 @@ fun AlcoholExceedDialog(missionName: String = stringResource(R.string.mission_co
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
-                    missionName = missionName,
                 )
 
                 ConfirmButton(
@@ -82,7 +81,6 @@ fun AlcoholExceedDialog(missionName: String = stringResource(R.string.mission_co
 @Composable
 private fun MissionContent(
     modifier: Modifier = Modifier,
-    missionName: String,
 ) {
     Column(
         modifier = modifier
@@ -100,7 +98,7 @@ private fun MissionContent(
         )
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            text = missionName,
+            text = stringResource(R.string.mission_content),
             style = SubTitle2,
             color = Grey900,
         )
