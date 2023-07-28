@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -72,7 +73,10 @@ fun HomeScreen(
             ),
         contentAlignment = Alignment.TopCenter,
     ) {
-        Column {
+        Column(
+            modifier = Modifier
+                .statusBarsPadding(),
+        ) {
             Text(
                 modifier = Modifier.padding(top = 40.dp, start = 16.dp),
                 text = stringResource(id = R.string.home_title, state.userName),

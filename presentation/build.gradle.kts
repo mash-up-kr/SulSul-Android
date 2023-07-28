@@ -59,6 +59,7 @@ dependencies {
     implementation(Dependencies.Compose.COMPOSE_MATERIAL)
     implementation(Dependencies.Compose.COMPOSE_LIFECYCLE_RUNTIME)
     implementation(Dependencies.Accompanist.ACCOMPANIST_WEBVIEW)
+    implementation(Dependencies.Accompanist.ACCOMPANIST_SYSTEM_UI_CONTROLLER)
 
     // dagger hilt
     implementation(Dependencies.Hilt.HILT_ANDROID)
