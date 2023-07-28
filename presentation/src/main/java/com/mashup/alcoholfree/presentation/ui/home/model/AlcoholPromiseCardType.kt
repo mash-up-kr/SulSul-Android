@@ -34,8 +34,8 @@ enum class AlcoholPromiseCardType(
     ;
 
     companion object {
-        fun getAlcoholPromiseCardType(type: String): AlcoholPromiseCardType {
-            return when (type) {
+        fun getCardType(alcoholType: String): AlcoholPromiseCardType {
+            return when (alcoholType) {
                 "소주" -> SOJU
                 "와인" -> WINE
                 "맥주" -> BEER

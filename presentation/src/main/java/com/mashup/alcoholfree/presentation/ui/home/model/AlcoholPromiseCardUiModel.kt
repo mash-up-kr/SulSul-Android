@@ -1,7 +1,7 @@
 package com.mashup.alcoholfree.presentation.ui.home.model
 
 import com.mashup.alcoholfree.domain.model.PromiseCard
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardType.Companion.getAlcoholPromiseCardType
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardType.Companion.getCardType
 import com.mashup.alcoholfree.presentation.utils.DateFormatter
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
@@ -14,7 +14,7 @@ data class AlcoholPromiseCardUiModel(
 
 fun PromiseCard.toUiModel(): AlcoholPromiseCardUiModel {
     return AlcoholPromiseCardUiModel(
-        cardType = getAlcoholPromiseCardType(cardType),
+        cardType = getCardType(cardType),
         drinks = drinks.map { it.toUiModel() },
         drankDate = DateFormatter.dateFormat(drankDate),
         // TODO("칭호 필요합니당")
