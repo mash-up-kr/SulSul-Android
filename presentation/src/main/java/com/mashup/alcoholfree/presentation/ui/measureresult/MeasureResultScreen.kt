@@ -214,9 +214,8 @@ private fun MeasureResultInfoItems(
             mainText = "$kcal Kcal",
             subText = stringResource(id = R.string.today_drink_kcal),
         )
-        /* TODO: icon 변경 되어야함 */
         MeasureResultInfoItem(
-            imageResId = R.drawable.ic_clock,
+            imageResId = R.drawable.ic_alcohol,
             mainText = "$alcohol%",
             subText = stringResource(id = R.string.average_alcohol_level),
         )
