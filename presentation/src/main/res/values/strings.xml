@@ -24,4 +24,9 @@
     <string name="home_empty_promise_title">아직 등록된 술 약속이 없어요</string>
     <string name="home_empty_promise_subtitle">술자리에서 마신 술을 등록해 보세요</string>
     <string name="alcohol_record_count">%s %d잔</string>
+    <string name="exceed_my_alcohol">주량을 초과했어요!</string>
+    <string name="exceed_my_alcohol_intro_label">등록된 주량보다 많은 술을 마셨어요</string>
+    <string name="mission_label">Mission</string>
+    <string name="mission_content">바람 쐬고 오기</string>
+    <string name="alert_btn_text">확인</string>
 </resources>
