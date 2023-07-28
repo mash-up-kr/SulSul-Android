@@ -39,7 +39,7 @@ private val emptyPromiseCardShape = RoundedCornerShape(16.dp)
 @Composable
 fun EmptyPromiseCard(
     modifier: Modifier = Modifier,
-    onAddPromiseClick: () -> Unit = {},
+    onAddPromiseClick: () -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -83,6 +83,7 @@ fun EmptyPromiseCard(
             content = stringResource(id = R.string.home_button_text),
             buttonColor = SulSulButtonColor.GREY300,
             buttonSize = SulSulButtonSize.LARGE,
+            onDrinkAlcoholClick = onAddPromiseClick,
         )
     }
 }
@@ -91,6 +92,9 @@ fun EmptyPromiseCard(
 @Composable
 fun EmptyPromiseCardPreview() {
     AlcoholFreeAndroidTheme {
-        EmptyPromiseCard(modifier = Modifier.fillMaxWidth())
+        EmptyPromiseCard(
+            modifier = Modifier.fillMaxWidth(),
+            onAddPromiseClick = {},
+        )
     }
 }
