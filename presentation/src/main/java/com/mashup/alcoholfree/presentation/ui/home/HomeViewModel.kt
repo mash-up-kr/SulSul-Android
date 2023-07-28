@@ -53,7 +53,7 @@ class HomeViewModel @Inject constructor(
         return HomeState(
             userName = "회원",
             alcoholTier = AlcoholTier.EMPTY,
-            cardList = ImmutableList(emptyList())
+            cardList = ImmutableList(emptyList()),
         )
     }
 }
