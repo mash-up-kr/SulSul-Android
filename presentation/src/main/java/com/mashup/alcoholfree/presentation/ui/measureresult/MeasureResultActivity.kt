@@ -33,7 +33,9 @@ class MeasureResultActivity : ComponentActivity() {
                         drinkCountOfKaoliangju = 3,
                         drinkCountOfWine = 3,
                     ),
-                )
+                ) {
+                    finish()
+                }
             }
         }
         viewModel.getMeasureResultReport()
