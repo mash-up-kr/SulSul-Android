@@ -6,6 +6,7 @@ import com.mashup.alcoholfree.presentation.utils.DateFormatter
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 data class AlcoholPromiseCardUiModel(
+    val reportId: String,
     val cardType: AlcoholPromiseCardType,
     val drinks: List<DrinkUiModel>,
     val drankDate: String,
@@ -14,6 +15,7 @@ data class AlcoholPromiseCardUiModel(
 
 fun PromiseCard.toUiModel(): AlcoholPromiseCardUiModel {
     return AlcoholPromiseCardUiModel(
+        reportId = reportId,
         cardType = getCardType(cardType),
         drinks = drinks.map { it.toUiModel() },
         drankDate = DateFormatter.dateFormat(drankDate),
@@ -28,5 +30,6 @@ fun AlcoholPromiseCardUiModel.toUiState(): AlcoholPromiseCardState {
         drinks = ImmutableList(drinks),
         drankDate = drankDate,
         subTitleText = subTitleText,
+        reportId = reportId,
     )
 }
