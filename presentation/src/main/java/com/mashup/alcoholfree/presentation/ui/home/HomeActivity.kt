@@ -5,9 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
+import androidx.core.os.bundleOf
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mashup.alcoholfree.presentation.ui.measureresult.MeasureResultActivity
+import com.mashup.alcoholfree.presentation.ui.measuring.MeasuringActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.utils.moveToActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +30,13 @@ class HomeActivity : ComponentActivity() {
 
                 HomeScreen(
                     state = state,
-                    onAlcoholCardClick = { moveToActivity(MeasureResultActivity::class.java) },
+                    onAlcoholCardClick = {
+                        moveToActivity(
+                            MeasureResultActivity::class.java,
+                            bundleOf("reportId" to it),
+                        )
+                    },
+                    onDrinkAlcoholClick = { moveToActivity(MeasuringActivity::class.java) },
                 )
             }
         }
