@@ -1,5 +1,6 @@
 package com.mashup.alcoholfree.presentation.ui.measureresult
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mashup.alcoholfree.domain.usecase.CreateMeasureResultReportUseCase
@@ -13,12 +14,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MeasureResultViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val getMeasureResultUseCase: GetMeasureResultUseCase,
     private val createMeasureResultReportUseCase: CreateMeasureResultReportUseCase,
 ) : ViewModel() {
-    fun getMeasureResultReport() {
-        viewModelScope.launch {
-            getMeasureResultUseCase("reportId")
+    private val reportId = savedStateHandle.get<String>("reportId")
+
+    init {
+        reportId?.let { id ->
+            viewModelScope.launch {
+                getMeasureResultUseCase(id)
+            }
         }
     }
 
