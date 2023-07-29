@@ -8,6 +8,8 @@ import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mashup.alcoholfree.presentation.ui.measureresult.MeasureResultActivity
+import com.mashup.alcoholfree.presentation.ui.measuring.MeasuringActivity
+import com.mashup.alcoholfree.presentation.ui.register.RegisterTierActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,9 +29,9 @@ class HomeActivity : ComponentActivity() {
 
                 HomeScreen(
                     state = state,
-                    onAlcoholCardClick = { reportId ->
-                        navigateToMeasureResult(reportId)
-                    },
+                    onEmptyTierCardClick = { navigateToRegisterTier() },
+                    onAlcoholCardClick = { navigateToMeasureResult(it) },
+                    onDrinkAlcoholClick = { navigateToMeasure() },
                 )
             }
         }
@@ -40,9 +42,15 @@ class HomeActivity : ComponentActivity() {
         getAlcoholPromiseCards()
     }
 
+    private fun navigateToRegisterTier() {
+        startActivity(RegisterTierActivity.newIntent(this))
+    }
+
+    private fun navigateToMeasure() {
+        startActivity(MeasuringActivity.newIntent(this))
+    }
+
     private fun navigateToMeasureResult(reportId: String) {
-        MeasureResultActivity.getIntent(this, reportId).run {
-            startActivity(this)
-        }
+        startActivity(MeasureResultActivity.newIntent(this, reportId))
     }
 }

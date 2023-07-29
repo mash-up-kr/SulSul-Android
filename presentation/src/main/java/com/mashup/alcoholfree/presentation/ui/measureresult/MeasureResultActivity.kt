@@ -26,7 +26,9 @@ class MeasureResultActivity : ComponentActivity() {
             AlcoholFreeAndroidTheme {
                 MeasureResultScreen(
                     state = state,
-                )
+                ) {
+                    finish()
+                }
             }
         }
     }
@@ -34,7 +36,7 @@ class MeasureResultActivity : ComponentActivity() {
     companion object {
         private const val REPORT_ID = "reportId"
 
-        fun getIntent(context: Context, reportId: String): Intent {
+        fun newIntent(context: Context, reportId: String): Intent {
             return Intent(context, MeasureResultActivity::class.java).apply {
                 putExtra(REPORT_ID, reportId)
             }

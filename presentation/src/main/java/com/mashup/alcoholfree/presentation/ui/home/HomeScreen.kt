@@ -40,7 +40,9 @@ import com.mashup.alcoholfree.presentation.utils.ImmutableList
 @Composable
 fun HomeScreen(
     state: HomeState,
+    onEmptyTierCardClick: () -> Unit,
     onAlcoholCardClick: (String) -> Unit,
+    onDrinkAlcoholClick: () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -87,6 +89,7 @@ fun HomeScreen(
             if (state.isTierEmpty) {
                 EmptyTierCard(
                     modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
+                    onClick = onEmptyTierCardClick,
                 )
             } else {
                 AlcoholTierCard(
@@ -109,8 +112,9 @@ fun HomeScreen(
                             top = 16.dp,
                             start = 16.dp,
                             end = 16.dp,
-                            bottom = 80.dp
+                            bottom = 80.dp,
                         ),
+                    onAddPromiseClick = onDrinkAlcoholClick,
                 )
             } else {
                 AlcoholPromiseCardPager(
@@ -120,17 +124,18 @@ fun HomeScreen(
                     cardList = state.cardList,
                     onAlcoholCardClick = onAlcoholCardClick,
                 )
-
-                SulSulIconStartButton(
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(top = 35.dp, bottom = 40.dp),
-                    imageResId = R.drawable.ic_plus,
-                    content = stringResource(id = R.string.home_button_text),
-                    buttonColor = SulSulButtonColor.GREY300,
-                    buttonSize = SulSulButtonSize.LARGE,
-                )
             }
+
+            SulSulIconStartButton(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 35.dp, bottom = 40.dp),
+                imageResId = R.drawable.ic_plus,
+                content = stringResource(id = R.string.home_button_text),
+                buttonColor = SulSulButtonColor.GREY300,
+                buttonSize = SulSulButtonSize.LARGE,
+                onClick = onDrinkAlcoholClick,
+            )
         }
     }
 }
@@ -144,6 +149,8 @@ fun HomeScreenPreview() {
             alcoholTier = AlcoholTier.LEVEL3,
             cardList = ImmutableList(emptyList()),
         ),
+        onEmptyTierCardClick = {},
         onAlcoholCardClick = {},
+        onDrinkAlcoholClick = {},
     )
 }
