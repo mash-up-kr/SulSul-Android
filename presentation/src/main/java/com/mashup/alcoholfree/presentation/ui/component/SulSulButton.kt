@@ -69,7 +69,7 @@ fun SulSulIconStartButton(
     content: String,
     buttonColor: SulSulButtonColor,
     buttonSize: SulSulButtonSize,
-    onDrinkAlcoholClick: () -> Unit,
+    onClick: () -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -79,7 +79,7 @@ fun SulSulIconStartButton(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(),
                 role = Role.Button,
-                onClick = onDrinkAlcoholClick,
+                onClick = onClick,
             ),
     ) {
         Row(
@@ -197,7 +197,7 @@ private fun SulSulIconStartButtonPreview() {
         imageResId = R.drawable.ic_kakao,
         buttonSize = SulSulButtonSize.MIDDLE,
         buttonColor = SulSulButtonColor.PRIMARY200,
-        onDrinkAlcoholClick = {},
+        onClick = {},
     )
 }
 

@@ -132,7 +132,7 @@ fun HomeScreen(
                 content = stringResource(id = R.string.home_button_text),
                 buttonColor = SulSulButtonColor.GREY300,
                 buttonSize = SulSulButtonSize.LARGE,
-                onDrinkAlcoholClick = onDrinkAlcoholClick,
+                onClick = onDrinkAlcoholClick,
             )
         }
     }
