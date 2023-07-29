@@ -50,6 +50,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.PurpleGradient
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.White
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 private val measuringShape = RoundedCornerShape(16.dp)
 private const val WEB_FALLING_URL = "https://dev-falling.sulsul.app"
@@ -80,10 +81,12 @@ fun MeasuringScreen(
             ),
     )
 
+    val a = state.alcoholTypes.list[state.currentAlcoholId]
+    println("good $a")
     MeasuringBubblesContainer(
         modifier = Modifier.fillMaxSize(),
         state = SulSulWebViewState(
-            state.alcoholTypes[state.currentAlcoholId],
+            state.alcoholTypes.list[state.currentAlcoholId],
         ),
     )
 
@@ -138,14 +141,14 @@ fun MeasuringScreen(
             AlcoholSelection(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 selectedIndex = state.currentAlcoholId,
-                items = state.alcoholTypes,
+                items = state.alcoholTypes.list,
                 onLeftClick = {
                     if (state.currentAlcoholId > 0) {
                         onAlcoholSelectionChanged(state.currentAlcoholId - 1)
                     }
                 },
                 onRightClick = {
-                    if (state.currentAlcoholId < state.alcoholTypes.lastIndex) {
+                    if (state.currentAlcoholId < state.alcoholTypes.list.lastIndex) {
                         onAlcoholSelectionChanged(state.currentAlcoholId + 1)
                     }
                 },
@@ -247,7 +250,7 @@ private fun MeasuringScreenPreview() {
                     records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
                     level = "미쳤다",
                     currentAlcoholId = alcoholId,
-                    alcoholTypes = listOf("소주", "맥주", "위스키", "와인", "고량주"),
+                    alcoholTypes = ImmutableList(listOf("소주", "맥주", "위스키", "와인", "고량주")),
                 ),
             )
         }

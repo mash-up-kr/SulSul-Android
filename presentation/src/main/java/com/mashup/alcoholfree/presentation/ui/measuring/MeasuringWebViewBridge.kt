@@ -2,7 +2,6 @@ package com.mashup.alcoholfree.presentation.ui.measuring
 
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
-import android.widget.Toast
 
 object MeasuringWebViewBridge : SulSulWebViewSendBridge {
     private const val WEB_FUNCTION_NAME = "addBall"
@@ -34,5 +33,11 @@ object MeasuringWebViewBridge : SulSulWebViewSendBridge {
                 publishEvent(WEB_FUNCTION_NAME, "\"$data\""),
             ) {}
         }
+    }
+
+    @JavascriptInterface
+    fun onAddBallSuccess(alcoholType: String) {
+        // 주량 측정
+        println(alcoholType)
     }
 }
