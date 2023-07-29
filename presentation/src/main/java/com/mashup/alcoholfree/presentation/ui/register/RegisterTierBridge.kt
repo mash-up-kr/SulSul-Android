@@ -6,6 +6,7 @@ import android.widget.Toast
 
 class RegisterTierBridge(
     private val context: Context,
+    private val onSuccess: (alcoholType: String, glasses: Int) -> Unit
 ) {
 
     /**
@@ -14,5 +15,6 @@ class RegisterTierBridge(
     @JavascriptInterface
     fun onRegisterSuccess(alcoholType: String, glasses: Int) {
         Toast.makeText(context, "$alcoholType ${glasses}잔", Toast.LENGTH_SHORT).show()
+        onSuccess(alcoholType, glasses)
     }
 }
