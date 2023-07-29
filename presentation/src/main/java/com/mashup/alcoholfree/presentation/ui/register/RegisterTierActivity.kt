@@ -6,12 +6,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.google.accompanist.web.WebContent
 import com.google.accompanist.web.WebViewState
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
+import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 
 class RegisterTierActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,19 +19,20 @@ class RegisterTierActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            SulSulWebView(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .statusBarsPadding(),
-                state = WebViewState(
-                    WebContent.Url(
-                        url = "https://dev-onboar뷰ding.sulsul.app/measure"
-                    )
-                ),
-                isTransparent = false,
-                bridge = RegisterTierBridge(context = this),
-                bridgeName = "sulsulBridge"
-            )
+            AlcoholFreeAndroidTheme {
+                SulSulWebView(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    state = WebViewState(
+                        WebContent.Url(
+                            url = "https://dev-onboarding.sulsul.app/measure"
+                        )
+                    ),
+                    isTransparent = false,
+                    bridge = RegisterTierBridge(context = this),
+                    bridgeName = "sulsulBridge"
+                )
+            }
         }
     }
 
