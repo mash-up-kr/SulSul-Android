@@ -13,7 +13,6 @@ data class MyInfoResponse(
 ) {
     fun toDomainModel(): MyInfo {
         return MyInfo(
-            drinkingLimits = drinkingLimits?.map { it.toDomainModel() },
             nickname = nickname,
             tier = title?.toDomainModel(),
         )
