@@ -1,7 +1,7 @@
 package com.mashup.alcoholfree.data.service
 
-import com.mashup.alcoholfree.data.dto.remote.request.DrinkRequest
 import com.mashup.alcoholfree.data.dto.remote.request.MeasureResultReportRequest
+import com.mashup.alcoholfree.data.dto.remote.request.RegisterTierRequest
 import com.mashup.alcoholfree.data.dto.remote.response.MeasureResultReportResponse
 import com.mashup.alcoholfree.data.dto.remote.response.MeasureResultResponse
 import com.mashup.alcoholfree.data.dto.remote.response.MyInfoResponse
@@ -47,6 +47,6 @@ interface SulSulService {
      */
     @POST("/api/v1/drinkingLimit")
     fun registerDrinkingLimit(
-        @Body drinkRequest: DrinkRequest,
+        @Body registerTierRequest: RegisterTierRequest,
     ): Call<RegisterDrinkingLimitResponse>
 }
