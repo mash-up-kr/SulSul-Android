@@ -10,7 +10,7 @@ data class DrinkUiModel(
 fun Drink.toUiModel(): DrinkUiModel {
     return DrinkUiModel(
         alcoholType = drinkType,
-        glasses = glasses
+        glasses = glasses,
     )
 }
 

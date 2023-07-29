@@ -92,5 +92,8 @@ dependencies {
     implementation(Dependencies.Kakao.USER_SDK) // 카카오 로그인
     implementation(Dependencies.Kakao.TALK_SDK) // 친구, 메시지(카카오톡)
 
+    // compose coil
+    implementation(Dependencies.Coil.COIL_COMPOSE)
+
     implementation(project(":domain"))
 }

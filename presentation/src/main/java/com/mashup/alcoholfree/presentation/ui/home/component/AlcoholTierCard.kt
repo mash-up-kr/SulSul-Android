@@ -1,6 +1,5 @@
 package com.mashup.alcoholfree.presentation.ui.home.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,17 +16,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulIconEndButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
+import com.mashup.alcoholfree.presentation.ui.home.model.TierUiModel
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Grey600
 import com.mashup.alcoholfree.presentation.ui.theme.H2
@@ -40,7 +42,7 @@ private val alcoholTierShape = RoundedCornerShape(16.dp)
 @Composable
 fun AlcoholTierCard(
     modifier: Modifier = Modifier,
-    alcoholTier: AlcoholTier,
+    alcoholTier: TierUiModel,
 ) {
     Box(
         modifier = modifier
@@ -64,9 +66,12 @@ fun AlcoholTierCard(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End,
         ) {
-            Image(
-                painter = painterResource(id = alcoholTier.imageResId),
-                contentDescription = null
+            AsyncImage(
+                model = ImageRequest
+                    .Builder(LocalContext.current)
+                    .data(alcoholTier.tierImageUrl)
+                    .build(),
+                contentDescription = null,
             )
         }
     }
@@ -75,7 +80,7 @@ fun AlcoholTierCard(
 @Composable
 private fun AlcoholTierTitle(
     modifier: Modifier = Modifier,
-    alcoholTier: AlcoholTier,
+    alcoholTier: TierUiModel,
 ) {
     Column(modifier = modifier) {
         Text(
@@ -86,7 +91,7 @@ private fun AlcoholTierTitle(
         SulSulMiddleBadge(
             modifier = Modifier.padding(top = 4.dp),
             type = SulSulBadgeType.PURPLE,
-            text = alcoholTier.badgeText,
+            text = alcoholTier.subTitle,
         )
     }
 }
@@ -112,18 +117,18 @@ fun EmptyTierCard(
         Text(
             text = stringResource(id = R.string.home_empty_tier_title),
             style = SubTitle4,
-            color = Grey600
+            color = Grey600,
         )
         Text(
             text = stringResource(id = R.string.home_empty_tier_subtitle),
             style = H5,
-            color = Grey600
+            color = Grey600,
         )
         SulSulIconEndButton(
             imageResId = R.drawable.ic_arrow_right,
             content = stringResource(id = R.string.home_empty_tier_button),
             buttonColor = SulSulButtonColor.TRANSPARENT,
-            buttonSize = SulSulButtonSize.MIDDLE
+            buttonSize = SulSulButtonSize.MIDDLE,
         )
     }
 }
@@ -131,37 +136,13 @@ fun EmptyTierCard(
 @Preview
 @Composable
 fun AlcoholTierCardLevel1PreView() {
-    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL1)
-}
-
-@Preview
-@Composable
-fun AlcoholTierCardLevel2PreView() {
-    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL2)
-}
-
-@Preview
-@Composable
-fun AlcoholTierCardLevel3PreView() {
-    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL3)
-}
-
-@Preview
-@Composable
-fun AlcoholTierCardLevel4PreView() {
-    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL4)
-}
-
-@Preview
-@Composable
-fun AlcoholTierCardLevel5PreView() {
-    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL5)
-}
-
-@Preview
-@Composable
-fun AlcoholTierCardLevel6PreView() {
-    AlcoholTierCard(alcoholTier = AlcoholTier.LEVEL6)
+    AlcoholTierCard(
+        alcoholTier = TierUiModel(
+            subTitle = "귀엽네",
+            title = "응애 술요미",
+            tierImageUrl = "url",
+        ),
+    )
 }
 
 @Preview
