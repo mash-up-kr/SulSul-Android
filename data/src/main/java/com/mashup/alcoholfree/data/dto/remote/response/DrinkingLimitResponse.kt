@@ -1,7 +1,7 @@
 package com.mashup.alcoholfree.data.dto.remote.response
 
 import com.google.gson.annotations.SerializedName
-import com.mashup.alcoholfree.domain.model.DrinkingLimit
+import com.mashup.alcoholfree.domain.model.Drink
 
 data class DrinkingLimitResponse(
     @SerializedName("glass")
@@ -9,10 +9,10 @@ data class DrinkingLimitResponse(
     @SerializedName("type")
     val type: String,
 ) {
-    fun toDomainModel(): DrinkingLimit {
-        return DrinkingLimit(
-            glass = glass,
-            type = type,
+    fun toDomainModel(): Drink {
+        return Drink(
+            glasses = glass,
+            drinkType = type,
         )
     }
 }
