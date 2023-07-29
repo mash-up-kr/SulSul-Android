@@ -93,12 +93,20 @@ fun MeasuringScreen(
                 alpha = 0.5f,
             ),
     ) {
+        var isDialogVisible by remember { mutableStateOf(false) }
+        if (isDialogVisible) {
+            AlcoholBackPressDialog(
+                onContinueClick = { isDialogVisible = false },
+                onExitClick = onBackButtonClick,
+            )
+        }
+
         SulSulBackButton(
             modifier = Modifier
                 .statusBarsPadding()
                 .padding(top = 8.dp, start = 16.dp)
                 .align(Alignment.TopStart),
-            onClick = onBackButtonClick,
+            onClick = { isDialogVisible = true },
         )
 
         Column(
