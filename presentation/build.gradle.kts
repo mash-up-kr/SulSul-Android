@@ -35,6 +35,21 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+
+        kotlinOptions {
+            freeCompilerArgs += listOf(
+                "-P",
+                "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${
+                    rootProject.file(".").absolutePath
+                }/compose-metrics"
+            )
+            freeCompilerArgs += listOf(
+                "-P",
+                "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${
+                    rootProject.file(".").absolutePath
+                }/compose-reports"
+            )
+        }
     }
     buildFeatures {
         compose = true
