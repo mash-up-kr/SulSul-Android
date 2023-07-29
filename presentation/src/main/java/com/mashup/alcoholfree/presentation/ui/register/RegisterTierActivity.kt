@@ -30,7 +30,6 @@ class RegisterTierActivity : ComponentActivity() {
                     ),
                     isTransparent = false,
                     bridge = RegisterTierBridge(
-                        context = this,
                         onSuccess = { alcoholType, glasses ->
                             // TODO("주량 등록 해야합니다~!")
                             finish()
