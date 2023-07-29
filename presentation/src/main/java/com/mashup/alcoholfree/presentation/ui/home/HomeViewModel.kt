@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
             _state.update { state ->
                 state.copy(
                     userName = "우진",
-                    alcoholTier = AlcoholTier.LEVEL3,
+                    alcoholTier = AlcoholTier.EMPTY,
                 )
             }
         }
