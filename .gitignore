@@ -86,3 +86,6 @@ lint/tmp/
 # lint/reports/
 
 *.DS_Store
+
+compose-metrics/
+compose-reports/

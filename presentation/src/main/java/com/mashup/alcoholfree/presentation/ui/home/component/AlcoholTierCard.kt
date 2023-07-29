@@ -1,5 +1,6 @@
 package com.mashup.alcoholfree.presentation.ui.home.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -98,6 +99,7 @@ private fun AlcoholTierTitle(
 @Composable
 fun EmptyTierCard(
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -107,7 +109,8 @@ fun EmptyTierCard(
             .paint(
                 painter = painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.Crop,
-            ),
+            )
+            .clickable { onClick() },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

@@ -40,6 +40,7 @@ import com.mashup.alcoholfree.presentation.utils.ImmutableList
 @Composable
 fun HomeScreen(
     state: HomeState,
+    onEmptyTierCardClick: () -> Unit,
     onAlcoholCardClick: (String) -> Unit,
     onDrinkAlcoholClick: () -> Unit,
 ) {
@@ -88,6 +89,7 @@ fun HomeScreen(
             if (state.isTierEmpty) {
                 EmptyTierCard(
                     modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
+                    onClick = onEmptyTierCardClick,
                 )
             } else {
                 AlcoholTierCard(
@@ -151,6 +153,7 @@ fun HomeScreenPreview() {
             ),
             cardList = ImmutableList(emptyList()),
         ),
+        onEmptyTierCardClick = {},
         onAlcoholCardClick = {},
         onDrinkAlcoholClick = {},
     )
