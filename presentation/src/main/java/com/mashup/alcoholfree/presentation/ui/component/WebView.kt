@@ -3,64 +3,67 @@ package com.mashup.alcoholfree.presentation.ui.component
 import android.annotation.SuppressLint
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
+import android.view.ViewGroup
+import android.webkit.WebChromeClient
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.google.accompanist.web.WebContent
-import com.google.accompanist.web.WebView
-import com.google.accompanist.web.WebViewState
+import androidx.compose.ui.viewinterop.AndroidView
 import com.mashup.alcoholfree.presentation.ui.measuring.SulSulWebViewBridge
+import com.mashup.alcoholfree.presentation.ui.measuring.SulSulWebViewSendBridge
 import com.mashup.alcoholfree.presentation.ui.measuring.model.SulSulWebViewState
 
 @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
 @Composable
 fun SulSulWebView(
     modifier: Modifier = Modifier,
-    state: WebViewState,
-) {
-    WebView(
-        modifier = modifier,
-        state = state,
-        onCreated = { webView ->
-            with(webView) {
-                settings.javaScriptEnabled = true
-            }
-        },
-    )
-}
-
-@SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
-@Composable
-fun SulSulWebView(
-    modifier: Modifier = Modifier,
     url: String,
-    state: SulSulWebViewState,
-    bridge: SulSulWebViewBridge,
-    bridgeName: String,
-    isTransparent: Boolean
+    isTransparent: Boolean,
+    state: SulSulWebViewState?,
+    bridge: SulSulWebViewBridge?,
 ) {
-    WebView(
+    AndroidView(
         modifier = modifier,
-        state = WebViewState(WebContent.Url(url)),
-        onCreated = { webView ->
+        factory = {
+            WebView(it).apply {
+                layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
 
-            with(webView) {
+                webViewClient = WebViewClient()
+                webChromeClient = WebChromeClient()
+
                 if (isTransparent) {
                     setBackgroundColor(0) // 웹뷰 투명 배경
                 }
                 settings.javaScriptEnabled = true
-                addJavascriptInterface(bridge, bridgeName)
-                onWebViewTouch(webView, bridge, state)
+                bridge?.let {
+                    addJavascriptInterface(bridge, bridge.bridgeName)
+                    if (bridge is SulSulWebViewSendBridge) {
+                        onWebViewTouch(this, bridge, state)
+                    }
+                }
+
+                loadUrl(url)
             }
         },
+        update = { webView ->
+            bridge?.let {
+                if (bridge is SulSulWebViewSendBridge) {
+                    onWebViewTouch(webView, bridge, state)
+                }
+            }
+        }
     )
 }
 
 @SuppressLint("ClickableViewAccessibility")
 private fun onWebViewTouch(
     webView: WebView,
-    webViewBridge: SulSulWebViewBridge,
-    state: SulSulWebViewState,
+    webViewBridge: SulSulWebViewSendBridge,
+    state: SulSulWebViewState?,
 ) {
     webView.setOnTouchListener { view, motionEvent ->
         if (
@@ -68,7 +71,7 @@ private fun onWebViewTouch(
             motionEvent.action == MotionEvent.ACTION_DOWN
         ) {
             view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            webViewBridge.onWebViewClicked(webView, state.clickMessage)
+            webViewBridge.onWebViewClicked(webView, state?.clickMessage)
         }
         false
     }
