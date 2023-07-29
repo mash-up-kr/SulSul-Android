@@ -79,5 +79,6 @@ dependencies {
 
     // compose coil
     implementation(Dependencies.Coil.COIL_COMPOSE)
+
     implementation(project(":domain"))
 }
