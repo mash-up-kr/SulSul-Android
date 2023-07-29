@@ -25,7 +25,6 @@ class HomeViewModel @Inject constructor(
     private val _state = MutableStateFlow(initHomeState())
     val state = _state.asStateFlow()
     fun getUserInfo() {
-        // TODO("내정보 API 연결해야함")
         viewModelScope.launch {
             val myInfo = getMyInfoUseCase()
 
