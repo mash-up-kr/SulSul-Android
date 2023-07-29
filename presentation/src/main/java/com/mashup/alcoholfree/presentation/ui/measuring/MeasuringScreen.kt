@@ -81,8 +81,6 @@ fun MeasuringScreen(
             ),
     )
 
-    val a = state.alcoholTypes.list[state.currentAlcoholId]
-    println("good $a")
     MeasuringBubblesContainer(
         modifier = Modifier.fillMaxSize(),
         state = SulSulWebViewState(
