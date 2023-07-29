@@ -28,7 +28,7 @@ class HomeActivity : ComponentActivity() {
 
                 HomeScreen(
                     state = state,
-                    onAlcoholCardClick = { navigateToMeasureResult(reportId = REPORT_ID) },
+                    onAlcoholCardClick = { navigateToMeasureResult(it) },
                     onDrinkAlcoholClick = { navigateToMeasure() },
                 )
             }
@@ -46,9 +46,5 @@ class HomeActivity : ComponentActivity() {
 
     private fun navigateToMeasureResult(reportId: String) {
         startActivity(MeasureResultActivity.getIntent(this, reportId))
-    }
-
-    companion object {
-        private const val REPORT_ID = "reportId"
     }
 }
