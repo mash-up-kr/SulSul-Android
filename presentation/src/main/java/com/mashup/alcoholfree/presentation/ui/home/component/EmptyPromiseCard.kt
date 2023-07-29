@@ -83,6 +83,7 @@ fun EmptyPromiseCard(
             content = stringResource(id = R.string.home_button_text),
             buttonColor = SulSulButtonColor.GREY300,
             buttonSize = SulSulButtonSize.LARGE,
+            onClick = onAddPromiseClick,
         )
     }
 }
@@ -91,6 +92,9 @@ fun EmptyPromiseCard(
 @Composable
 fun EmptyPromiseCardPreview() {
     AlcoholFreeAndroidTheme {
-        EmptyPromiseCard(modifier = Modifier.fillMaxWidth())
+        EmptyPromiseCard(
+            modifier = Modifier.fillMaxWidth(),
+            onAddPromiseClick = {},
+        )
     }
 }

@@ -44,11 +44,11 @@ private val cardShape = RoundedCornerShape(16.dp)
 fun AlcoholPromiseCard(
     modifier: Modifier = Modifier,
     state: AlcoholPromiseCardState,
-    onAlcoholCardClick: () -> Unit,
+    onAlcoholCardClick: (String) -> Unit,
 ) {
     Column(
         modifier = modifier
-            .clickable { onAlcoholCardClick() }
+            .clickable { onAlcoholCardClick(state.reportId) }
             .clip(shape = cardShape)
             .border(width = 1.dp, color = Grey300, shape = cardShape)
             .paint(
@@ -145,6 +145,7 @@ private fun AlcoholPromiseCardPreview() {
                 ),
                 drankDate = "2023.08.21",
                 subTitleText = "술 좀 치네",
+                reportId = "",
             ),
             onAlcoholCardClick = {},
         )

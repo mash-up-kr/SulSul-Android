@@ -8,8 +8,8 @@ import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mashup.alcoholfree.presentation.ui.measureresult.MeasureResultActivity
+import com.mashup.alcoholfree.presentation.ui.measuring.MeasuringActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
-import com.mashup.alcoholfree.presentation.utils.moveToActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,7 +28,8 @@ class HomeActivity : ComponentActivity() {
 
                 HomeScreen(
                     state = state,
-                    onAlcoholCardClick = { moveToActivity(MeasureResultActivity::class.java) },
+                    onAlcoholCardClick = { navigateToMeasureResult(it) },
+                    onDrinkAlcoholClick = { navigateToMeasure() },
                 )
             }
         }
@@ -37,5 +38,13 @@ class HomeActivity : ComponentActivity() {
     private fun initData() = with(viewModel) {
         getUserInfo()
         getAlcoholPromiseCards()
+    }
+
+    private fun navigateToMeasure() {
+        startActivity(MeasuringActivity.newIntent(this))
+    }
+
+    private fun navigateToMeasureResult(reportId: String) {
+        startActivity(MeasureResultActivity.newIntent(this, reportId))
     }
 }

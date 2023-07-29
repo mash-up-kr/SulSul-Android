@@ -1,5 +1,7 @@
 package com.mashup.alcoholfree.presentation.ui.measureresult
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,7 +40,16 @@ class MeasureResultActivity : ComponentActivity() {
                 }
             }
         }
-        viewModel.getMeasureResultReport()
         viewModel.createMeasureResultReport()
+    }
+
+    companion object {
+        private const val REPORT_ID = "reportId"
+
+        fun newIntent(context: Context, reportId: String): Intent {
+            return Intent(context, MeasureResultActivity::class.java).apply {
+                putExtra(REPORT_ID, reportId)
+            }
+        }
     }
 }

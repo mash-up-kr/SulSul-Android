@@ -1,5 +1,7 @@
 package com.mashup.alcoholfree.presentation.ui.measuring
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,7 +30,7 @@ class MeasuringActivity : ComponentActivity() {
                             level = "미쳤다",
                             currentAlcoholId = alcoholId,
                             alcoholTypes = listOf("소주", "맥주", "위스키", "와인", "고량주"),
-                        )
+                        ),
                     )
                 }
 
@@ -42,6 +44,12 @@ class MeasuringActivity : ComponentActivity() {
                     onBackButtonClick = { finish() }
                 )
             }
+        }
+    }
+
+    companion object {
+        fun newIntent(context: Context): Intent {
+            return Intent(context, MeasuringActivity::class.java)
         }
     }
 }

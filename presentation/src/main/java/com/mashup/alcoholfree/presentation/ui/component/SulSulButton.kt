@@ -69,7 +69,7 @@ fun SulSulIconStartButton(
     content: String,
     buttonColor: SulSulButtonColor,
     buttonSize: SulSulButtonSize,
-    onClick: () -> Unit = {},
+    onClick: () -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -197,6 +197,7 @@ private fun SulSulIconStartButtonPreview() {
         imageResId = R.drawable.ic_kakao,
         buttonSize = SulSulButtonSize.MIDDLE,
         buttonColor = SulSulButtonColor.PRIMARY200,
+        onClick = {},
     )
 }
 
