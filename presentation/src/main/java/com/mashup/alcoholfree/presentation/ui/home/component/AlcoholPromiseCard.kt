@@ -44,11 +44,11 @@ private val cardShape = RoundedCornerShape(16.dp)
 fun AlcoholPromiseCard(
     modifier: Modifier = Modifier,
     state: AlcoholPromiseCardState,
-    onAlcoholCardClick: () -> Unit,
+    onAlcoholCardClick: (String) -> Unit,
 ) {
     Column(
         modifier = modifier
-            .clickable { onAlcoholCardClick() }
+            .clickable { onAlcoholCardClick(state.id) }
             .clip(shape = cardShape)
             .border(width = 1.dp, color = Grey300, shape = cardShape)
             .paint(
@@ -136,6 +136,7 @@ private fun AlcoholPromiseCardPreview() {
     AlcoholFreeAndroidTheme {
         AlcoholPromiseCard(
             state = AlcoholPromiseCardState(
+                id = "",
                 cardType = AlcoholPromiseCardType.SOJU,
                 drinks = ImmutableList(
                     listOf(

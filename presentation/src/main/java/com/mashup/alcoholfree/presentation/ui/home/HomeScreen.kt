@@ -40,7 +40,7 @@ import com.mashup.alcoholfree.presentation.utils.ImmutableList
 @Composable
 fun HomeScreen(
     state: HomeState,
-    onAlcoholCardClick: () -> Unit,
+    onAlcoholCardClick: (String) -> Unit,
 ) {
     Box(
         modifier = Modifier
