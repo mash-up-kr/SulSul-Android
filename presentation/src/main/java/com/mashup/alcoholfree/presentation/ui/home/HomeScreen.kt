@@ -85,14 +85,14 @@ fun HomeScreen(
                 color = White,
             )
 
-            if (state.alcoholTier == null) {
+            if (state.isTierEmpty) {
                 EmptyTierCard(
                     modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
                 )
             } else {
                 AlcoholTierCard(
                     modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
-                    alcoholTier = state.alcoholTier,
+                    alcoholTier = requireNotNull(state.alcoholTier),
                 )
             }
 
@@ -149,7 +149,6 @@ fun HomeScreenPreview() {
                 title = "이쯤 되면 술잘알",
                 tierImageUrl = "",
             ),
-            drinkingLimit = emptyList(),
             cardList = ImmutableList(emptyList()),
         ),
         onAlcoholCardClick = {},
