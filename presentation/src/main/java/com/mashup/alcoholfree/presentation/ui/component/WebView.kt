@@ -25,6 +25,7 @@ fun SulSulWebView(
 fun SulSulWebView(
     modifier: Modifier = Modifier,
     state: WebViewState,
+    isTransparent: Boolean,
     bridge: Any,
     bridgeName: String,
 ) {
@@ -33,7 +34,9 @@ fun SulSulWebView(
         state = state,
         onCreated = { webView ->
             with(webView) {
-                setBackgroundColor(0) // 웹뷰 투명 배경
+                if (isTransparent) {
+                    setBackgroundColor(0) // 웹뷰 투명 배경
+                }
                 settings.javaScriptEnabled = true
                 addJavascriptInterface(bridge, bridgeName)
             }
