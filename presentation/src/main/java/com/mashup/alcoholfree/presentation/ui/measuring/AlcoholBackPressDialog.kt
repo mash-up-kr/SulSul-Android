@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -37,26 +38,24 @@ fun AlcoholBackPressDialog(
                 .clip(shape = RoundedCornerShape(16.dp))
                 .background(color = Grey000)
                 .padding(horizontal = 16.dp, vertical = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
                 text = stringResource(R.string.back_press_exit_label),
                 style = H3,
                 color = Grey900,
             )
 
             Text(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = 4.dp),
+                modifier = Modifier.padding(top = 4.dp),
                 text = stringResource(R.string.back_press_dialog_content),
                 style = SubTitle2,
                 color = Grey700,
+                textAlign = TextAlign.Center,
             )
 
             DialogButtonGroup(
-                modifier = Modifier
-                    .padding(top = 16.dp),
+                modifier = Modifier.padding(top = 16.dp),
                 onEnterClick = onContinueClick,
                 onExitClick = onExitClick,
             )
