@@ -6,8 +6,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
-import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultState
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,21 +21,11 @@ class MeasureResultActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
+            val state by viewModel.state.collectAsStateWithLifecycle()
+
             AlcoholFreeAndroidTheme {
                 MeasureResultScreen(
-                    MeasureResultState(
-                        headerStatus = "미쳤다.",
-                        userName = "우진",
-                        overDrinkSojuCount = 4,
-                        totalDrinkCountOfCup = 25,
-                        totalDrinkKcal = 132,
-                        totalDrinkAlcohol = 16.9f,
-                        totalDrinkTime = "3시간 20분",
-                        drinkCountOfSoju = 3,
-                        drinkCountOfBeer = 4,
-                        drinkCountOfKaoliangju = 3,
-                        drinkCountOfWine = 3,
-                    ),
+                    state = state,
                 )
             }
         }
