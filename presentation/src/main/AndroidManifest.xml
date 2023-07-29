@@ -34,5 +34,6 @@
         <activity android:name=".ui.measureresult.MeasureResultActivity" />
         <activity android:name=".ui.measuring.MeasuringActivity" />
         <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.register.RegisterTierActivity" />
     </application>
 </manifest>
