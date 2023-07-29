@@ -24,6 +24,7 @@ class HomeViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(initHomeState())
     val state = _state.asStateFlow()
+
     fun getUserInfo() {
         viewModelScope.launch {
             val myInfo = getMyInfoUseCase()
@@ -32,7 +33,6 @@ class HomeViewModel @Inject constructor(
                 state.copy(
                     userName = myInfo.nickname,
                     alcoholTier = myInfo.tier?.toUiModel(),
-                    drinkingLimit = myInfo.drinkingLimits?.map { it.toUiModel() } ?: emptyList(),
                 )
             }
         }
@@ -59,7 +59,6 @@ class HomeViewModel @Inject constructor(
                 tierImageUrl = "",
             ),
             cardList = ImmutableList(emptyList()),
-            drinkingLimit = emptyList(),
         )
     }
 }
