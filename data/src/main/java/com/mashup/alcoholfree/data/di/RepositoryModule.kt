@@ -2,9 +2,11 @@ package com.mashup.alcoholfree.data.di
 
 import com.mashup.alcoholfree.data.repository.LoginRepositoryImpl
 import com.mashup.alcoholfree.data.repository.MeasureRepositoryImpl
+import com.mashup.alcoholfree.data.repository.MyInfoRepositoryImpl
 import com.mashup.alcoholfree.data.repository.PromiseRepositoryImpl
 import com.mashup.alcoholfree.domain.repository.LoginRepository
 import com.mashup.alcoholfree.domain.repository.MeasureRepository
+import com.mashup.alcoholfree.domain.repository.MyInfoRepository
 import com.mashup.alcoholfree.domain.repository.PromiseRepository
 import dagger.Binds
 import dagger.Module
@@ -23,4 +25,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindPromiseRepository(promiseRepositoryImpl: PromiseRepositoryImpl): PromiseRepository
+
+    @Binds
+    abstract fun bindMyInfoRepository(myInfoRepository: MyInfoRepositoryImpl): MyInfoRepository
 }
