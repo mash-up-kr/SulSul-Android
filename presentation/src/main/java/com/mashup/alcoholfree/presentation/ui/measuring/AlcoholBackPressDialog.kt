@@ -56,7 +56,7 @@ fun AlcoholBackPressDialog(
 
             DialogButtonGroup(
                 modifier = Modifier.padding(top = 16.dp),
-                onEnterClick = onContinueClick,
+                onContinueClick = onContinueClick,
                 onExitClick = onExitClick,
             )
         }
@@ -66,7 +66,7 @@ fun AlcoholBackPressDialog(
 @Composable
 private fun DialogButtonGroup(
     modifier: Modifier = Modifier,
-    onEnterClick: () -> Unit,
+    onContinueClick: () -> Unit,
     onExitClick: () -> Unit,
 ) {
     Row(
@@ -77,7 +77,7 @@ private fun DialogButtonGroup(
             content = stringResource(R.string.exit_dialog_keep_label),
             buttonColor = SulSulButtonColor.GREY300,
             buttonSize = SulSulButtonSize.LARGE,
-            onClick = onEnterClick,
+            onClick = onContinueClick,
         )
 
         Spacer(modifier = Modifier.width(8.dp))
