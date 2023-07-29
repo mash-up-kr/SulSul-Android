@@ -41,10 +41,10 @@ class HomeActivity : ComponentActivity() {
     }
 
     private fun navigateToMeasure() {
-        startActivity(MeasuringActivity.getIntent(this))
+        startActivity(MeasuringActivity.newIntent(this))
     }
 
     private fun navigateToMeasureResult(reportId: String) {
-        startActivity(MeasureResultActivity.getIntent(this, reportId))
+        startActivity(MeasureResultActivity.newIntent(this, reportId))
     }
 }
