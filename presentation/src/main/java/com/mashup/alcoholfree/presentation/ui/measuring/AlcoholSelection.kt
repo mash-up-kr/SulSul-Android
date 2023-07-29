@@ -102,7 +102,7 @@ private fun AlcoholSelectionRow(
                 .padding(horizontal = defaultIconButtonSize)
                 .align(Alignment.Center),
             items = items,
-            selectedPage = selectedIndex
+            selectedPage = selectedIndex,
         )
         Row(
             modifier = Modifier
@@ -159,7 +159,7 @@ private fun AlcoholSelectionPager(
             text = items[page],
             style = H2,
             color = White,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     }
 }
@@ -170,7 +170,11 @@ private fun AlcoholSelectionPreview() {
     AlcoholFreeAndroidTheme {
         var page by remember { mutableStateOf(0) }
         val list = listOf(
-            "소주", "맥주", "와인", "위스키", "고량주",
+            "소주",
+            "맥주",
+            "와인",
+            "위스키",
+            "고량주",
         )
 
         AlcoholSelection(
