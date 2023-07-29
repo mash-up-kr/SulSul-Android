@@ -3,6 +3,7 @@ package com.mashup.alcoholfree.data.service
 import com.mashup.alcoholfree.data.dto.remote.request.MeasureResultReportRequest
 import com.mashup.alcoholfree.data.dto.remote.response.MeasureResultReportResponse
 import com.mashup.alcoholfree.data.dto.remote.response.MeasureResultResponse
+import com.mashup.alcoholfree.data.dto.remote.response.MyInfoResponse
 import com.mashup.alcoholfree.data.dto.remote.response.PromiseCardsResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -32,4 +33,10 @@ interface SulSulService {
      */
     @GET("/api/v1/drinkingReport")
     fun getPromiseCardsResponse(): Call<PromiseCardsResponse>
+
+    /**
+     *  내정보 조회
+     */
+    @GET("/api/v1/user/me")
+    fun getMyInfo(): Call<MyInfoResponse>
 }

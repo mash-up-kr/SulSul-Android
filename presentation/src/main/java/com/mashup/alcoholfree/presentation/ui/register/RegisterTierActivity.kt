@@ -8,8 +8,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import com.google.accompanist.web.WebContent
-import com.google.accompanist.web.WebViewState
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 
@@ -23,18 +21,14 @@ class RegisterTierActivity : ComponentActivity() {
                 SulSulWebView(
                     modifier = Modifier
                         .fillMaxSize(),
-                    state = WebViewState(
-                        WebContent.Url(
-                            url = "https://dev-onboarding.sulsul.app/measure"
-                        )
-                    ),
+                    url = "https://dev-onboarding.sulsul.app/measure",
                     isTransparent = false,
                     bridge = RegisterTierBridge(
                         onSuccess = { alcoholType, glasses ->
                             // TODO("주량 등록 해야합니다~!")
                             finish()
                         }),
-                    bridgeName = "sulsulBridge"
+                    state = null,
                 )
             }
         }

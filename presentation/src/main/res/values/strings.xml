@@ -29,4 +29,8 @@
     <string name="mission_label">Mission</string>
     <string name="mission_content">바람 쐬고 오기</string>
     <string name="alert_btn_text">확인</string>
+    <string name="back_press_exit_label">술 측정을 종료하시겠어요?</string>
+    <string name="back_press_dialog_content">지금 종료하면 측정한 내용들은\n모두 초기화 됩니다.</string>
+    <string name="exit_dialog_keep_label">계속하기</string>
+    <string name="exit_dialog_finish_label">종료하기</string>
 </resources>

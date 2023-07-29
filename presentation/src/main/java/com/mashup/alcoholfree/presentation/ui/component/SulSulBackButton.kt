@@ -19,12 +19,12 @@ fun SulSulBackButton(
 ) {
     IconButton(
         modifier = modifier.size(40.dp),
-        onClick = onClick
+        onClick = onClick,
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_back),
             contentDescription = null,
-            tint = Grey900
+            tint = Grey900,
         )
     }
 }

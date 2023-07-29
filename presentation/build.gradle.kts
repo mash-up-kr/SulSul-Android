@@ -35,6 +35,21 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+
+        kotlinOptions {
+            freeCompilerArgs += listOf(
+                "-P",
+                "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${
+                    rootProject.file(".").absolutePath
+                }/compose-metrics"
+            )
+            freeCompilerArgs += listOf(
+                "-P",
+                "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${
+                    rootProject.file(".").absolutePath
+                }/compose-reports"
+            )
+        }
     }
     buildFeatures {
         compose = true
@@ -76,6 +91,9 @@ dependencies {
     // kakao sdk
     implementation(Dependencies.Kakao.USER_SDK) // 카카오 로그인
     implementation(Dependencies.Kakao.TALK_SDK) // 친구, 메시지(카카오톡)
+
+    // compose coil
+    implementation(Dependencies.Coil.COIL_COMPOSE)
 
     implementation(project(":domain"))
 }
