@@ -41,7 +41,7 @@ class MeasuringActivity : ComponentActivity() {
                 MeasuringScreen(
                     state = state,
                     onAlcoholSelectionChanged = { alcoholId = it },
-                    onBackButtonClick = { finish() }
+                    onBackButtonClick = { finish() },
                 )
             }
         }
