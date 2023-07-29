@@ -32,14 +32,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.web.WebContent
-import com.google.accompanist.web.WebViewState
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
+import com.mashup.alcoholfree.presentation.ui.measuring.model.SulSulWebViewState
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.BlueGradient
 import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
@@ -51,8 +50,10 @@ import com.mashup.alcoholfree.presentation.ui.theme.PurpleGradient
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.White
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 private val measuringShape = RoundedCornerShape(16.dp)
+private const val WEB_FALLING_URL = "https://dev-falling.sulsul.app"
 
 @Composable
 fun MeasuringScreen(
@@ -78,6 +79,13 @@ fun MeasuringScreen(
                 shape = RectangleShape,
                 alpha = 0.5f,
             ),
+    )
+
+    MeasuringBubblesContainer(
+        modifier = Modifier.fillMaxSize(),
+        state = SulSulWebViewState(
+            state.alcoholTypes.list[state.currentAlcoholId],
+        ),
     )
 
     Box(
@@ -111,12 +119,12 @@ fun MeasuringScreen(
 
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .padding(top = 38.dp)
+                .align(Alignment.TopCenter)
                 .statusBarsPadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             MeasuringHeader(
-                modifier = Modifier.padding(top = 38.dp),
                 totalCount = state.totalCount,
                 status = state.records,
             )
@@ -128,24 +136,25 @@ fun MeasuringScreen(
                     text = state.level,
                 )
             }
+        }
 
-            MeasuringBubblesContainer(
-                modifier = Modifier
-                    .padding(top = 16.dp, bottom = 7.dp)
-                    .weight(1f),
-            )
-
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
             AlcoholSelection(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 selectedIndex = state.currentAlcoholId,
-                items = state.alcoholTypes,
+                items = state.alcoholTypes.list,
                 onLeftClick = {
                     if (state.currentAlcoholId > 0) {
                         onAlcoholSelectionChanged(state.currentAlcoholId - 1)
                     }
                 },
                 onRightClick = {
-                    if (state.currentAlcoholId < state.alcoholTypes.lastIndex) {
+                    if (state.currentAlcoholId < state.alcoholTypes.list.lastIndex) {
                         onAlcoholSelectionChanged(state.currentAlcoholId + 1)
                     }
                 },
@@ -196,10 +205,14 @@ private fun MeasuringHeader(
 @Composable
 private fun MeasuringBubblesContainer(
     modifier: Modifier = Modifier,
+    state: SulSulWebViewState,
 ) {
     SulSulWebView(
         modifier = modifier,
-        state = WebViewState(WebContent.Url("https://feat-test-webview.d1odkcnw7yeu9w.amplifyapp.com/")),
+        url = WEB_FALLING_URL,
+        state = state,
+        bridge = MeasuringWebViewBridge,
+        isTransparent = true,
     )
 }
 
@@ -243,7 +256,7 @@ private fun MeasuringScreenPreview() {
                     records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
                     level = "미쳤다",
                     currentAlcoholId = alcoholId,
-                    alcoholTypes = listOf("소주", "맥주", "위스키", "와인", "고량주"),
+                    alcoholTypes = ImmutableList(listOf("소주", "맥주", "위스키", "와인", "고량주")),
                 ),
             )
         }
