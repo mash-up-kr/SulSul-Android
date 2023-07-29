@@ -53,7 +53,6 @@ import com.mashup.alcoholfree.presentation.ui.theme.White
 
 private val measuringShape = RoundedCornerShape(16.dp)
 private const val WEB_FALLING_URL = "https://dev-falling.sulsul.app"
-private const val BRIDGE_NAME = "sulsulBridge"
 
 @Composable
 fun MeasuringScreen(
@@ -204,7 +203,7 @@ private fun MeasuringBubblesContainer(
         url = WEB_FALLING_URL,
         state = state,
         bridge = MeasuringWebViewBridge,
-        bridgeName = BRIDGE_NAME,
+        isTransparent = true,
     )
 }
 

@@ -10,34 +10,17 @@ import com.google.accompanist.web.WebContent
 import com.google.accompanist.web.WebView
 import com.google.accompanist.web.WebViewState
 import com.mashup.alcoholfree.presentation.ui.measuring.SulSulWebViewBridge
+import com.mashup.alcoholfree.presentation.ui.measuring.SulSulWebViewSendBridge
 import com.mashup.alcoholfree.presentation.ui.measuring.model.SulSulWebViewState
 
 @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
 @Composable
 fun SulSulWebView(
     modifier: Modifier = Modifier,
-    state: WebViewState,
-) {
-    WebView(
-        modifier = modifier,
-        state = state,
-        onCreated = { webView ->
-            with(webView) {
-                settings.javaScriptEnabled = true
-            }
-        },
-    )
-}
-
-@SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
-@Composable
-fun SulSulWebView(
-    modifier: Modifier = Modifier,
     url: String,
-    state: SulSulWebViewState,
-    bridge: SulSulWebViewBridge,
-    bridgeName: String,
-    isTransparent: Boolean
+    isTransparent: Boolean,
+    state: SulSulWebViewState?,
+    bridge: SulSulWebViewBridge?,
 ) {
     WebView(
         modifier = modifier,
@@ -49,8 +32,12 @@ fun SulSulWebView(
                     setBackgroundColor(0) // 웹뷰 투명 배경
                 }
                 settings.javaScriptEnabled = true
-                addJavascriptInterface(bridge, bridgeName)
-                onWebViewTouch(webView, bridge, state)
+                bridge?.let {
+                    addJavascriptInterface(bridge, it.bridgeName)
+                    if (bridge is SulSulWebViewSendBridge) {
+                        onWebViewTouch(webView, bridge, state)
+                    }
+                }
             }
         },
     )
@@ -59,8 +46,8 @@ fun SulSulWebView(
 @SuppressLint("ClickableViewAccessibility")
 private fun onWebViewTouch(
     webView: WebView,
-    webViewBridge: SulSulWebViewBridge,
-    state: SulSulWebViewState,
+    webViewBridge: SulSulWebViewSendBridge,
+    state: SulSulWebViewState?,
 ) {
     webView.setOnTouchListener { view, motionEvent ->
         if (
@@ -68,7 +55,7 @@ private fun onWebViewTouch(
             motionEvent.action == MotionEvent.ACTION_DOWN
         ) {
             view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            webViewBridge.onWebViewClicked(webView, state.clickMessage)
+            webViewBridge.onWebViewClicked(webView, state?.clickMessage)
         }
         false
     }

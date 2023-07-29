@@ -4,8 +4,11 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.widget.Toast
 
-object MeasuringWebViewBridge : SulSulWebViewBridge {
+object MeasuringWebViewBridge : SulSulWebViewSendBridge {
     private const val WEB_FUNCTION_NAME = "addBall"
+    private const val BRIDGE_NAME = "sulsulBridge"
+
+    override val bridgeName: String = BRIDGE_NAME
 
     @JavascriptInterface
     override fun publishEvent(
@@ -26,10 +29,10 @@ object MeasuringWebViewBridge : SulSulWebViewBridge {
 
     @JavascriptInterface
     override fun onWebViewClicked(webView: WebView, data: String?) {
-        webView.evaluateJavascript(
-            publishEvent(WEB_FUNCTION_NAME, "\"$data\""),
-        ) {
-            Toast.makeText(webView.context, data, Toast.LENGTH_SHORT).show()
+        data?.let {
+            webView.evaluateJavascript(
+                publishEvent(WEB_FUNCTION_NAME, "\"$data\""),
+            ) {}
         }
     }
 }
