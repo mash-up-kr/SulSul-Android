@@ -28,8 +28,8 @@ import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholPromiseCardP
 import com.mashup.alcoholfree.presentation.ui.home.component.AlcoholTierCard
 import com.mashup.alcoholfree.presentation.ui.home.component.EmptyPromiseCard
 import com.mashup.alcoholfree.presentation.ui.home.component.EmptyTierCard
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholTier
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
+import com.mashup.alcoholfree.presentation.ui.home.model.TierUiModel
 import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.H3
@@ -85,7 +85,7 @@ fun HomeScreen(
                 color = White,
             )
 
-            if (state.isTierEmpty) {
+            if (state.alcoholTier == null) {
                 EmptyTierCard(
                     modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
                 )
@@ -144,7 +144,12 @@ fun HomeScreenPreview() {
     HomeScreen(
         state = HomeState(
             userName = "우진",
-            alcoholTier = AlcoholTier.LEVEL3,
+            alcoholTier = TierUiModel(
+                subTitle = "술 좀 치네",
+                title = "이쯤 되면 술잘알",
+                tierImageUrl = "",
+            ),
+            drinkingLimit = emptyList(),
             cardList = ImmutableList(emptyList()),
         ),
         onAlcoholCardClick = {},
