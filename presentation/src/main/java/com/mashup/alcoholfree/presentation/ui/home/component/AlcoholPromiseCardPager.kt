@@ -18,7 +18,7 @@ import kotlin.math.absoluteValue
 fun AlcoholPromiseCardPager(
     modifier: Modifier = Modifier,
     cardList: ImmutableList<AlcoholPromiseCardState>,
-    onAlcoholCardClick: () -> Unit,
+    onAlcoholCardClick: (String) -> Unit,
 ) {
     val pagerState = rememberPagerState()
     HorizontalPager(

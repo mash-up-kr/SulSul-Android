@@ -29,7 +29,8 @@ import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
-import com.mashup.alcoholfree.presentation.ui.home.model.Drink
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardType
+import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.H2
@@ -43,12 +44,11 @@ private val cardShape = RoundedCornerShape(16.dp)
 fun AlcoholPromiseCard(
     modifier: Modifier = Modifier,
     state: AlcoholPromiseCardState,
-    onAlcoholCardClick: () -> Unit,
+    onAlcoholCardClick: (String) -> Unit,
 ) {
-    val alcoholType = AlcoholPromiseCardState.getAlcoholType(state.drinks.list.first())
     Column(
         modifier = modifier
-            .clickable { onAlcoholCardClick() }
+            .clickable { onAlcoholCardClick(state.reportId) }
             .clip(shape = cardShape)
             .border(width = 1.dp, color = Grey300, shape = cardShape)
             .paint(
@@ -58,7 +58,7 @@ fun AlcoholPromiseCard(
             .background(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        alcoholType.color,
+                        state.cardType.color,
                         Color.Transparent,
                     ),
                     center = Offset(500f, 1300f),
@@ -77,7 +77,7 @@ fun AlcoholPromiseCard(
                     top = 32.dp,
                     bottom = 16.dp,
                 ),
-            painter = painterResource(id = alcoholType.imageResId),
+            painter = painterResource(id = state.cardType.imageResId),
             alignment = Alignment.Center,
             contentScale = ContentScale.Fit,
             contentDescription = null,
@@ -103,7 +103,7 @@ fun AlcoholPromiseCard(
 @Composable
 private fun AlcoholTypeCount(
     modifier: Modifier = Modifier,
-    list: List<Drink>,
+    list: List<DrinkUiModel>,
 ) {
     Row(
         modifier = modifier,
@@ -136,14 +136,16 @@ private fun AlcoholPromiseCardPreview() {
     AlcoholFreeAndroidTheme {
         AlcoholPromiseCard(
             state = AlcoholPromiseCardState(
+                cardType = AlcoholPromiseCardType.SOJU,
                 drinks = ImmutableList(
                     listOf(
-                        Drink("맥주", 1),
-                        Drink("와인", 2),
+                        DrinkUiModel("맥주", 1),
+                        DrinkUiModel("와인", 2),
                     ),
                 ),
                 drankDate = "2023.08.21",
                 subTitleText = "술 좀 치네",
+                reportId = "",
             ),
             onAlcoholCardClick = {},
         )

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -124,7 +125,9 @@ fun MeasureResultScreen(
 @Composable
 private fun MeasureResultContent(state: MeasureResultState) {
     Column(
-        modifier = Modifier.verticalScroll(rememberScrollState()),
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .statusBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         MeasureResultHeader(
@@ -211,9 +214,8 @@ private fun MeasureResultInfoItems(
             mainText = "$kcal Kcal",
             subText = stringResource(id = R.string.today_drink_kcal),
         )
-        /* TODO: icon 변경 되어야함 */
         MeasureResultInfoItem(
-            imageResId = R.drawable.ic_clock,
+            imageResId = R.drawable.ic_alcohol,
             mainText = "$alcohol%",
             subText = stringResource(id = R.string.average_alcohol_level),
         )

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
@@ -102,6 +103,7 @@ fun MeasuringScreen(
     ) {
         SulSulBackButton(
             modifier = Modifier
+                .statusBarsPadding()
                 .padding(top = 8.dp, start = 16.dp)
                 .align(Alignment.TopStart),
             onClick = onBackButtonClick,
@@ -110,7 +112,8 @@ fun MeasuringScreen(
         Column(
             modifier = Modifier
                 .padding(top = 38.dp)
-                .align(Alignment.TopCenter),
+                .align(Alignment.TopCenter)
+                .statusBarsPadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             MeasuringHeader(

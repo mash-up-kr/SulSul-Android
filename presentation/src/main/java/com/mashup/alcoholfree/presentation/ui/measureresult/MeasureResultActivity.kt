@@ -1,9 +1,12 @@
 package com.mashup.alcoholfree.presentation.ui.measureresult
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.core.view.WindowCompat
 import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultState
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,6 +17,8 @@ class MeasureResultActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             AlcoholFreeAndroidTheme {
                 MeasureResultScreen(
@@ -30,9 +35,21 @@ class MeasureResultActivity : ComponentActivity() {
                         drinkCountOfKaoliangju = 3,
                         drinkCountOfWine = 3,
                     ),
-                )
+                ) {
+                    finish()
+                }
             }
         }
-        viewModel.getMeasureResultReport()
+        viewModel.createMeasureResultReport()
+    }
+
+    companion object {
+        private const val REPORT_ID = "reportId"
+
+        fun newIntent(context: Context, reportId: String): Intent {
+            return Intent(context, MeasureResultActivity::class.java).apply {
+                putExtra(REPORT_ID, reportId)
+            }
+        }
     }
 }

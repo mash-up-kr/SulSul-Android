@@ -44,12 +44,14 @@ object Dependencies {
         private const val UI_VERISON = "1.4.2"
         private const val ACTIVITY_VERSION = "1.7.1"
         private const val VIEW_MODEL_VERSION = "2.6.0"
+        private const val LIFECYCLE_RUNTIME_VERSION = "2.6.1"
 
         const val COMPOSE_ACTIVITY = "androidx.activity:activity-compose:$ACTIVITY_VERSION"
         const val COMPOSE_UI = "androidx.compose.ui:ui:$UI_VERISON"
         const val COMPOSE_UI_UTIL = "androidx.compose.ui:ui-util:$UI_VERISON"
         const val COMPOSE_PREVIEW = "androidx.compose.ui:ui-tooling-preview:$UI_VERISON"
         const val COMPOSE_MATERIAL = "androidx.compose.material:material:$UI_VERISON"
+        const val COMPOSE_LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-compose:$LIFECYCLE_RUNTIME_VERSION"
 
         const val COMPOSE_JUNIT = "androidx.compose.ui:ui-test-junit4:$UI_VERISON"
         const val COMPOSE_TOOLING = "androidx.compose.ui:ui-tooling:$UI_VERISON"
@@ -60,6 +62,7 @@ object Dependencies {
         private const val VERSION = "0.30.1"
 
         const val ACCOMPANIST_WEBVIEW = "com.google.accompanist:accompanist-webview:$VERSION"
+        const val ACCOMPANIST_SYSTEM_UI_CONTROLLER = "com.google.accompanist:accompanist-systemuicontroller:$VERSION"
     }
 
     object Coil {
