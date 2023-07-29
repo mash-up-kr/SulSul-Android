@@ -3,22 +3,20 @@ package com.mashup.alcoholfree.presentation.ui.measuring
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.widget.Toast
-import com.mashup.alcoholfree.presentation.constants.WebViewConstant
 
-class MeasuringWebViewBridge(
-    private val webView: WebView,
-) {
+object MeasuringWebViewBridge : SulSulWebViewBridge {
+    private const val WEB_FUNCTION_NAME = "addBall"
 
     @JavascriptInterface
-    fun publishEvent(
+    override fun publishEvent(
         functionName: String,
-        alcoholType: String,
+        data: String,
     ): String {
         val buffer = StringBuffer()
             .append("window.dispatchEvent(\n")
             .append("   new CustomEvent(\"").append(functionName).append("\", {\n")
             .append("           detail: {\n")
-            .append("               data: ").append(alcoholType).append("\n")
+            .append("               data: ").append(data).append("\n")
             .append("           }\n")
             .append("       }\n")
             .append("   )\n")
@@ -27,11 +25,11 @@ class MeasuringWebViewBridge(
     }
 
     @JavascriptInterface
-    fun addBallClickListener(alcoholType: String) {
+    override fun onWebViewClicked(webView: WebView, data: String?) {
         webView.evaluateJavascript(
-            publishEvent(WebViewConstant.WEB_FUNCTION_NAME, "\"$alcoholType\""),
+            publishEvent(WEB_FUNCTION_NAME, "\"$data\""),
         ) {
-            Toast.makeText(webView.context, alcoholType, Toast.LENGTH_SHORT).show()
+            Toast.makeText(webView.context, data, Toast.LENGTH_SHORT).show()
         }
     }
 }
