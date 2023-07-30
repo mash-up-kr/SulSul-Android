@@ -1,20 +1,63 @@
 package com.mashup.alcoholfree.presentation.ui.measuring
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.mashup.alcoholfree.domain.usecase.CreateMeasureResultReportUseCase
+import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
+import com.mashup.alcoholfree.presentation.ui.home.model.MeasureResultReportParamUiModel
+import com.mashup.alcoholfree.presentation.ui.home.model.toDomainModel
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
 class MeasuringViewModel @Inject constructor(
-
-): ViewModel() {
+    private val createMeasureResultReportUseCase: CreateMeasureResultReportUseCase,
+) : ViewModel() {
     private val _state = MutableStateFlow(initState())
     val state: StateFlow<MeasuringState>
         get() = _state
+
+    private val drinkingStartTime = getDateTimeNow()
+    private val drinkingMap = mutableMapOf<String, Int>()
+    private val drinks
+        get() = drinkingMap.toList()
+
+    private fun getDateTimeNow() = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)
+
+    fun addAlcoholItem(alcoholType: String) {
+        drinkingMap[alcoholType] = (drinkingMap[alcoholType] ?: 0) + 1
+        _state.update { state ->
+            state.copy(
+                totalCount = state.totalCount + 1,
+                records = drinks.joinToString(" · ") { (alcoholType, glass) ->
+                    "$alcoholType ${glass}잔"
+                },
+            )
+        }
+    }
+
+    fun createMeasureResultReport() {
+        viewModelScope.launch {
+            createMeasureResultReportUseCase(
+                MeasureResultReportParamUiModel(
+                    drinkingStartTime = drinkingStartTime,
+                    drinkingEndTime = getDateTimeNow(),
+                    drinks = drinks.map { (alcoholType, glass) ->
+                        DrinkUiModel(alcoholType, glass)
+                    },
+                    totalDrinkGlasses = state.value.totalCount,
+                ).toDomainModel(),
+            )
+        }
+    }
 
     fun updateCurrentAlcoholId(alcoholId: Int) {
         _state.value = _state.value.copy(currentAlcoholId = alcoholId)
@@ -22,8 +65,8 @@ class MeasuringViewModel @Inject constructor(
 
     private fun initState(): MeasuringState {
         return MeasuringState(
-            totalCount = 25,
-            records = "와인 2잔 · 소주 2잔 · 맥주 3잔",
+            totalCount = 0,
+            records = "아직 술을 마시지 않았어요",
             level = "미쳤다",
             currentAlcoholId = 0,
             alcoholTypes = ImmutableList(listOf("소주", "맥주", "위스키", "와인", "고량주")),
