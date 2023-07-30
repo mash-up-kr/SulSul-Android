@@ -45,6 +45,7 @@ class MeasuringActivity : ComponentActivity() {
 
     private fun navigateToMeasureResult(reportId: String) {
         startActivity(MeasureResultActivity.newIntent(this, reportId))
+        finish()
     }
 
     companion object {
