@@ -3,9 +3,12 @@ package com.mashup.alcoholfree.presentation.ui.measuring
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 
-object MeasuringWebViewBridge : SulSulWebViewSendBridge {
-    private const val WEB_FUNCTION_NAME = "addBall"
-    private const val BRIDGE_NAME = "sulsulBridge"
+private const val WEB_FUNCTION_NAME = "addBall"
+private const val BRIDGE_NAME = "sulsulBridge"
+
+class MeasuringWebViewBridge(
+    private val onSuccess: (String) -> Unit,
+) : SulSulWebViewSendBridge {
 
     override val bridgeName: String = BRIDGE_NAME
 
@@ -38,6 +41,6 @@ object MeasuringWebViewBridge : SulSulWebViewSendBridge {
     @JavascriptInterface
     fun onAddBallSuccess(alcoholType: String) {
         // 주량 측정
-        println(alcoholType)
+        onSuccess(alcoholType)
     }
 }

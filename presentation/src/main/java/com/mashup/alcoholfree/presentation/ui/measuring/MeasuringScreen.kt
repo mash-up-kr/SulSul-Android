@@ -61,6 +61,7 @@ fun MeasuringScreen(
     onAlcoholSelectionChanged: (Int) -> Unit = {},
     onMeasureFinishClick: () -> Unit = {},
     onBackButtonClick: () -> Unit = {},
+    onAddBallSuccess: (String) -> Unit = {},
 ) {
     val gradientColorList = setGradientColor(state.currentAlcoholId)
     Box(
@@ -86,6 +87,7 @@ fun MeasuringScreen(
         state = SulSulWebViewState(
             state.alcoholTypes.list[state.currentAlcoholId],
         ),
+        onAddBallSuccess = onAddBallSuccess,
     )
 
     Box(
@@ -206,12 +208,13 @@ private fun MeasuringHeader(
 private fun MeasuringBubblesContainer(
     modifier: Modifier = Modifier,
     state: SulSulWebViewState,
+    onAddBallSuccess: (String) -> Unit,
 ) {
     SulSulWebView(
         modifier = modifier,
         url = WEB_FALLING_URL,
         state = state,
-        bridge = MeasuringWebViewBridge,
+        bridge = MeasuringWebViewBridge(onSuccess = onAddBallSuccess),
         isTransparent = true,
     )
 }
