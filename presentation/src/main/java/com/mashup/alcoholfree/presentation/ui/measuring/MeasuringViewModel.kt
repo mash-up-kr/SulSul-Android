@@ -1,5 +1,7 @@
 package com.mashup.alcoholfree.presentation.ui.measuring
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mashup.alcoholfree.domain.usecase.CreateMeasureResultReportUseCase
@@ -7,6 +9,7 @@ import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.MeasureResultReportParamUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toDomainModel
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
+import com.mashup.alcoholfree.presentation.utils.Event
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +27,10 @@ class MeasuringViewModel @Inject constructor(
     private val _state = MutableStateFlow(initState())
     val state: StateFlow<MeasuringState>
         get() = _state
+
+    private val _createReportSuccessEvent = MutableLiveData<Event<String>>()
+    val createReportSuccessEvent: LiveData<Event<String>>
+        get() = _createReportSuccessEvent
 
     private val drinkingStartTime = getDateTimeNow()
     private val drinkingMap = mutableMapOf<String, Int>()
@@ -46,7 +53,7 @@ class MeasuringViewModel @Inject constructor(
 
     fun createMeasureResultReport() {
         viewModelScope.launch {
-            createMeasureResultReportUseCase(
+            val result = createMeasureResultReportUseCase(
                 MeasureResultReportParamUiModel(
                     drinkingStartTime = drinkingStartTime,
                     drinkingEndTime = getDateTimeNow(),
@@ -56,6 +63,7 @@ class MeasuringViewModel @Inject constructor(
                     totalDrinkGlasses = state.value.totalCount,
                 ).toDomainModel(),
             )
+            _createReportSuccessEvent.value = Event(result.id)
         }
     }
 
