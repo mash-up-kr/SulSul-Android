@@ -48,7 +48,7 @@ fun AlcoholPromiseCard(
 ) {
     Column(
         modifier = modifier
-            .clickable { onAlcoholCardClick(state.reportId) }
+            .clickable { onAlcoholCardClick(state.id) }
             .clip(shape = cardShape)
             .border(width = 1.dp, color = Grey300, shape = cardShape)
             .paint(
@@ -136,6 +136,7 @@ private fun AlcoholPromiseCardPreview() {
     AlcoholFreeAndroidTheme {
         AlcoholPromiseCard(
             state = AlcoholPromiseCardState(
+                id = "",
                 cardType = AlcoholPromiseCardType.SOJU,
                 drinks = ImmutableList(
                     listOf(
@@ -145,7 +146,6 @@ private fun AlcoholPromiseCardPreview() {
                 ),
                 drankDate = "2023.08.21",
                 subTitleText = "술 좀 치네",
-                reportId = "",
             ),
             onAlcoholCardClick = {},
         )

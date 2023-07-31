@@ -134,7 +134,7 @@ private fun MeasureResultContent(state: MeasureResultState) {
             modifier = Modifier.padding(top = 56.dp),
             status = state.headerStatus,
             userName = state.userName,
-            sojuCount = state.overDrinkSojuCount,
+            sojuCount = state.extraGlasses,
         )
 
         SulSulLargeBadge(
@@ -150,7 +150,7 @@ private fun MeasureResultContent(state: MeasureResultState) {
                 end = rootHorizontalPadding,
             ),
             kcal = state.totalDrinkKcal,
-            alcohol = state.totalDrinkAlcohol,
+            alcohol = state.averageAlcoholPercent,
             time = state.totalDrinkTime,
         )
 
@@ -173,6 +173,7 @@ private fun MeasureResultContent(state: MeasureResultState) {
             drinkCountOfBeer = state.drinkCountOfBeer,
             drinkCountOfKaoliangju = state.drinkCountOfKaoliangju,
             drinkCountOfWine = state.drinkCountOfWine,
+            drinkCountOfWhisky = state.drinkCountOfWhisky,
         )
     }
 }
@@ -202,7 +203,7 @@ private fun MeasureResultHeader(
 private fun MeasureResultInfoItems(
     modifier: Modifier = Modifier,
     kcal: Int,
-    alcohol: Float,
+    alcohol: Double,
     time: String,
 ) {
     Row(
@@ -247,6 +248,7 @@ private fun MeasureResultDrinkAlcoholCollectAndSeeLayer(
     drinkCountOfBeer: Int,
     drinkCountOfKaoliangju: Int,
     drinkCountOfWine: Int,
+    drinkCountOfWhisky: Int,
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
@@ -260,6 +262,7 @@ private fun MeasureResultDrinkAlcoholCollectAndSeeLayer(
             drinkCountOfBeer = drinkCountOfBeer,
             drinkCountOfKaoliangju = drinkCountOfKaoliangju,
             drinkCountOfWine = drinkCountOfWine,
+            drinkCountOfWhisky = drinkCountOfWhisky,
         )
     }
 }
@@ -271,6 +274,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
     drinkCountOfBeer: Int,
     drinkCountOfKaoliangju: Int,
     drinkCountOfWine: Int,
+    drinkCountOfWhisky: Int,
 ) {
     Column(
         modifier = modifier
@@ -335,7 +339,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
             MeasureResultDrinkAlcoholCupCountItem(
                 modifier = Modifier.padding(vertical = 16.dp),
                 alcoholType = AlcoholType.WHISKY,
-                drinkCount = drinkCountOfKaoliangju,
+                drinkCount = drinkCountOfWhisky,
             )
         }
     }
@@ -428,15 +432,16 @@ private fun MeasureResultScreenPreview() {
         MeasureResultState(
             headerStatus = "미쳤다.",
             userName = "우진",
-            overDrinkSojuCount = 4,
+            extraGlasses = 4,
             totalDrinkCountOfCup = 25,
             totalDrinkKcal = 132,
-            totalDrinkAlcohol = 16.9f,
             totalDrinkTime = "3시간 20분",
             drinkCountOfSoju = 999,
             drinkCountOfBeer = 0,
             drinkCountOfKaoliangju = 3,
             drinkCountOfWine = 3,
+            drinkCountOfWhisky = 4,
+            averageAlcoholPercent = 0.0,
         ),
     )
 }
