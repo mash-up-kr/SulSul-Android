@@ -8,6 +8,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mashup.alcoholfree.presentation.ui.measureresult.MeasureResultActivity
+import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,14 +22,30 @@ class MeasuringActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            val state = viewModel.state.collectAsStateWithLifecycle()
+            AlcoholFreeAndroidTheme {
+                val state = viewModel.state.collectAsStateWithLifecycle()
 
-            MeasuringScreen(
-                state = state.value,
-                onAlcoholSelectionChanged = { viewModel.updateCurrentAlcoholId(it) },
-                onBackButtonClick = { finish() },
-            )
+                MeasuringScreen(
+                    state = state.value,
+                    onAlcoholSelectionChanged = { viewModel.updateCurrentAlcoholId(it) },
+                    onBackButtonClick = { finish() },
+                    onAddBallSuccess = viewModel::addAlcoholItem,
+                    onMeasureFinishClick = viewModel::createMeasureResultReport,
+                )
+            }
         }
+        observeData()
+    }
+
+    private fun observeData() {
+        viewModel.createReportSuccessEvent.observeEvent(this) { reportId ->
+            navigateToMeasureResult(reportId)
+        }
+    }
+
+    private fun navigateToMeasureResult(reportId: String) {
+        startActivity(MeasureResultActivity.newIntent(this, reportId))
+        finish()
     }
 
     companion object {

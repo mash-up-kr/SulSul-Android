@@ -5,6 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
 
+/**
+ * 한번만 실행해야 하는 이벤트를 처리할 때 사용
+ */
 open class Event<out T>(private val content: T) {
     private var hasBeenHandled = AtomicBoolean(false)
 
