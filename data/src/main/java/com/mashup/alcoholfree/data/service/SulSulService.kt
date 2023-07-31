@@ -1,10 +1,12 @@
 package com.mashup.alcoholfree.data.service
 
 import com.mashup.alcoholfree.data.dto.remote.request.MeasureResultReportRequest
+import com.mashup.alcoholfree.data.dto.remote.request.RegisterTierRequest
 import com.mashup.alcoholfree.data.dto.remote.response.MeasureResultReportResponse
 import com.mashup.alcoholfree.data.dto.remote.response.MeasureResultResponse
 import com.mashup.alcoholfree.data.dto.remote.response.MyInfoResponse
 import com.mashup.alcoholfree.data.dto.remote.response.PromiseCardsResponse
+import com.mashup.alcoholfree.data.dto.remote.response.RegisterDrinkingLimitResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -39,4 +41,12 @@ interface SulSulService {
      */
     @GET("/api/v1/user/me")
     fun getMyInfo(): Call<MyInfoResponse>
+
+    /**
+     * 주량 등록
+     */
+    @POST("/api/v1/drinkingLimit")
+    fun registerDrinkingLimit(
+        @Body registerTierRequest: RegisterTierRequest,
+    ): Call<RegisterDrinkingLimitResponse>
 }
