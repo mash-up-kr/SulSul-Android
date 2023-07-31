@@ -8,4 +8,5 @@ data class MeasuringState(
     val level: String,
     val currentAlcoholId: Int,
     val alcoholTypes: ImmutableList<String>,
+    val isDrunken: Boolean,
 )
