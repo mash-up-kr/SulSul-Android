@@ -64,6 +64,11 @@ fun MeasuringScreen(
     onAddBallSuccess: (String) -> Unit = {},
 ) {
     val gradientColorList = setGradientColor(state.currentAlcoholId)
+
+    if (state.isDrunken) {
+        AlcoholExceedDialog()
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -260,6 +265,7 @@ private fun MeasuringScreenPreview() {
                     level = "미쳤다",
                     currentAlcoholId = alcoholId,
                     alcoholTypes = ImmutableList(listOf("소주", "맥주", "위스키", "와인", "고량주")),
+                    isDrunken = false,
                 ),
             )
         }
