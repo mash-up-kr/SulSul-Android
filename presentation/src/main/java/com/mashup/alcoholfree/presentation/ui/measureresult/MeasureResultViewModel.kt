@@ -59,7 +59,7 @@ class MeasureResultViewModel @Inject constructor(
             drinkCountOfBeer = 0,
             drinkCountOfKaoliangju = 0,
             drinkCountOfWine = 0,
-            drinkCountOfWhisky = 4,
+            drinkCountOfWhisky = 0,
             extraGlasses = 0,
         )
     }

@@ -335,7 +335,7 @@ private fun MeasureResultDrinkAlcoholCupLayer(
             )
         }
 
-        if (drinkCountOfKaoliangju > zero) {
+        if (drinkCountOfWhisky > zero) {
             MeasureResultDrinkAlcoholCupCountItem(
                 modifier = Modifier.padding(vertical = 16.dp),
                 alcoholType = AlcoholType.WHISKY,
