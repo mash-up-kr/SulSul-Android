@@ -14,11 +14,14 @@ data class CardResponse(
     val drinks: List<DrinkResponse>,
     @SerializedName("drankAt")
     val drankAt: String,
+    @SerializedName("subTitle")
+    val tier: String,
 ) {
     fun toDomainModel() = PromiseCard(
         reportId = id,
         cardType = drinks.first().drinkType,
         drinks = drinks.map { it.toDomainModel() },
         drankDate = drankAt,
+        tier = tier,
     )
 }
