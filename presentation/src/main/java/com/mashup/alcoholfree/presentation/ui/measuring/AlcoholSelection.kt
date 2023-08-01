@@ -3,6 +3,8 @@ package com.mashup.alcoholfree.presentation.ui.measuring
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -64,7 +66,12 @@ fun AlcoholSelection(
             .fillMaxWidth()
             .clip(selectionShape)
             .background(color = Grey100)
-            .border(width = 1.dp, color = Grey300, shape = selectionShape),
+            .border(width = 1.dp, color = Grey300, shape = selectionShape)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null,
+                onClick = {},
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
