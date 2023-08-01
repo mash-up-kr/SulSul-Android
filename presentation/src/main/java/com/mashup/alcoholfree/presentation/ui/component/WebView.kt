@@ -29,7 +29,7 @@ fun SulSulWebView(
             WebView(it).apply {
                 layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
+                    ViewGroup.LayoutParams.MATCH_PARENT,
                 )
 
                 webViewClient = WebViewClient()
@@ -55,7 +55,7 @@ fun SulSulWebView(
                     onWebViewTouch(webView, bridge, state)
                 }
             }
-        }
+        },
     )
 }
 
