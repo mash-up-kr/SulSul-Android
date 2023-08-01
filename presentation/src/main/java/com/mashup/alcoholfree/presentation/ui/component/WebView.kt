@@ -22,6 +22,7 @@ fun SulSulWebView(
     isTransparent: Boolean,
     state: SulSulWebViewState?,
     bridge: SulSulWebViewBridge?,
+    onIsWebViewLoading: (Boolean) -> Unit,
 ) {
     AndroidView(
         modifier = modifier,
@@ -32,7 +33,13 @@ fun SulSulWebView(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                 )
 
-                webViewClient = WebViewClient()
+                webViewClient = object : WebViewClient() {
+                    override fun onPageFinished(view: WebView?, url: String?) {
+                        super.onPageFinished(view, url)
+                        onIsWebViewLoading(false)
+                    }
+                }
+
                 webChromeClient = WebChromeClient()
 
                 if (isTransparent) {
