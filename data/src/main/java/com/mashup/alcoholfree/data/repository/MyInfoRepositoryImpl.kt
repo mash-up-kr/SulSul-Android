@@ -18,6 +18,6 @@ class MyInfoRepositoryImpl @Inject constructor(
 
     override suspend fun registerDrinkingLimit(registerTierParam: RegisterTierParam): String {
         return myInfoDataSource
-            .registerDrinkingLimit(registerTierParam.toRequestModel()).tier
+            .registerDrinkingLimit(registerTierParam.toRequestModel()).tier.title
     }
 }
