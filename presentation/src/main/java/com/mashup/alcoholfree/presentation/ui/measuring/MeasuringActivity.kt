@@ -31,6 +31,7 @@ class MeasuringActivity : ComponentActivity() {
                     onBackButtonClick = { finish() },
                     onAddBallSuccess = viewModel::addAlcoholItem,
                     onMeasureFinishClick = viewModel::createMeasureResultReport,
+                    onIsWebViewLoading = viewModel::updateIsLoading,
                 )
             }
         }

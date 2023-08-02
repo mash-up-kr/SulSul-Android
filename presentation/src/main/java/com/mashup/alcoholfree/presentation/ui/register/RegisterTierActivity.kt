@@ -6,20 +6,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
-import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
-import com.mashup.alcoholfree.presentation.ui.theme.Black
 import com.mashup.alcoholfree.presentation.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,34 +19,16 @@ class RegisterTierActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContent {
             AlcoholFreeAndroidTheme {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Black),
-                ) {
-                    SulSulWebView(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .navigationBarsPadding(),
-                        url = WEB_ONBOARDING_URL,
-                        isTransparent = false,
-                        bridge = RegisterTierBridge(
-                            onSuccess = viewModel::registerTier
-                        ),
-                        state = null,
-                    )
+                val state = viewModel.state.collectAsStateWithLifecycle()
 
-                    SulSulBackButton(
-                        modifier = Modifier
-                            .statusBarsPadding()
-                            .padding(top = 8.dp, start = 16.dp)
-                            .align(Alignment.TopStart),
-                        onClick = { finish() }
-                    )
-                }
+                RegisterTierScreen(
+                    state = state.value,
+                    onSuccess = viewModel::registerTier,
+                    onIsWebViewLoading = viewModel::updateLoading,
+                    onFinishClick = { finish() },
+                )
             }
         }
         observeData()
@@ -71,8 +42,6 @@ class RegisterTierActivity : ComponentActivity() {
     }
 
     companion object {
-        private const val WEB_ONBOARDING_URL = "https://dev-onboarding.sulsul.app/measure"
-
         fun newIntent(context: Context): Intent {
             return Intent(context, RegisterTierActivity::class.java)
         }

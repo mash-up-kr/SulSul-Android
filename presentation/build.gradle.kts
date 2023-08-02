@@ -41,13 +41,13 @@ android {
                 "-P",
                 "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${
                     rootProject.file(".").absolutePath
-                }/compose-metrics"
+                }/compose-metrics",
             )
             freeCompilerArgs += listOf(
                 "-P",
                 "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${
                     rootProject.file(".").absolutePath
-                }/compose-reports"
+                }/compose-reports",
             )
         }
     }
@@ -94,6 +94,8 @@ dependencies {
 
     // compose coil
     implementation(Dependencies.Coil.COIL_COMPOSE)
+    // compose coil gif
+    implementation(Dependencies.Coil.COIL_GIF)
 
     implementation(project(":domain"))
 }

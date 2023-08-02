@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
+import com.mashup.alcoholfree.presentation.ui.component.SulSulLoading
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
@@ -64,6 +65,7 @@ fun MeasuringScreen(
     onMeasureFinishClick: () -> Unit = {},
     onBackButtonClick: () -> Unit = {},
     onAddBallSuccess: (String) -> Unit = {},
+    onIsWebViewLoading: (Boolean) -> Unit = {},
 ) {
     val gradientColorList = setGradientColor(state.currentAlcoholId)
 
@@ -95,6 +97,7 @@ fun MeasuringScreen(
             state.alcoholTypes.list[state.currentAlcoholId],
         ),
         onAddBallSuccess = onAddBallSuccess,
+        onIsWebViewLoading = onIsWebViewLoading,
     )
 
     Box(
@@ -181,6 +184,10 @@ fun MeasuringScreen(
             )
         }
     }
+
+    if (state.isLoading) {
+        SulSulLoading()
+    }
 }
 
 private fun setGradientColor(currentAlcohol: Int): List<Color> {
@@ -222,6 +229,7 @@ private fun MeasuringBubblesContainer(
     modifier: Modifier = Modifier,
     state: SulSulWebViewState,
     onAddBallSuccess: (String) -> Unit,
+    onIsWebViewLoading: (Boolean) -> Unit,
 ) {
     SulSulWebView(
         modifier = modifier,
@@ -229,6 +237,7 @@ private fun MeasuringBubblesContainer(
         state = state,
         bridge = MeasuringWebViewBridge(onSuccess = onAddBallSuccess),
         isTransparent = true,
+        onIsWebViewLoading = onIsWebViewLoading,
     )
 }
 
@@ -274,6 +283,7 @@ private fun MeasuringScreenPreview() {
                     currentAlcoholId = alcoholId,
                     alcoholTypes = ImmutableList(listOf("소주", "맥주", "위스키", "와인", "고량주")),
                     isDrunken = false,
+                    isLoading = true,
                 ),
             )
         }

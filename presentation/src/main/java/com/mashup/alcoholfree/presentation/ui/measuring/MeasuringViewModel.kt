@@ -98,6 +98,10 @@ class MeasuringViewModel @Inject constructor(
         }
     }
 
+    fun updateIsLoading(isLoading: Boolean) {
+        _state.value = _state.value.copy(isLoading = isLoading)
+    }
+
     private fun initState(): MeasuringState {
         return MeasuringState(
             totalCount = 0,
@@ -105,6 +109,7 @@ class MeasuringViewModel @Inject constructor(
             level = "귀엽네",
             currentAlcoholId = 0,
             alcoholTypes = ImmutableList(listOf("소주", "맥주", "위스키", "와인", "고량주")),
+            isLoading = true,
             isDrunken = false,
         )
     }
