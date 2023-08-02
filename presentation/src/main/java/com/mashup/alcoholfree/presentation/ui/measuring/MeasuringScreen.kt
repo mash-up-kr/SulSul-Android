@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
+import com.mashup.alcoholfree.presentation.ui.component.SulSulLoading
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
@@ -176,6 +177,10 @@ fun MeasuringScreen(
             )
         }
     }
+
+    if (state.isLoading) {
+        SulSulLoading()
+    }
 }
 
 private fun setGradientColor(currentAlcohol: Int): List<Color> {
@@ -270,6 +275,7 @@ private fun MeasuringScreenPreview() {
                     level = "미쳤다",
                     currentAlcoholId = alcoholId,
                     alcoholTypes = ImmutableList(listOf("소주", "맥주", "위스키", "와인", "고량주")),
+                    isLoading = true,
                 ),
             )
         }
