@@ -12,14 +12,8 @@ enum class AlcoholType(val title: String, val iconResId: Int) {
 
     companion object {
         fun getType(name: String): AlcoholType {
-            return when (name) {
-                "소주" -> SOJU
-                "맥주" -> BEER
-                "와인" -> WINE
-                "위스키" -> WHISKY
-                "고량주" -> KAOLIANGJU
-                else -> throw IllegalArgumentException()
-            }
+            return AlcoholType.values().associateBy(AlcoholType::title)[name]
+                ?: throw IllegalArgumentException()
         }
     }
 }
