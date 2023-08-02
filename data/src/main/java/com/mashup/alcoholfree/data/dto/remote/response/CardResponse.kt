@@ -17,11 +17,16 @@ data class CardResponse(
     @SerializedName("subTitle")
     val tier: String,
 ) {
-    fun toDomainModel() = PromiseCard(
-        reportId = id,
-        cardType = drinks.first().drinkType,
-        drinks = drinks.map { it.toDomainModel() },
-        drankDate = drankAt,
-        tier = tier,
-    )
+    fun toDomainModel(): PromiseCard {
+        val sortedDrinks = drinks
+            .map { it.toDomainModel() }
+            .sortedByDescending { it.glasses }
+        return PromiseCard(
+            reportId = id,
+            cardType = sortedDrinks.first().drinkType,
+            drinks = sortedDrinks,
+            drankDate = drankAt,
+            tier = tier,
+        )
+    }
 }

@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,7 +20,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,13 +28,11 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulMiddleBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardType
-import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Grey300
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.ParagraphLg
 import com.mashup.alcoholfree.presentation.ui.theme.White
-import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 private val cardShape = RoundedCornerShape(16.dp)
 
@@ -82,9 +78,13 @@ fun AlcoholPromiseCard(
             contentScale = ContentScale.Fit,
             contentDescription = null,
         )
-        AlcoholTypeCount(
+        Text(
             modifier = Modifier.padding(horizontal = 32.dp),
-            list = state.drinks.list,
+            text = state.drinks,
+            style = H2,
+            color = White,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
         )
         Text(
             modifier = Modifier.padding(start = 32.dp),
@@ -100,36 +100,6 @@ fun AlcoholPromiseCard(
     }
 }
 
-@Composable
-private fun AlcoholTypeCount(
-    modifier: Modifier = Modifier,
-    list: List<DrinkUiModel>,
-) {
-    Row(
-        modifier = modifier,
-    ) {
-        list.forEachIndexed { index, alcohol ->
-            val text = stringResource(
-                id = R.string.alcohol_record_count,
-                alcohol.alcoholType,
-                alcohol.glasses,
-            )
-
-            Text(
-                text = if (index != list.size - 1) {
-                    "$text, "
-                } else {
-                    text
-                },
-                style = H2,
-                color = White,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-        }
-    }
-}
-
 @Preview
 @Composable
 private fun AlcoholPromiseCardPreview() {
@@ -137,13 +107,8 @@ private fun AlcoholPromiseCardPreview() {
         AlcoholPromiseCard(
             state = AlcoholPromiseCardState(
                 id = "",
-                cardType = AlcoholPromiseCardType.SOJU,
-                drinks = ImmutableList(
-                    listOf(
-                        DrinkUiModel("맥주", 1),
-                        DrinkUiModel("와인", 2),
-                    ),
-                ),
+                cardType = AlcoholPromiseCardType.BEER,
+                drinks = "맥주 2잔, 와인 1잔",
                 drankDate = "2023.08.21",
                 tier = "술 좀 치네",
             ),
