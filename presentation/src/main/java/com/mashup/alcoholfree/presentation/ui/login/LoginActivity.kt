@@ -17,6 +17,7 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.mashup.alcoholfree.presentation.ui.home.HomeActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,6 +41,8 @@ class LoginActivity : ComponentActivity() {
                 }
             }
         }
+
+        observeAddToken()
     }
 
     private fun kakaoLoginClick() {
@@ -64,6 +67,14 @@ class LoginActivity : ComponentActivity() {
         }
     }
 
+    private fun observeAddToken() {
+        viewModel.addTokenEvent.observeEvent(this) {
+            if (it) {
+                navigateToHome()
+            }
+        }
+    }
+
     private fun kakaoAccountLogin() {
         UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
             if (error != null) {
@@ -71,7 +82,6 @@ class LoginActivity : ComponentActivity() {
             } else if (token != null) {
                 Log.d("Kakao : ", "로그인 성공")
                 viewModel.addKakaoToken(token)
-                navigateToHome()
             }
         }
     }
