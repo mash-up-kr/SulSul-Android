@@ -17,7 +17,6 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.mashup.alcoholfree.presentation.ui.home.HomeActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
-import com.mashup.alcoholfree.presentation.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -68,10 +67,8 @@ class LoginActivity : ComponentActivity() {
     }
 
     private fun observeAddToken() {
-        viewModel.addTokenEvent.observeEvent(this) {
-            if (it) {
-                navigateToHome()
-            }
+        viewModel.addTokenEvent.observe(this) {
+            navigateToHome()
         }
     }
 
