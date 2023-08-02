@@ -27,6 +27,7 @@ class RegisterTierActivity : ComponentActivity() {
                     state = state.value,
                     onSuccess = viewModel::registerTier,
                     onIsWebViewLoading = viewModel::updateLoading,
+                    onFinishClick = { finish() },
                 )
             }
         }
