@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mashup.alcoholfree.domain.usecase.GetMeasureResultUseCase
 import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultState
 import com.mashup.alcoholfree.presentation.ui.measureresult.model.toUiModel
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -34,11 +35,7 @@ class MeasureResultViewModel @Inject constructor(
                         totalDrinkCountOfCup = result.totalDrinkCountOfCup,
                         totalDrinkKcal = result.totalDrinkKcal,
                         totalDrinkTime = result.totalDrinkTime,
-                        drinkCountOfSoju = result.drinkCountOfSoju,
-                        drinkCountOfBeer = result.drinkCountOfBeer,
-                        drinkCountOfKaoliangju = result.drinkCountOfKaoliangju,
-                        drinkCountOfWine = result.drinkCountOfWine,
-                        drinkCountOfWhisky = result.drinkCountOfWhisky,
+                        drinks = ImmutableList(result.drinks),
                         extraGlasses = result.extraGlasses,
                         averageAlcoholPercent = result.averageAlcoholPercent,
                     )
@@ -55,11 +52,7 @@ class MeasureResultViewModel @Inject constructor(
             totalDrinkCountOfCup = 0,
             totalDrinkKcal = 0,
             totalDrinkTime = "",
-            drinkCountOfSoju = 0,
-            drinkCountOfBeer = 0,
-            drinkCountOfKaoliangju = 0,
-            drinkCountOfWine = 0,
-            drinkCountOfWhisky = 4,
+            drinks = ImmutableList(emptyList()),
             extraGlasses = 0,
         )
     }

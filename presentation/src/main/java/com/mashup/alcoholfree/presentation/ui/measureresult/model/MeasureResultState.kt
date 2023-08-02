@@ -1,5 +1,8 @@
 package com.mashup.alcoholfree.presentation.ui.measureresult.model
 
+import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
+
 data class MeasureResultState(
     val headerStatus: String,
     val userName: String,
@@ -7,10 +10,6 @@ data class MeasureResultState(
     val averageAlcoholPercent: Double,
     val totalDrinkKcal: Int,
     val totalDrinkTime: String,
-    val drinkCountOfSoju: Int,
-    val drinkCountOfBeer: Int,
-    val drinkCountOfKaoliangju: Int,
-    val drinkCountOfWine: Int,
-    val drinkCountOfWhisky: Int,
+    val drinks: ImmutableList<DrinkUiModel>,
     val extraGlasses: Int,
 )
