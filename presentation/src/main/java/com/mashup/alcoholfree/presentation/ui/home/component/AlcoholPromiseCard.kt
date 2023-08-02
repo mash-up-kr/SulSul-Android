@@ -95,7 +95,7 @@ fun AlcoholPromiseCard(
         SulSulMiddleBadge(
             modifier = Modifier.padding(start = 32.dp, top = 8.dp, bottom = 32.dp),
             type = SulSulBadgeType.PURPLE,
-            text = state.subTitleText,
+            text = state.tier,
         )
     }
 }
@@ -110,7 +110,7 @@ private fun AlcoholPromiseCardPreview() {
                 cardType = AlcoholPromiseCardType.BEER,
                 drinks = "맥주 2잔, 와인 1잔",
                 drankDate = "2023.08.21",
-                subTitleText = "술 좀 치네",
+                tier = "술 좀 치네",
             ),
             onAlcoholCardClick = {},
         )

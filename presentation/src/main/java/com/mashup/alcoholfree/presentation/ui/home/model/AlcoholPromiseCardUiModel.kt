@@ -9,7 +9,7 @@ data class AlcoholPromiseCardUiModel(
     val cardType: AlcoholPromiseCardType,
     val drinks: String,
     val drankDate: String,
-    val subTitleText: String,
+    val tier: String,
 )
 
 fun PromiseCard.toUiModel(): AlcoholPromiseCardUiModel {
@@ -20,8 +20,7 @@ fun PromiseCard.toUiModel(): AlcoholPromiseCardUiModel {
             "${drink.drinkType} ${drink.glasses}잔"
         },
         drankDate = DateFormatter.dateFormat(drankDate),
-        // TODO("칭호 필요합니당")
-        subTitleText = "임시",
+        tier = tier,
     )
 }
 
@@ -31,6 +30,6 @@ fun AlcoholPromiseCardUiModel.toUiState(): AlcoholPromiseCardState {
         cardType = cardType,
         drinks = drinks,
         drankDate = drankDate,
-        subTitleText = subTitleText,
+        tier = tier,
     )
 }

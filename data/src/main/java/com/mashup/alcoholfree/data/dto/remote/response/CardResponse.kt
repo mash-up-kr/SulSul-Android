@@ -14,6 +14,8 @@ data class CardResponse(
     val drinks: List<DrinkResponse>,
     @SerializedName("drankAt")
     val drankAt: String,
+    @SerializedName("subTitle")
+    val tier: String,
 ) {
     fun toDomainModel(): PromiseCard {
         val sortedDrinks = drinks
@@ -24,6 +26,7 @@ data class CardResponse(
             cardType = sortedDrinks.first().drinkType,
             drinks = sortedDrinks,
             drankDate = drankAt,
+            tier = tier,
         )
     }
 }
