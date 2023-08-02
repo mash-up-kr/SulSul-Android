@@ -6,8 +6,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.ui.Alignment
@@ -17,6 +19,7 @@ import androidx.core.view.WindowCompat
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.ui.theme.Black
 import com.mashup.alcoholfree.presentation.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,12 +34,15 @@ class RegisterTierActivity : ComponentActivity() {
         setContent {
             AlcoholFreeAndroidTheme {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Black),
                 ) {
                     SulSulWebView(
                         modifier = Modifier
-                            .fillMaxSize(),
-                        url = "https://dev-onboarding.sulsul.app/measure",
+                            .fillMaxSize()
+                            .navigationBarsPadding(),
+                        url = WEB_ONBOARDING_URL,
                         isTransparent = false,
                         bridge = RegisterTierBridge(
                             onSuccess = viewModel::registerTier
@@ -65,6 +71,8 @@ class RegisterTierActivity : ComponentActivity() {
     }
 
     companion object {
+        private const val WEB_ONBOARDING_URL = "https://dev-onboarding.sulsul.app/measure"
+
         fun newIntent(context: Context): Intent {
             return Intent(context, RegisterTierActivity::class.java)
         }
