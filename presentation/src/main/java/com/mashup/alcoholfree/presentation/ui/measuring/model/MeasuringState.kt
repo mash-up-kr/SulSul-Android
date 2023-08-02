@@ -9,4 +9,5 @@ data class MeasuringState(
     val currentAlcoholId: Int,
     val alcoholTypes: ImmutableList<String>,
     val isLoading: Boolean,
+    val isDrunken: Boolean,
 )

@@ -1,6 +1,8 @@
 package com.mashup.alcoholfree.data.datasource
 
+import com.mashup.alcoholfree.data.dto.remote.request.AlcoholLimitRequest
 import com.mashup.alcoholfree.data.dto.remote.request.MeasureResultReportRequest
+import com.mashup.alcoholfree.data.dto.remote.response.AlcoholLimitResponse
 import com.mashup.alcoholfree.data.dto.remote.response.MeasureResultReportResponse
 import com.mashup.alcoholfree.data.dto.remote.response.MeasureResultResponse
 import com.mashup.alcoholfree.data.service.SulSulService
@@ -19,6 +21,12 @@ class MeasureDataSource @Inject constructor(
     suspend fun createMeasureResultReport(resultReport: MeasureResultReportRequest): MeasureResultReportResponse {
         return sulSulService
             .requestMeasureResultReport(resultReport)
+            .await()
+    }
+
+    suspend fun getAlcoholLimit(consumeAlcohol: AlcoholLimitRequest): AlcoholLimitResponse {
+        return sulSulService
+            .requestAlcoholLimit(consumeAlcohol)
             .await()
     }
 }

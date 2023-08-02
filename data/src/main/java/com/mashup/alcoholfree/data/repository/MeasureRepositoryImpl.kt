@@ -2,6 +2,8 @@ package com.mashup.alcoholfree.data.repository
 
 import com.mashup.alcoholfree.data.datasource.MeasureDataSource
 import com.mashup.alcoholfree.data.dto.remote.request.toRequestModel
+import com.mashup.alcoholfree.domain.model.AlcoholLimitParam
+import com.mashup.alcoholfree.domain.model.ConsumeDrinkInfo
 import com.mashup.alcoholfree.domain.model.MeasureResult
 import com.mashup.alcoholfree.domain.model.MeasureResultReportId
 import com.mashup.alcoholfree.domain.model.MeasureResultReportParam
@@ -23,5 +25,11 @@ class MeasureRepositoryImpl @Inject constructor(
                 .createMeasureResultReport(resultReport.toRequestModel())
                 .id,
         )
+    }
+
+    override suspend fun getAlcoholLimit(checkAlcohol: AlcoholLimitParam): ConsumeDrinkInfo {
+        return measureDataSource
+            .getAlcoholLimit(checkAlcohol.toRequestModel())
+            .toDomainModel()
     }
 }
