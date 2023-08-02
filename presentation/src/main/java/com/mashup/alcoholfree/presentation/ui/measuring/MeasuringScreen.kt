@@ -1,5 +1,6 @@
 package com.mashup.alcoholfree.presentation.ui.measuring
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -105,6 +106,11 @@ fun MeasuringScreen(
             ),
     ) {
         var isDialogVisible by remember { mutableStateOf(false) }
+
+        BackHandler(enabled = true) {
+            isDialogVisible = true
+        }
+
         if (isDialogVisible) {
             AlcoholBackPressDialog(
                 onContinueClick = { isDialogVisible = false },

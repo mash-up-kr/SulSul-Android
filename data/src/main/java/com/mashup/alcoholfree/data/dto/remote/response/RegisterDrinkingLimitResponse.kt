@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class RegisterDrinkingLimitResponse(
     @SerializedName("title")
-    val tier: String,
+    val tier: TierResponse,
 )

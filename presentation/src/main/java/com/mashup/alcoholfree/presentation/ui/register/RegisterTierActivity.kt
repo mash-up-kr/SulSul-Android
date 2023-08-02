@@ -7,11 +7,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.ui.theme.Black
@@ -25,10 +30,13 @@ class RegisterTierActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             AlcoholFreeAndroidTheme {
-                Column(
-                    modifier = Modifier.background(Black),
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Black),
                 ) {
                     SulSulWebView(
                         modifier = Modifier
@@ -40,6 +48,14 @@ class RegisterTierActivity : ComponentActivity() {
                             onSuccess = viewModel::registerTier
                         ),
                         state = null,
+                    )
+
+                    SulSulBackButton(
+                        modifier = Modifier
+                            .statusBarsPadding()
+                            .padding(top = 8.dp, start = 16.dp)
+                            .align(Alignment.TopStart),
+                        onClick = { finish() }
                     )
                 }
             }
