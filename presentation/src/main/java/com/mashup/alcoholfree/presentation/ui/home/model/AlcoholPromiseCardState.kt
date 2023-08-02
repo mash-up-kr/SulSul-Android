@@ -7,5 +7,5 @@ data class AlcoholPromiseCardState(
     val cardType: AlcoholPromiseCardType,
     val drinks: ImmutableList<DrinkUiModel>,
     val drankDate: String,
-    val subTitleText: String,
+    val tier: String,
 )
