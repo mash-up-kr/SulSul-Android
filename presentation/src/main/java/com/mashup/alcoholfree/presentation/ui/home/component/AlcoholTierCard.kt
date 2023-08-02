@@ -67,6 +67,7 @@ fun AlcoholTierCard(
             horizontalArrangement = Arrangement.End,
         ) {
             AsyncImage(
+                modifier = Modifier.height(111.dp),
                 model = ImageRequest
                     .Builder(LocalContext.current)
                     .data(alcoholTier.tierImageUrl)
@@ -99,7 +100,7 @@ private fun AlcoholTierTitle(
 @Composable
 fun EmptyTierCard(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
