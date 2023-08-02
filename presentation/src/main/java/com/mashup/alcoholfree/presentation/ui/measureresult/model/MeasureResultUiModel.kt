@@ -2,6 +2,8 @@ package com.mashup.alcoholfree.presentation.ui.measureresult.model
 
 import com.mashup.alcoholfree.domain.model.Drink
 import com.mashup.alcoholfree.domain.model.MeasureResult
+import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
+import com.mashup.alcoholfree.presentation.ui.home.model.toUiModel
 
 data class MeasureResultUiModel(
     val headerStatus: String,
@@ -10,11 +12,7 @@ data class MeasureResultUiModel(
     val averageAlcoholPercent: Double,
     val totalDrinkKcal: Int,
     val totalDrinkTime: String,
-    val drinkCountOfSoju: Int,
-    val drinkCountOfBeer: Int,
-    val drinkCountOfKaoliangju: Int,
-    val drinkCountOfWine: Int,
-    val drinkCountOfWhisky: Int,
+    val drinks: List<DrinkUiModel>,
     val extraGlasses: Int,
 )
 
@@ -32,11 +30,7 @@ fun MeasureResult.toUiModel(): MeasureResultUiModel {
         averageAlcoholPercent = averageAlcoholPercent,
         totalDrinkKcal = alcoholCalorie,
         totalDrinkTime = drinkingDuration,
-        drinkCountOfSoju = soju?.glasses ?: 0,
-        drinkCountOfBeer = beer?.glasses ?: 0,
-        drinkCountOfKaoliangju = kaoliangju?.glasses ?: 0,
-        drinkCountOfWine = wine?.glasses ?: 0,
-        drinkCountOfWhisky = whisky?.glasses ?: 0,
+        drinks = listOfNotNull(soju, beer, kaoliangju, wine, whisky).map { it.toUiModel() },
         extraGlasses = extraGlasses,
     )
 }
