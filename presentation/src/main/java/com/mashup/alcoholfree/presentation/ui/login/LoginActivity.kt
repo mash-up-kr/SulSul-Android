@@ -1,8 +1,8 @@
 package com.mashup.alcoholfree.presentation.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -15,6 +15,7 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import com.mashup.alcoholfree.presentation.ui.home.HomeActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,6 +40,8 @@ class LoginActivity : ComponentActivity() {
                 }
             }
         }
+
+        observeAddToken()
     }
 
     private fun kakaoLoginClick() {
@@ -63,21 +66,18 @@ class LoginActivity : ComponentActivity() {
         }
     }
 
+    private fun observeAddToken() {
+        viewModel.addTokenEvent.observe(this) {
+            navigateToHome()
+        }
+    }
+
     private fun kakaoAccountLogin() {
         UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
             if (error != null) {
-                Toast.makeText(
-                    this,
-                    " 로그인 실패",
-                    Toast.LENGTH_SHORT,
-                ).show()
+                Log.d("Kakao :", "로그인 실패")
             } else if (token != null) {
-                Toast.makeText(
-                    this,
-                    " 로그인 성공",
-                    Toast.LENGTH_SHORT,
-                ).show()
-                Log.d("Kakao Token : ", token.accessToken)
+                Log.d("Kakao : ", "로그인 성공")
                 viewModel.addKakaoToken(token)
             }
         }
@@ -85,5 +85,15 @@ class LoginActivity : ComponentActivity() {
 
     private fun getKakaoKeyHash(): String {
         return Utility.getKeyHash(this)
+    }
+
+    private fun navigateToHome() {
+        startActivity(
+            Intent(
+                this,
+                HomeActivity::class.java,
+            ),
+        )
+        finish()
     }
 }
