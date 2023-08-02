@@ -105,6 +105,7 @@ fun MeasureResultScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .navigationBarsPadding()
             .background(
                 brush = Brush.radialGradient(
                     colors = listOf(BlueGradient, Color.Transparent),
@@ -118,7 +119,6 @@ fun MeasureResultScreen(
         MeasureResultContent(state = state)
         MeasureResultHomeButton(
             modifier = Modifier
-                .navigationBarsPadding()
                 .align(Alignment.BottomCenter),
             onClickGoToHome = onClickGoToHome,
         )
