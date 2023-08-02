@@ -5,10 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mashup.alcoholfree.domain.usecase.CreateMeasureResultReportUseCase
+import com.mashup.alcoholfree.domain.usecase.GetAlcoholLimitUseCase
 import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.MeasureResultReportParamUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toDomainModel
+import com.mashup.alcoholfree.presentation.ui.measuring.model.AlcoholLimitParamUiModel
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
+import com.mashup.alcoholfree.presentation.ui.measuring.model.toDomainModel
+import com.mashup.alcoholfree.presentation.ui.measuring.model.toUiModel
 import com.mashup.alcoholfree.presentation.utils.Event
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,6 +27,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MeasuringViewModel @Inject constructor(
     private val createMeasureResultReportUseCase: CreateMeasureResultReportUseCase,
+    private val getAlcoholLimitUseCase: GetAlcoholLimitUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(initState())
     val state: StateFlow<MeasuringState>
@@ -49,6 +54,7 @@ class MeasuringViewModel @Inject constructor(
                 },
             )
         }
+        getDrinkLimit()
     }
 
     fun createMeasureResultReport() {
@@ -71,13 +77,35 @@ class MeasuringViewModel @Inject constructor(
         _state.value = _state.value.copy(currentAlcoholId = alcoholId)
     }
 
+    private fun getDrinkLimit() {
+        val drinkList = drinks.map { (alcoholType, glass) ->
+            DrinkUiModel(alcoholType, glass)
+        }
+
+        viewModelScope.launch {
+            val drinkInfo =
+                getAlcoholLimitUseCase(
+                    AlcoholLimitParamUiModel(drinkList).toDomainModel(),
+                )
+                    .toUiModel()
+
+            _state.update { state ->
+                state.copy(
+                    level = drinkInfo.title.text,
+                    isDrunken = drinkInfo.isDrunken,
+                )
+            }
+        }
+    }
+
     private fun initState(): MeasuringState {
         return MeasuringState(
             totalCount = 0,
             records = "아직 술을 마시지 않았어요",
-            level = "미쳤다",
+            level = "귀엽네",
             currentAlcoholId = 0,
             alcoholTypes = ImmutableList(listOf("소주", "맥주", "위스키", "와인", "고량주")),
+            isDrunken = false,
         )
     }
 }
