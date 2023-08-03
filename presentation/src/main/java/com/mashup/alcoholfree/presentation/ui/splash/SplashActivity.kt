@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.core.view.WindowCompat
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApiClient
 import com.mashup.alcoholfree.presentation.ui.home.HomeActivity
@@ -17,6 +18,8 @@ import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             AlcoholFreeAndroidTheme {
                 Surface(
