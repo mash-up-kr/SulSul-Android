@@ -35,6 +35,7 @@ class HomeViewModel @Inject constructor(
                     alcoholTier = myInfo.tier?.toUiModel(),
                 )
             }
+            getAlcoholPromiseCards()
         }
     }
 
