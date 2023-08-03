@@ -46,7 +46,6 @@ class HomeActivity : ComponentActivity() {
 
     private fun initData() = with(viewModel) {
         getUserInfo()
-        getAlcoholPromiseCards()
     }
 
     private fun navigateToRegisterTier() {
