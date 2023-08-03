@@ -11,7 +11,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
@@ -25,19 +24,6 @@ class LoginActivity : ComponentActivity() {
     private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        var isValidate = true
-        if (AuthApiClient.instance.hasToken()) {
-            UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
-                if (error == null && tokenInfo != null) {
-                    navigateToHome()
-                } else {
-                    isValidate = false
-                }
-            }
-        } else {
-            isValidate = false
-        }
-
         super.onCreate(savedInstanceState)
         Log.d("Kakao KeyHash : ", getKakaoKeyHash())
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -48,11 +34,9 @@ class LoginActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background,
                 ) {
-                    if (!isValidate) {
-                        LoginScreen(
-                            onKakaoLoginClick = { kakaoLoginClick() },
-                        )
-                    }
+                    LoginScreen(
+                        onKakaoLoginClick = { kakaoLoginClick() },
+                    )
                 }
             }
         }
