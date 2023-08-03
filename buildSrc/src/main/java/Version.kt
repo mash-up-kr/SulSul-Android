@@ -66,9 +66,10 @@ object Dependencies {
     }
 
     object Coil {
-        private const val VERSION = "2.3.0"
+        private const val VERSION = "2.4.0"
 
         const val COIL_COMPOSE = "io.coil-kt:coil-compose:$VERSION"
+        const val COIL_GIF = "io.coil-kt:coil-gif:$VERSION"
     }
 
     object ViewPager {

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -48,7 +49,8 @@ fun LoginScreen(
             .paint(
                 painterResource(id = R.drawable.sulsul_grain_background),
                 contentScale = ContentScale.FillBounds,
-            ),
+            )
+            .navigationBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         LoginIntroTitle(modifier = Modifier.padding(top = 120.dp, bottom = 40.dp))

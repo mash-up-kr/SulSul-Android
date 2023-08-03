@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
+import com.mashup.alcoholfree.presentation.ui.component.SulSulLoading
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
@@ -63,8 +65,14 @@ fun MeasuringScreen(
     onMeasureFinishClick: () -> Unit = {},
     onBackButtonClick: () -> Unit = {},
     onAddBallSuccess: (String) -> Unit = {},
+    onIsWebViewLoading: (Boolean) -> Unit = {},
 ) {
     val gradientColorList = setGradientColor(state.currentAlcoholId)
+
+    if (state.isDrunken) {
+        AlcoholExceedDialog()
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -89,6 +97,7 @@ fun MeasuringScreen(
             state.alcoholTypes.list[state.currentAlcoholId],
         ),
         onAddBallSuccess = onAddBallSuccess,
+        onIsWebViewLoading = onIsWebViewLoading,
     )
 
     Box(
@@ -149,6 +158,7 @@ fun MeasuringScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .navigationBarsPadding()
                 .align(Alignment.BottomCenter),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
@@ -173,6 +183,10 @@ fun MeasuringScreen(
                 onMeasureClick = onMeasureFinishClick,
             )
         }
+    }
+
+    if (state.isLoading) {
+        SulSulLoading()
     }
 }
 
@@ -215,6 +229,7 @@ private fun MeasuringBubblesContainer(
     modifier: Modifier = Modifier,
     state: SulSulWebViewState,
     onAddBallSuccess: (String) -> Unit,
+    onIsWebViewLoading: (Boolean) -> Unit,
 ) {
     SulSulWebView(
         modifier = modifier,
@@ -222,6 +237,7 @@ private fun MeasuringBubblesContainer(
         state = state,
         bridge = MeasuringWebViewBridge(onSuccess = onAddBallSuccess),
         isTransparent = true,
+        onIsWebViewLoading = onIsWebViewLoading,
     )
 }
 
@@ -266,6 +282,8 @@ private fun MeasuringScreenPreview() {
                     level = "미쳤다",
                     currentAlcoholId = alcoholId,
                     alcoholTypes = ImmutableList(listOf("소주", "맥주", "위스키", "와인", "고량주")),
+                    isDrunken = false,
+                    isLoading = true,
                 ),
             )
         }

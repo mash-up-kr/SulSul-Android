@@ -6,10 +6,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,18 +19,15 @@ class RegisterTierActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContent {
             AlcoholFreeAndroidTheme {
-                SulSulWebView(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    url = "https://dev-onboarding.sulsul.app/measure",
-                    isTransparent = false,
-                    bridge = RegisterTierBridge(
-                        onSuccess = viewModel::registerTier
-                    ),
-                    state = null,
+                val state = viewModel.state.collectAsStateWithLifecycle()
+
+                RegisterTierScreen(
+                    state = state.value,
+                    onSuccess = viewModel::registerTier,
+                    onIsWebViewLoading = viewModel::updateLoading,
+                    onFinishClick = { finish() },
                 )
             }
         }

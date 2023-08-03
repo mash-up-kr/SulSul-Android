@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
@@ -41,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLargeBadge
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulBadgeType
+import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
 import com.mashup.alcoholfree.presentation.ui.measureresult.model.AlcoholType
 import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultState
 import com.mashup.alcoholfree.presentation.ui.theme.BlueGradient
@@ -61,6 +63,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle4
 import com.mashup.alcoholfree.presentation.ui.theme.White
 import com.mashup.alcoholfree.presentation.ui.theme.WhiteTransparent32
+import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 private val rootHorizontalPadding = 16.dp
 
@@ -104,6 +107,7 @@ fun MeasureResultScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .navigationBarsPadding()
             .background(
                 brush = Brush.radialGradient(
                     colors = listOf(BlueGradient, Color.Transparent),
@@ -116,7 +120,8 @@ fun MeasureResultScreen(
     ) {
         MeasureResultContent(state = state)
         MeasureResultHomeButton(
-            modifier = Modifier.align(Alignment.BottomCenter),
+            modifier = Modifier
+                .align(Alignment.BottomCenter),
             onClickGoToHome = onClickGoToHome,
         )
     }
@@ -169,11 +174,7 @@ private fun MeasureResultContent(state: MeasureResultState) {
                 start = rootHorizontalPadding,
                 end = rootHorizontalPadding,
             ),
-            drinkCountOfSoju = state.drinkCountOfSoju,
-            drinkCountOfBeer = state.drinkCountOfBeer,
-            drinkCountOfKaoliangju = state.drinkCountOfKaoliangju,
-            drinkCountOfWine = state.drinkCountOfWine,
-            drinkCountOfWhisky = state.drinkCountOfWhisky,
+            drinks = state.drinks,
         )
     }
 }
@@ -244,11 +245,7 @@ private fun MeasureResultInfoItem(
 @Composable
 private fun MeasureResultDrinkAlcoholCollectAndSeeLayer(
     modifier: Modifier = Modifier,
-    drinkCountOfSoju: Int,
-    drinkCountOfBeer: Int,
-    drinkCountOfKaoliangju: Int,
-    drinkCountOfWine: Int,
-    drinkCountOfWhisky: Int,
+    drinks: ImmutableList<DrinkUiModel>,
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
@@ -258,11 +255,7 @@ private fun MeasureResultDrinkAlcoholCollectAndSeeLayer(
         )
         MeasureResultDrinkAlcoholCupLayer(
             modifier = Modifier.padding(top = 20.dp, bottom = 125.dp),
-            drinkCountOfSoju = drinkCountOfSoju,
-            drinkCountOfBeer = drinkCountOfBeer,
-            drinkCountOfKaoliangju = drinkCountOfKaoliangju,
-            drinkCountOfWine = drinkCountOfWine,
-            drinkCountOfWhisky = drinkCountOfWhisky,
+            drinks = drinks,
         )
     }
 }
@@ -270,11 +263,7 @@ private fun MeasureResultDrinkAlcoholCollectAndSeeLayer(
 @Composable
 private fun MeasureResultDrinkAlcoholCupLayer(
     modifier: Modifier = Modifier,
-    drinkCountOfSoju: Int,
-    drinkCountOfBeer: Int,
-    drinkCountOfKaoliangju: Int,
-    drinkCountOfWine: Int,
-    drinkCountOfWhisky: Int,
+    drinks: ImmutableList<DrinkUiModel>,
 ) {
     Column(
         modifier = modifier
@@ -282,65 +271,19 @@ private fun MeasureResultDrinkAlcoholCupLayer(
             .clip(RoundedCornerShape(8.dp))
             .background(color = Grey050),
     ) {
-        val zero = 0
-        if (drinkCountOfSoju > zero) {
+        drinks.list.forEachIndexed { index, drink ->
             MeasureResultDrinkAlcoholCupCountItem(
                 modifier = Modifier.padding(vertical = 16.dp),
-                alcoholType = AlcoholType.SOJU,
-                drinkCount = drinkCountOfSoju,
+                alcoholType = AlcoholType.getType(drink.alcoholType),
+                drinkCount = drink.glasses,
             )
 
-            Divider(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200,
-            )
-        }
-
-        if (drinkCountOfBeer > zero) {
-            MeasureResultDrinkAlcoholCupCountItem(
-                modifier = Modifier.padding(vertical = 16.dp),
-                alcoholType = AlcoholType.BEER,
-                drinkCount = drinkCountOfBeer,
-            )
-
-            Divider(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200,
-            )
-        }
-
-        if (drinkCountOfKaoliangju > zero) {
-            MeasureResultDrinkAlcoholCupCountItem(
-                modifier = Modifier.padding(vertical = 16.dp),
-                alcoholType = AlcoholType.KAOLIANGJU,
-                drinkCount = drinkCountOfKaoliangju,
-            )
-
-            Divider(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200,
-            )
-        }
-
-        if (drinkCountOfWine > zero) {
-            MeasureResultDrinkAlcoholCupCountItem(
-                modifier = Modifier.padding(vertical = 16.dp),
-                alcoholType = AlcoholType.WINE,
-                drinkCount = drinkCountOfWine,
-            )
-
-            Divider(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                color = Grey200,
-            )
-        }
-
-        if (drinkCountOfKaoliangju > zero) {
-            MeasureResultDrinkAlcoholCupCountItem(
-                modifier = Modifier.padding(vertical = 16.dp),
-                alcoholType = AlcoholType.WHISKY,
-                drinkCount = drinkCountOfWhisky,
-            )
+            if (index < drinks.list.lastIndex) {
+                Divider(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    color = Grey200,
+                )
+            }
         }
     }
 }
@@ -436,11 +379,14 @@ private fun MeasureResultScreenPreview() {
             totalDrinkCountOfCup = 25,
             totalDrinkKcal = 132,
             totalDrinkTime = "3시간 20분",
-            drinkCountOfSoju = 999,
-            drinkCountOfBeer = 0,
-            drinkCountOfKaoliangju = 3,
-            drinkCountOfWine = 3,
-            drinkCountOfWhisky = 4,
+            drinks = ImmutableList(
+                listOf(
+                    DrinkUiModel("소주", 1003),
+                    DrinkUiModel("맥주", 4),
+                    DrinkUiModel("와인", 52),
+                    DrinkUiModel("위스키", 5),
+                )
+            ),
             averageAlcoholPercent = 0.0,
         ),
     )

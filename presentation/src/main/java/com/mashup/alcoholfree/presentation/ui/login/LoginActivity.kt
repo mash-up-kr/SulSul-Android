@@ -3,7 +3,6 @@ package com.mashup.alcoholfree.presentation.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -57,6 +56,8 @@ class LoginActivity : ComponentActivity() {
                 }
             }
         }
+
+        observeAddToken()
     }
 
     private fun kakaoLoginClick() {
@@ -81,23 +82,19 @@ class LoginActivity : ComponentActivity() {
         }
     }
 
+    private fun observeAddToken() {
+        viewModel.addTokenEvent.observe(this) {
+            navigateToHome()
+        }
+    }
+
     private fun kakaoAccountLogin() {
         UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
             if (error != null) {
-                Toast.makeText(
-                    this,
-                    " 로그인 실패",
-                    Toast.LENGTH_SHORT,
-                ).show()
+                Log.d("Kakao :", "로그인 실패")
             } else if (token != null) {
+                Log.d("Kakao : ", "로그인 성공")
                 viewModel.addKakaoToken(token)
-                Toast.makeText(
-                    this,
-                    " 로그인 성공",
-                    Toast.LENGTH_SHORT,
-                ).show()
-                Log.d("Kakao Token : ", token.accessToken)
-                navigateToHome()
             }
         }
     }
@@ -107,7 +104,12 @@ class LoginActivity : ComponentActivity() {
     }
 
     private fun navigateToHome() {
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(
+            Intent(
+                this,
+                HomeActivity::class.java,
+            ),
+        )
         finish()
     }
 }
