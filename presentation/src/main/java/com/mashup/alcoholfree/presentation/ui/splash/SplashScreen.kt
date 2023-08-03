@@ -16,7 +16,7 @@ fun SplashScreen() {
             .fillMaxSize()
             .paint(
                 painter = painterResource(id = R.drawable.sulsul_splash),
-                contentScale = ContentScale.FillBounds,
+                contentScale = ContentScale.Crop,
             ),
     )
 }
