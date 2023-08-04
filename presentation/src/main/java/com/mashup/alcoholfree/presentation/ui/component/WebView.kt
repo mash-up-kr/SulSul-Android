@@ -66,6 +66,41 @@ fun SulSulWebView(
     )
 }
 
+@Composable
+fun SulSulWebView(
+    modifier: Modifier = Modifier,
+    url: String,
+    isTransparent: Boolean,
+    onIsWebViewLoading: (Boolean) -> Unit,
+) {
+    AndroidView(
+        modifier = modifier,
+        factory = {
+            WebView(it).apply {
+                layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                )
+
+                webViewClient = object : WebViewClient() {
+                    override fun onPageFinished(view: WebView?, url: String?) {
+                        super.onPageFinished(view, url)
+                        onIsWebViewLoading(false)
+                    }
+                }
+
+                webChromeClient = WebChromeClient()
+
+                if (isTransparent) {
+                    setBackgroundColor(0) // 웹뷰 투명 배경
+                }
+                settings.javaScriptEnabled = true
+                loadUrl(url)
+            }
+        },
+    )
+}
+
 @SuppressLint("ClickableViewAccessibility")
 private fun onWebViewTouch(
     webView: WebView,
