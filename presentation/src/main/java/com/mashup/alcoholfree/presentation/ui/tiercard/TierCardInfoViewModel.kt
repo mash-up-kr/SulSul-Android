@@ -19,7 +19,7 @@ class TierCardInfoViewModel @Inject constructor(
         get() = _state
 
     private val drinkType = savedStateHandle.get<String>("drinkType") ?: ""
-    private val glass = savedStateHandle.get<Int>("glass") ?: 0
+    private val glass = savedStateHandle.get<Int>("drinkGlass") ?: 0
 
     init {
         _state.update { state ->
