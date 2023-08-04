@@ -162,7 +162,6 @@ private fun AlcoholSelectionPager(
         userScrollEnabled = false,
     ) { page ->
         Text(
-            modifier = Modifier.width(72.dp),
             text = items[page],
             style = H2,
             color = White,
