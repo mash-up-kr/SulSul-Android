@@ -15,7 +15,6 @@ import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
-
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
@@ -23,7 +22,10 @@ class SplashActivity : ComponentActivity() {
                 SplashScreen()
             }
         }
+        checkToken()
+    }
 
+    private fun checkToken() {
         if (AuthApiClient.instance.hasToken()) {
             UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
                 if (error == null && tokenInfo != null) {
