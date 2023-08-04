@@ -97,5 +97,8 @@ dependencies {
     // compose coil gif
     implementation(Dependencies.Coil.COIL_GIF)
 
+    // splash screen
+    implementation(Dependencies.AndroidX.SPLASH)
+
     implementation(project(":domain"))
 }
