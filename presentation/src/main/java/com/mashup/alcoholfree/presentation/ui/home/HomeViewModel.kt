@@ -33,6 +33,7 @@ class HomeViewModel @Inject constructor(
                 state.copy(
                     userName = myInfo.nickname,
                     alcoholTier = myInfo.tier?.toUiModel(),
+                    drinkLimit = myInfo.drinkingLimits?.toUiModel(),
                 )
             }
             getAlcoholPromiseCards()
@@ -60,6 +61,7 @@ class HomeViewModel @Inject constructor(
                 tierImageUrl = "",
             ),
             cardList = ImmutableList(emptyList()),
+            drinkLimit = null,
         )
     }
 }

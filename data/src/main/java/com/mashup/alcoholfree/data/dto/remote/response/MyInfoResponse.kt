@@ -15,6 +15,9 @@ data class MyInfoResponse(
         return MyInfo(
             nickname = nickname,
             tier = title?.toDomainModel(),
+            drinkingLimits = drinkingLimits
+                ?.first()
+                ?.toDomainModel(),
         )
     }
 }
