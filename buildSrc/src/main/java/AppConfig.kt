@@ -7,8 +7,8 @@ object AppConfig {
     const val APPLICATION_ID = "com.mashup.alcoholfree"
     const val APP_NAME_SPACE = "com.mashup.alcoholfree"
 
-    const val APP_VERSION_CODE = 1
-    const val APP_VERSION_NAME = "1.0"
+    const val APP_VERSION_CODE = 2
+    const val APP_VERSION_NAME = "1.0.1"
 
     const val DATA_NAME_SPACE = "com.mashup.alcoholfree.data"
     const val DOMAIN_NAME_SPACE = "com.mashup.alcoholfree.domain"
