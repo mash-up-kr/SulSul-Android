@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -106,15 +105,16 @@ private fun AlcoholSelectionRow(
         AlcoholSelectionPager(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = defaultIconButtonSize)
+                .padding(horizontal = 12.dp)
                 .align(Alignment.Center),
             items = items,
             selectedPage = selectedIndex,
         )
         Row(
             modifier = Modifier
-                .fillMaxWidth()
+                .matchParentSize()
                 .background(brush = selectionGradientBrush),
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             IconButton(
