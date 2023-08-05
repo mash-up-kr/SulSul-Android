@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,6 +36,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.GrapeGradient
 import com.mashup.alcoholfree.presentation.ui.theme.H2
 import com.mashup.alcoholfree.presentation.ui.theme.H3
 import com.mashup.alcoholfree.presentation.ui.theme.OrangeGradient
+import com.mashup.alcoholfree.presentation.ui.theme.Primary100
 import com.mashup.alcoholfree.presentation.ui.theme.White
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
@@ -139,6 +141,13 @@ fun HomeScreen(
                 buttonColor = SulSulButtonColor.GREY300,
                 buttonSize = SulSulButtonSize.LARGE,
                 onClick = onDrinkAlcoholClick,
+            )
+        }
+
+        if (state.isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center),
+                color = Primary100
             )
         }
     }

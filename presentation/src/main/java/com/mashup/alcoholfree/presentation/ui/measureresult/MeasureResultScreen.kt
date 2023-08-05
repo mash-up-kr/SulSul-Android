@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
@@ -57,6 +58,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.H1
 import com.mashup.alcoholfree.presentation.ui.theme.H3
 import com.mashup.alcoholfree.presentation.ui.theme.H4
 import com.mashup.alcoholfree.presentation.ui.theme.H5
+import com.mashup.alcoholfree.presentation.ui.theme.Primary100
 import com.mashup.alcoholfree.presentation.ui.theme.PurpleGradient
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle2
 import com.mashup.alcoholfree.presentation.ui.theme.SubTitle3
@@ -124,6 +126,13 @@ fun MeasureResultScreen(
                 .align(Alignment.BottomCenter),
             onClickGoToHome = onClickGoToHome,
         )
+
+        if (state.isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center),
+                color = Primary100,
+            )
+        }
     }
 }
 
