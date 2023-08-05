@@ -11,6 +11,7 @@ import com.mashup.alcoholfree.presentation.ui.measureresult.MeasureResultActivit
 import com.mashup.alcoholfree.presentation.ui.measuring.MeasuringActivity
 import com.mashup.alcoholfree.presentation.ui.register.RegisterTierActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.ui.tiercard.TierCardInfoActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,6 +31,9 @@ class HomeActivity : ComponentActivity() {
                     onEmptyTierCardClick = { navigateToRegisterTier() },
                     onAlcoholCardClick = { navigateToMeasureResult(it) },
                     onDrinkAlcoholClick = { navigateToMeasure() },
+                    onTierCardClick = {
+                        state.drinkLimit?.let { navigateToTierCard(it.alcoholType, it.glasses) }
+                    },
                 )
             }
         }
@@ -45,5 +49,9 @@ class HomeActivity : ComponentActivity() {
 
     private fun navigateToMeasureResult(reportId: String) {
         startActivity(MeasureResultActivity.newIntent(this, reportId))
+    }
+
+    private fun navigateToTierCard(drinkType: String, drinkGlass: Int) {
+        startActivity(TierCardInfoActivity.newIntent(this, drinkType, drinkGlass))
     }
 }

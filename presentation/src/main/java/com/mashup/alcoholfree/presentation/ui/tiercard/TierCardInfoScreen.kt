@@ -1,6 +1,5 @@
-package com.mashup.alcoholfree.presentation.ui.register
+package com.mashup.alcoholfree.presentation.ui.tiercard
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,26 +7,20 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLoading
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
-import com.mashup.alcoholfree.presentation.ui.measuring.AlcoholBackPressDialog
-import com.mashup.alcoholfree.presentation.ui.register.model.RegisterTierState
 import com.mashup.alcoholfree.presentation.ui.theme.Black
+import com.mashup.alcoholfree.presentation.ui.tiercard.model.TierCardInfoState
 
-private const val WEB_ONBOARDING_URL = "https://dev-onboarding.sulsul.app/measure"
+private val WEB_VIEW_ONBOARDING_RESULT_URL = "dev-onboarding.sulsul.app/result"
 
 @Composable
-fun RegisterTierScreen(
-    state: RegisterTierState,
-    onSuccess: (String, Int) -> Unit,
+fun TierCardInfoScreen(
+    state: TierCardInfoState,
     onIsWebViewLoading: (Boolean) -> Unit,
     onFinishClick: () -> Unit,
 ) {
@@ -36,42 +29,32 @@ fun RegisterTierScreen(
             .fillMaxSize()
             .background(Black),
     ) {
-        var isDialogVisible by remember { mutableStateOf(false) }
-
         SulSulWebView(
             modifier = Modifier
                 .fillMaxSize()
                 .navigationBarsPadding(),
-            url = WEB_ONBOARDING_URL,
+            url = getTierCardInfoUrl(state.drinkLimit.alcoholType, state.drinkLimit.glasses),
             isTransparent = false,
-            bridge = RegisterTierBridge(
-                onSuccess = onSuccess,
-            ),
-            state = null,
             onIsWebViewLoading = onIsWebViewLoading,
         )
-
-        BackHandler(enabled = true) {
-            isDialogVisible = true
-        }
 
         SulSulBackButton(
             modifier = Modifier
                 .statusBarsPadding()
                 .padding(top = 8.dp, start = 16.dp)
                 .align(Alignment.TopStart),
-            onClick = { isDialogVisible = true },
+            onClick = onFinishClick,
         )
 
-        if (isDialogVisible) {
-            AlcoholBackPressDialog(
-                onContinueClick = { isDialogVisible = false },
-                onExitClick = onFinishClick,
-            )
+        if (state.isLoading) {
+            SulSulLoading()
         }
     }
+}
 
-    if (state.isLoading) {
-        SulSulLoading()
-    }
+private fun getTierCardInfoUrl(
+    drinkType: String,
+    glass: Int,
+): String {
+    return "$WEB_VIEW_ONBOARDING_RESULT_URL/?drinkType=$drinkType&glasses=$glass"
 }

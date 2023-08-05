@@ -30,7 +30,9 @@ class HomeViewModel @Inject constructor(
         HomeState(
             userName = userInfo.nickname,
             alcoholTier = userInfo.tier?.toUiModel(),
-            cardList = ImmutableList(cards)
+            drinkingLimit = userInfo.drinkingLimits?.toUiModel(),
+            cardList = ImmutableList(cards),
+            isLoading = false,
         )
     }.stateIn(
         scope = viewModelScope,
@@ -43,6 +45,8 @@ class HomeViewModel @Inject constructor(
             userName = "",
             alcoholTier = null,
             cardList = ImmutableList(emptyList()),
+            drinkLimit = null,
+            isLoading = true,
         )
     }
 }

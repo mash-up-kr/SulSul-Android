@@ -9,12 +9,14 @@ object Dependencies {
         private const val CORE_KTX_VERSION = "1.7.0"
         private const val APP_COMPAT_VERSION = "1.6.1"
         private const val MATERIAL_VERSION = "1.8.0"
+        private const val SPLASH_VERSION = "1.0.0"
 
         const val CORE_KTX = "androidx.core:core-ktx:$CORE_KTX_VERSION"
         const val APP_COMPAT = "androidx.appcompat:appcompat:$APP_COMPAT_VERSION"
         const val LIFECYCLE_RUNTIME =
             "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
         const val MATERIAL = "com.google.android.material:material:$MATERIAL_VERSION"
+        const val SPLASH = "androidx.core:core-splashscreen:$SPLASH_VERSION"
     }
 
     object Retrofit {
@@ -51,7 +53,8 @@ object Dependencies {
         const val COMPOSE_UI_UTIL = "androidx.compose.ui:ui-util:$UI_VERISON"
         const val COMPOSE_PREVIEW = "androidx.compose.ui:ui-tooling-preview:$UI_VERISON"
         const val COMPOSE_MATERIAL = "androidx.compose.material:material:$UI_VERISON"
-        const val COMPOSE_LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-compose:$LIFECYCLE_RUNTIME_VERSION"
+        const val COMPOSE_LIFECYCLE_RUNTIME =
+            "androidx.lifecycle:lifecycle-runtime-compose:$LIFECYCLE_RUNTIME_VERSION"
 
         const val COMPOSE_JUNIT = "androidx.compose.ui:ui-test-junit4:$UI_VERISON"
         const val COMPOSE_TOOLING = "androidx.compose.ui:ui-tooling:$UI_VERISON"
@@ -62,7 +65,8 @@ object Dependencies {
         private const val VERSION = "0.30.1"
 
         const val ACCOMPANIST_WEBVIEW = "com.google.accompanist:accompanist-webview:$VERSION"
-        const val ACCOMPANIST_SYSTEM_UI_CONTROLLER = "com.google.accompanist:accompanist-systemuicontroller:$VERSION"
+        const val ACCOMPANIST_SYSTEM_UI_CONTROLLER =
+            "com.google.accompanist:accompanist-systemuicontroller:$VERSION"
     }
 
     object Coil {

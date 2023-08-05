@@ -6,7 +6,7 @@ import com.mashup.alcoholfree.domain.model.Drink
 data class DrinkingLimitResponse(
     @SerializedName("glass")
     val glass: Int,
-    @SerializedName("type")
+    @SerializedName("drinkType")
     val type: String,
 ) {
     fun toDomainModel(): Drink {
