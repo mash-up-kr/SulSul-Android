@@ -3,7 +3,6 @@ package com.mashup.alcoholfree.presentation.ui.home
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
@@ -17,12 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeActivity : ComponentActivity() {
     private val viewModel by viewModels<HomeViewModel>()
-    private val registerTierLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                //viewModel.getUserInfo()
-            }
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +36,7 @@ class HomeActivity : ComponentActivity() {
     }
 
     private fun navigateToRegisterTier() {
-        registerTierLauncher.launch(RegisterTierActivity.newIntent(this))
+        startActivity(RegisterTierActivity.newIntent(this))
     }
 
     private fun navigateToMeasure() {
