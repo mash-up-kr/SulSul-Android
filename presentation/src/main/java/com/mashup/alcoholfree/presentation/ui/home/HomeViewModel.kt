@@ -27,6 +27,10 @@ class HomeViewModel @Inject constructor(
 
     fun getUserInfo() {
         viewModelScope.launch {
+            _state.update { state ->
+                state.copy(isLoading = true)
+            }
+
             val myInfo = getMyInfoUseCase()
 
             _state.update { state ->
@@ -34,6 +38,7 @@ class HomeViewModel @Inject constructor(
                     userName = myInfo.nickname,
                     alcoholTier = myInfo.tier?.toUiModel(),
                     drinkLimit = myInfo.drinkingLimits?.toUiModel(),
+                    isLoading = false,
                 )
             }
             getAlcoholPromiseCards()
@@ -42,11 +47,18 @@ class HomeViewModel @Inject constructor(
 
     fun getAlcoholPromiseCards() {
         viewModelScope.launch {
+            _state.update { state ->
+                state.copy(isLoading = true)
+            }
+
             val cards = getAlcoholPromiseCardsUseCase().map { card ->
                 card.toUiModel().toUiState()
             }
             _state.update { state ->
-                state.copy(cardList = ImmutableList(cards))
+                state.copy(
+                    cardList = ImmutableList(cards),
+                    isLoading = false,
+                )
             }
         }
     }

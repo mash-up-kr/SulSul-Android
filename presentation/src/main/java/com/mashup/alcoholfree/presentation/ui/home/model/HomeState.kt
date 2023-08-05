@@ -7,6 +7,7 @@ data class HomeState(
     val alcoholTier: TierUiModel?,
     val drinkLimit: DrinkUiModel?,
     val cardList: ImmutableList<AlcoholPromiseCardState>,
+    val isLoading: Boolean = false,
 ) {
     val isTierEmpty: Boolean get() = alcoholTier == null
     val isCardListEmpty: Boolean get() = cardList.list.isEmpty()
