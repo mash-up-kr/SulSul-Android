@@ -11,21 +11,18 @@ import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     getAlcoholPromiseCardsUseCase: GetAlcoholPromiseCardsUseCase,
-    private val getMyInfoUseCase: GetMyInfoUseCase,
+    getMyInfoUseCase: GetMyInfoUseCase,
 ) : ViewModel() {
-
-    private val myInfoFlow = flow {
-        emit(getMyInfoUseCase())
-    }
-
-    val state = combine(myInfoFlow, getAlcoholPromiseCardsUseCase()) { userInfo, promiseCards ->
+    val state = combine(
+        getMyInfoUseCase(),
+        getAlcoholPromiseCardsUseCase(),
+    ) { userInfo, promiseCards ->
         val cards = promiseCards.map { card ->
             card.toUiModel().toUiState()
         }
