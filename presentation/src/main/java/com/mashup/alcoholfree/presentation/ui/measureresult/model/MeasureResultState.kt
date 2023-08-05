@@ -12,4 +12,5 @@ data class MeasureResultState(
     val totalDrinkTime: String,
     val drinks: ImmutableList<DrinkUiModel>,
     val extraGlasses: Int,
+    val isLoading: Boolean = false,
 )

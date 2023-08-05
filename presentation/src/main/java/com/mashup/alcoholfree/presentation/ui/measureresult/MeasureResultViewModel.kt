@@ -28,6 +28,12 @@ class MeasureResultViewModel @Inject constructor(
     init {
         reportId?.let { id ->
             viewModelScope.launch {
+                _state.update { state ->
+                    state.copy(
+                        isLoading = true,
+                    )
+                }
+
                 val result = getMeasureResultUseCase(id).toUiModel()
                 _state.update { state ->
                     state.copy(
@@ -38,6 +44,7 @@ class MeasureResultViewModel @Inject constructor(
                         drinks = ImmutableList(result.drinks),
                         extraGlasses = result.extraGlasses,
                         averageAlcoholPercent = result.averageAlcoholPercent,
+                        isLoading = false,
                     )
                 }
             }
