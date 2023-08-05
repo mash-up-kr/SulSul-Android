@@ -10,6 +10,7 @@ import com.mashup.alcoholfree.presentation.ui.home.model.toUiState
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
@@ -19,7 +20,7 @@ class HomeViewModel @Inject constructor(
     getAlcoholPromiseCardsUseCase: GetAlcoholPromiseCardsUseCase,
     getMyInfoUseCase: GetMyInfoUseCase,
 ) : ViewModel() {
-    val state = combine(
+    val state: StateFlow<HomeState> = combine(
         getMyInfoUseCase(),
         getAlcoholPromiseCardsUseCase(),
     ) { userInfo, promiseCards ->
@@ -30,7 +31,7 @@ class HomeViewModel @Inject constructor(
         HomeState(
             userName = userInfo.nickname,
             alcoholTier = userInfo.tier?.toUiModel(),
-            drinkingLimit = userInfo.drinkingLimits?.toUiModel(),
+            drinkLimit = userInfo.drinkingLimits?.toUiModel(),
             cardList = ImmutableList(cards),
             isLoading = false,
         )
