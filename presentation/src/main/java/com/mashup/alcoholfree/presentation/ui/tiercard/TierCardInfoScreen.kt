@@ -35,6 +35,8 @@ fun TierCardInfoScreen(
                 .navigationBarsPadding(),
             url = getTierCardInfoUrl(state.drinkLimit.alcoholType, state.drinkLimit.glasses),
             isTransparent = false,
+            state = null,
+            bridge = null,
             onIsWebViewLoading = onIsWebViewLoading,
         )
 
