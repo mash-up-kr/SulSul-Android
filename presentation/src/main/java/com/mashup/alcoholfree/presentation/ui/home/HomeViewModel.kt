@@ -5,15 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.mashup.alcoholfree.domain.usecase.GetAlcoholPromiseCardsUseCase
 import com.mashup.alcoholfree.domain.usecase.GetMyInfoUseCase
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
-import com.mashup.alcoholfree.presentation.ui.home.model.TierUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toUiState
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,43 +21,32 @@ class HomeViewModel @Inject constructor(
     private val getMyInfoUseCase: GetMyInfoUseCase,
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(initHomeState())
-    val state = _state.asStateFlow()
-
-    fun getUserInfo() {
-        viewModelScope.launch {
-            val myInfo = getMyInfoUseCase()
-
-            _state.update { state ->
-                state.copy(
-                    userName = myInfo.nickname,
-                    alcoholTier = myInfo.tier?.toUiModel(),
-                )
-            }
-            getAlcoholPromiseCards()
-        }
+    private val myInfoFlow = flow {
+        emit(getMyInfoUseCase())
     }
 
-    fun getAlcoholPromiseCards() {
-        viewModelScope.launch {
-            val cards = getAlcoholPromiseCardsUseCase().map { card ->
-                card.toUiModel().toUiState()
-            }
-            _state.update { state ->
-                state.copy(cardList = ImmutableList(cards))
-            }
-        }
+    private val alcoholPromiseCardsFlow = flow {
+        emit(getAlcoholPromiseCardsUseCase().map { card ->
+            card.toUiModel().toUiState()
+        })
     }
+
+    val state = combine(myInfoFlow, alcoholPromiseCardsFlow) { userInfo, cards ->
+        HomeState(
+            userName = userInfo.nickname,
+            alcoholTier = userInfo.tier?.toUiModel(),
+            cardList = ImmutableList(cards)
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = initHomeState()
+    )
 
     private fun initHomeState(): HomeState {
-        // TODO("초기 상태 셋팅")
         return HomeState(
             userName = "",
-            alcoholTier = TierUiModel(
-                subTitle = "",
-                title = "",
-                tierImageUrl = "",
-            ),
+            alcoholTier = null,
             cardList = ImmutableList(emptyList()),
         )
     }

@@ -20,15 +20,13 @@ class HomeActivity : ComponentActivity() {
     private val registerTierLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                viewModel.getUserInfo()
+                //viewModel.getUserInfo()
             }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        initData()
 
         setContent {
             AlcoholFreeAndroidTheme {
@@ -42,10 +40,6 @@ class HomeActivity : ComponentActivity() {
                 )
             }
         }
-    }
-
-    private fun initData() = with(viewModel) {
-        getUserInfo()
     }
 
     private fun navigateToRegisterTier() {
