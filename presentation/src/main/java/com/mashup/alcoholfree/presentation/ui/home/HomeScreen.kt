@@ -44,6 +44,7 @@ fun HomeScreen(
     onEmptyTierCardClick: () -> Unit,
     onAlcoholCardClick: (String) -> Unit,
     onDrinkAlcoholClick: () -> Unit,
+    onTierCardClick: () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -97,6 +98,7 @@ fun HomeScreen(
                 AlcoholTierCard(
                     modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
                     alcoholTier = requireNotNull(state.alcoholTier),
+                    onClick = onTierCardClick,
                 )
             }
 
@@ -153,10 +155,12 @@ fun HomeScreenPreview() {
                 title = "이쯤 되면 술잘알",
                 tierImageUrl = "",
             ),
+            drinkLimit = null,
             cardList = ImmutableList(emptyList()),
         ),
         onEmptyTierCardClick = {},
         onAlcoholCardClick = {},
         onDrinkAlcoholClick = {},
+        onTierCardClick = {},
     )
 }

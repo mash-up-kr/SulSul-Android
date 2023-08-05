@@ -20,8 +20,8 @@ fun SulSulWebView(
     modifier: Modifier = Modifier,
     url: String,
     isTransparent: Boolean,
-    state: SulSulWebViewState?,
-    bridge: SulSulWebViewBridge?,
+    state: SulSulWebViewState? = null,
+    bridge: SulSulWebViewBridge? = null,
     onIsWebViewLoading: (Boolean) -> Unit,
 ) {
     AndroidView(
