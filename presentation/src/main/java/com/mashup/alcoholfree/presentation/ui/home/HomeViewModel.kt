@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getAlcoholPromiseCardsUseCase: GetAlcoholPromiseCardsUseCase,
+    getAlcoholPromiseCardsUseCase: GetAlcoholPromiseCardsUseCase,
     private val getMyInfoUseCase: GetMyInfoUseCase,
 ) : ViewModel() {
 
@@ -25,13 +25,11 @@ class HomeViewModel @Inject constructor(
         emit(getMyInfoUseCase())
     }
 
-    private val alcoholPromiseCardsFlow = flow {
-        emit(getAlcoholPromiseCardsUseCase().map { card ->
+    val state = combine(myInfoFlow, getAlcoholPromiseCardsUseCase()) { userInfo, promiseCards ->
+        val cards = promiseCards.map { card ->
             card.toUiModel().toUiState()
-        })
-    }
+        }
 
-    val state = combine(myInfoFlow, alcoholPromiseCardsFlow) { userInfo, cards ->
         HomeState(
             userName = userInfo.nickname,
             alcoholTier = userInfo.tier?.toUiModel(),
