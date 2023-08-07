@@ -3,8 +3,11 @@ package com.mashup.alcoholfree.presentation.ui.measureresult
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mashup.alcoholfree.domain.base.Result
+import com.mashup.alcoholfree.domain.model.MeasureResult
 import com.mashup.alcoholfree.domain.usecase.GetMeasureResultUseCase
 import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultState
+import com.mashup.alcoholfree.presentation.ui.measureresult.model.MeasureResultUiModel
 import com.mashup.alcoholfree.presentation.ui.measureresult.model.toUiModel
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,20 +37,31 @@ class MeasureResultViewModel @Inject constructor(
                     )
                 }
 
-                val result = getMeasureResultUseCase(id).toUiModel()
-                _state.update { state ->
-                    state.copy(
-                        headerStatus = result.headerStatus,
-                        totalDrinkCountOfCup = result.totalDrinkCountOfCup,
-                        totalDrinkKcal = result.totalDrinkKcal,
-                        totalDrinkTime = result.totalDrinkTime,
-                        drinks = ImmutableList(result.drinks),
-                        extraGlasses = result.extraGlasses,
-                        averageAlcoholPercent = result.averageAlcoholPercent,
-                        isLoading = false,
-                    )
+                val measureResultUiModel: MeasureResultUiModel? =
+                    handleMeasureResultUseCase(getMeasureResultUseCase(id))
+
+                measureResultUiModel?.let { uiModel ->
+                    _state.update { state ->
+                        state.copy(
+                            headerStatus = uiModel.headerStatus,
+                            totalDrinkCountOfCup = uiModel.totalDrinkCountOfCup,
+                            totalDrinkKcal = uiModel.totalDrinkKcal,
+                            totalDrinkTime = uiModel.totalDrinkTime,
+                            drinks = ImmutableList(uiModel.drinks),
+                            extraGlasses = uiModel.extraGlasses,
+                            averageAlcoholPercent = uiModel.averageAlcoholPercent,
+                            isLoading = false,
+                        )
+                    }
                 }
             }
+        }
+    }
+
+    private fun handleMeasureResultUseCase(result: Result<MeasureResult>): MeasureResultUiModel? {
+        return when (result) {
+            is Result.Success -> result.value.toUiModel()
+            is Result.Error -> null
         }
     }
 
