@@ -27,6 +27,7 @@ class TierCardInfoActivity : ComponentActivity() {
                     state = state.value,
                     onIsWebViewLoading = viewModel::updateLoading,
                     onFinishClick = { finish() },
+                    onStartKaKao = { startActivity(it) },
                 )
             }
         }
