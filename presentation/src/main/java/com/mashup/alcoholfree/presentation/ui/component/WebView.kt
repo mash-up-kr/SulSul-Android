@@ -1,14 +1,15 @@
 package com.mashup.alcoholfree.presentation.ui.component
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import com.mashup.alcoholfree.presentation.ui.measuring.SulSulWebViewBridge
 import com.mashup.alcoholfree.presentation.ui.measuring.SulSulWebViewSendBridge
@@ -23,7 +24,10 @@ fun SulSulWebView(
     state: SulSulWebViewState? = null,
     bridge: SulSulWebViewBridge? = null,
     onIsWebViewLoading: (Boolean) -> Unit,
+    onStartKaKao: (Intent) -> Unit = {},
 ) {
+    val context = LocalContext.current
+
     AndroidView(
         modifier = modifier,
         factory = {
@@ -33,19 +37,23 @@ fun SulSulWebView(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                 )
 
-                webViewClient = object : WebViewClient() {
-                    override fun onPageFinished(view: WebView?, url: String?) {
-                        super.onPageFinished(view, url)
-                        onIsWebViewLoading(false)
-                    }
-                }
+                webViewClient = SulSulWebViewClient(
+                    context = context,
+                    onIsWebViewLoading = onIsWebViewLoading,
+                    onStartKaKao = onStartKaKao,
+                )
 
                 webChromeClient = WebChromeClient()
 
                 if (isTransparent) {
                     setBackgroundColor(0) // 웹뷰 투명 배경
                 }
-                settings.javaScriptEnabled = true
+
+                with(settings) {
+                    javaScriptEnabled = true
+                    javaScriptCanOpenWindowsAutomatically = true
+                }
+
                 bridge?.let {
                     addJavascriptInterface(bridge, bridge.bridgeName)
                     if (bridge is SulSulWebViewSendBridge) {
