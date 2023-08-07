@@ -1,13 +1,16 @@
 package com.mashup.alcoholfree.presentation.ui.home
 
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mashup.alcoholfree.domain.base.Result
+import com.mashup.alcoholfree.domain.model.MyInfo
 import com.mashup.alcoholfree.domain.model.PromiseCard
 import com.mashup.alcoholfree.domain.usecase.GetAlcoholPromiseCardsUseCase
 import com.mashup.alcoholfree.domain.usecase.GetMyInfoUseCase
 import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
+import com.mashup.alcoholfree.presentation.ui.home.model.MyInfoUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.TierUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toUiState
@@ -34,17 +37,27 @@ class HomeViewModel @Inject constructor(
                 state.copy(isLoading = true)
             }
 
-            val myInfo = getMyInfoUseCase()
+            val myInfo: MyInfo? = handleMyInfo(getMyInfoUseCase())
 
-            _state.update { state ->
-                state.copy(
-                    userName = myInfo.nickname,
-                    alcoholTier = myInfo.tier?.toUiModel(),
-                    drinkLimit = myInfo.drinkingLimits?.toUiModel(),
-                    isLoading = false,
-                )
+            myInfo?.let {
+                _state.update { state ->
+                    state.copy(
+                        userName = it.nickname,
+                        alcoholTier = it.tier?.toUiModel(),
+                        drinkLimit = it.drinkingLimits?.toUiModel(),
+                        isLoading = false,
+                    )
+                }
             }
+
             getAlcoholPromiseCards()
+        }
+    }
+
+    private fun handleMyInfo(result: Result<MyInfo>): MyInfo? {
+        return when (result) {
+            is Result.Success -> result.value
+            is Result.Error -> null
         }
     }
 
