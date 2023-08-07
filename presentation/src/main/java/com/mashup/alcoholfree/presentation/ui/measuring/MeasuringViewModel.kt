@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mashup.alcoholfree.domain.base.Result
 import com.mashup.alcoholfree.domain.model.ConsumeDrinkInfo
+import com.mashup.alcoholfree.domain.model.MeasureResultReportId
 import com.mashup.alcoholfree.domain.usecase.CreateMeasureResultReportUseCase
 import com.mashup.alcoholfree.domain.usecase.GetAlcoholLimitUseCase
 import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
@@ -62,17 +63,29 @@ class MeasuringViewModel @Inject constructor(
 
     fun createMeasureResultReport() {
         viewModelScope.launch {
-            val result = createMeasureResultReportUseCase(
-                MeasureResultReportParamUiModel(
-                    drinkingStartTime = drinkingStartTime,
-                    drinkingEndTime = getDateTimeNow(),
-                    drinks = drinks.map { (alcoholType, glass) ->
-                        DrinkUiModel(alcoholType, glass)
-                    },
-                    totalDrinkGlasses = state.value.totalCount,
-                ).toDomainModel(),
+            val result = handleCreateMeasureResultReport(
+                createMeasureResultReportUseCase(
+                    MeasureResultReportParamUiModel(
+                        drinkingStartTime = drinkingStartTime,
+                        drinkingEndTime = getDateTimeNow(),
+                        drinks = drinks.map { (alcoholType, glass) ->
+                            DrinkUiModel(alcoholType, glass)
+                        },
+                        totalDrinkGlasses = state.value.totalCount,
+                    ).toDomainModel(),
+                )
             )
-            _createReportSuccessEvent.value = Event(result.id)
+
+            result?.let {
+                _createReportSuccessEvent.value = Event(it.id)
+            }
+        }
+    }
+
+    private fun handleCreateMeasureResultReport(result: Result<MeasureResultReportId>): MeasureResultReportId? {
+        return when (result) {
+            is Result.Success -> result.value
+            is Result.Error -> null
         }
     }
 
