@@ -4,12 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mashup.alcoholfree.domain.base.Result
+import com.mashup.alcoholfree.domain.model.ConsumeDrinkInfo
 import com.mashup.alcoholfree.domain.usecase.CreateMeasureResultReportUseCase
 import com.mashup.alcoholfree.domain.usecase.GetAlcoholLimitUseCase
 import com.mashup.alcoholfree.presentation.ui.home.model.DrinkUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.MeasureResultReportParamUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toDomainModel
 import com.mashup.alcoholfree.presentation.ui.measuring.model.AlcoholLimitParamUiModel
+import com.mashup.alcoholfree.presentation.ui.measuring.model.ConsumeDrinkInfoUiModel
 import com.mashup.alcoholfree.presentation.ui.measuring.model.MeasuringState
 import com.mashup.alcoholfree.presentation.ui.measuring.model.toDomainModel
 import com.mashup.alcoholfree.presentation.ui.measuring.model.toUiModel
@@ -83,18 +86,27 @@ class MeasuringViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-            val drinkInfo =
+            val drinkInfo = handleConsumeDrinkInfo(
                 getAlcoholLimitUseCase(
                     AlcoholLimitParamUiModel(drinkList).toDomainModel(),
-                )
-                    .toUiModel()
+                ),
+            )
 
-            _state.update { state ->
-                state.copy(
-                    level = drinkInfo.title.text,
-                    isDrunken = drinkInfo.isDrunken,
-                )
+            drinkInfo?.let { drinkInfoUiModel ->
+                _state.update { state ->
+                    state.copy(
+                        level = drinkInfoUiModel.title.text,
+                        isDrunken = drinkInfoUiModel.isDrunken,
+                    )
+                }
             }
+        }
+    }
+
+    private fun handleConsumeDrinkInfo(result: Result<ConsumeDrinkInfo>): ConsumeDrinkInfoUiModel? {
+        return when (result) {
+            is Result.Success -> result.value.toUiModel()
+            is Result.Error -> null
         }
     }
 
