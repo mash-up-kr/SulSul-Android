@@ -9,16 +9,20 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import java.net.URISyntaxException
 
-class SulSulWebViewClient(
-    private val context: Context,
+open class SulSulWebViewClient(
     private val onIsWebViewLoading: (Boolean) -> Unit,
-    private val onStartKaKao: (Intent) -> Unit = {},
 ) : WebViewClient() {
     override fun onPageFinished(view: WebView?, url: String?) {
         super.onPageFinished(view, url)
         onIsWebViewLoading(false)
     }
+}
 
+class KakaoShareWebViewClient(
+    private val context: Context,
+    onIsWebViewLoading: (Boolean) -> Unit,
+    private val onStartKakao: (Intent) -> Unit,
+) : SulSulWebViewClient(onIsWebViewLoading) {
     override fun shouldOverrideUrlLoading(
         view: WebView,
         request: WebResourceRequest?,
@@ -32,8 +36,7 @@ class SulSulWebViewClient(
                     )
 
                     if (intent.resolveActivity(context.packageManager) != null) {
-                        onStartKaKao(intent)
-                        onIsWebViewLoading(false)
+                        onStartKakao(intent)
                         return true
                     }
 
@@ -41,7 +44,7 @@ class SulSulWebViewClient(
                         addCategory(Intent.CATEGORY_DEFAULT)
                         data = Uri.parse(KAKAO_STORE_URL)
                     }
-                    onStartKaKao(intentStore)
+                    onStartKakao(intentStore)
                     return true
                 } catch (e: URISyntaxException) {
                     Log.e("kakaoWebView", "Invalid intent request", e)
