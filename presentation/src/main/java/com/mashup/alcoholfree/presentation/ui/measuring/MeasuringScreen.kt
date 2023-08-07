@@ -62,6 +62,7 @@ private const val WEB_FALLING_URL = "https://dev-falling.sulsul.app"
 fun MeasuringScreen(
     state: MeasuringState,
     onAlcoholSelectionChanged: (Int) -> Unit = {},
+    onValidationDialogVisibilityChanged: (Boolean) -> Unit = {},
     onMeasureFinishClick: () -> Unit = {},
     onBackButtonClick: () -> Unit = {},
     onAddBallSuccess: (String) -> Unit = {},
@@ -123,6 +124,12 @@ fun MeasuringScreen(
             AlcoholBackPressDialog(
                 onContinueClick = { isDialogVisible = false },
                 onExitClick = onBackButtonClick,
+            )
+        }
+
+        if (state.isValidationDialogVisible) {
+            InvalidCountDialog(
+                onContinueClick = { onValidationDialogVisibilityChanged(false) },
             )
         }
 
