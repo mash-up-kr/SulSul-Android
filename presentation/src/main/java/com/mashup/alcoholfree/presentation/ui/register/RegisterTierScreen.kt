@@ -19,6 +19,7 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLoading
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.measuring.AlcoholBackPressDialog
+import com.mashup.alcoholfree.presentation.ui.measuring.InvalidCountDialog
 import com.mashup.alcoholfree.presentation.ui.register.model.RegisterTierState
 import com.mashup.alcoholfree.presentation.ui.theme.Black
 
@@ -27,6 +28,7 @@ private const val WEB_ONBOARDING_URL = "https://dev-onboarding.sulsul.app/measur
 @Composable
 fun RegisterTierScreen(
     state: RegisterTierState,
+    onValidationDialogVisibilityChanged: (Boolean) -> Unit,
     onSuccess: (String, Int) -> Unit,
     onIsWebViewLoading: (Boolean) -> Unit,
     onFinishClick: () -> Unit,
@@ -73,5 +75,11 @@ fun RegisterTierScreen(
 
     if (state.isLoading) {
         SulSulLoading()
+    }
+
+    if (state.isValidationDialogVisible) {
+        InvalidCountDialog(
+            onContinueClick = { onValidationDialogVisibilityChanged(false) },
+        )
     }
 }
