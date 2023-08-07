@@ -36,7 +36,6 @@ class RegisterTierActivity : ComponentActivity() {
 
     private fun observeData() {
         viewModel.successEvent.observeEvent(this) {
-            setResult(RESULT_OK)
             finish()
         }
     }
