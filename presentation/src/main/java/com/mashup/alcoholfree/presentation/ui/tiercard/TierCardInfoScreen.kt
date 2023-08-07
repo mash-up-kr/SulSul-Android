@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.mashup.alcoholfree.presentation.ui.component.KakaoShareWebViewClient
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLoading
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
@@ -27,18 +29,19 @@ fun TierCardInfoScreen(
     onStartKaKao: (Intent) -> Unit,
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Black),
+        modifier = Modifier.fillMaxSize().background(Black),
     ) {
+        val context = LocalContext.current
+
         SulSulWebView(
-            modifier = Modifier
-                .fillMaxSize()
-                .navigationBarsPadding(),
+            modifier = Modifier.fillMaxSize().navigationBarsPadding(),
             url = getTierCardInfoUrl(state.drinkLimit.alcoholType, state.drinkLimit.glasses),
             isTransparent = false,
-            onIsWebViewLoading = onIsWebViewLoading,
-            onStartKaKao = onStartKaKao,
+            sulsulWebViewClient = KakaoShareWebViewClient(
+                context = context,
+                onIsWebViewLoading = onIsWebViewLoading,
+                onStartKakao = onStartKaKao,
+            ),
         )
 
         SulSulBackButton(
