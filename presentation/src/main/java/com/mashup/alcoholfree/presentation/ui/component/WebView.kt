@@ -1,7 +1,6 @@
 package com.mashup.alcoholfree.presentation.ui.component
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import com.mashup.alcoholfree.presentation.ui.measuring.SulSulWebViewBridge
 import com.mashup.alcoholfree.presentation.ui.measuring.SulSulWebViewSendBridge
@@ -23,11 +21,9 @@ fun SulSulWebView(
     isTransparent: Boolean,
     state: SulSulWebViewState? = null,
     bridge: SulSulWebViewBridge? = null,
-    onIsWebViewLoading: (Boolean) -> Unit,
-    onStartKaKao: (Intent) -> Unit = {},
+    onIsWebViewLoading: (Boolean) -> Unit = {},
+    sulsulWebViewClient: SulSulWebViewClient = SulSulWebViewClient(onIsWebViewLoading),
 ) {
-    val context = LocalContext.current
-
     AndroidView(
         modifier = modifier,
         factory = {
@@ -37,11 +33,7 @@ fun SulSulWebView(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                 )
 
-                webViewClient = SulSulWebViewClient(
-                    context = context,
-                    onIsWebViewLoading = onIsWebViewLoading,
-                    onStartKaKao = onStartKaKao,
-                )
+                webViewClient = sulsulWebViewClient
 
                 webChromeClient = WebChromeClient()
 
