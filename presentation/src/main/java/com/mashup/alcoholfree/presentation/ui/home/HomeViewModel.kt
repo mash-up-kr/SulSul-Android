@@ -2,8 +2,11 @@ package com.mashup.alcoholfree.presentation.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mashup.alcoholfree.domain.base.Result
+import com.mashup.alcoholfree.domain.model.PromiseCard
 import com.mashup.alcoholfree.domain.usecase.GetAlcoholPromiseCardsUseCase
 import com.mashup.alcoholfree.domain.usecase.GetMyInfoUseCase
+import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
 import com.mashup.alcoholfree.presentation.ui.home.model.TierUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toUiModel
@@ -51,15 +54,26 @@ class HomeViewModel @Inject constructor(
                 state.copy(isLoading = true)
             }
 
-            val cards = getAlcoholPromiseCardsUseCase().map { card ->
-                card.toUiModel().toUiState()
+            val cards: List<AlcoholPromiseCardState>? =
+                handleAlcoholPromiseCards(getAlcoholPromiseCardsUseCase())?.map { card ->
+                    card.toUiModel().toUiState()
+                }
+
+            cards?.let { cardsState ->
+                _state.update { state ->
+                    state.copy(
+                        cardList = ImmutableList(cardsState),
+                        isLoading = false,
+                    )
+                }
             }
-            _state.update { state ->
-                state.copy(
-                    cardList = ImmutableList(cards),
-                    isLoading = false,
-                )
-            }
+        }
+    }
+
+    private fun handleAlcoholPromiseCards(result: Result<List<PromiseCard>>): List<PromiseCard>? {
+        return when (result) {
+            is Result.Success -> result.value
+            is Result.Error -> null
         }
     }
 
