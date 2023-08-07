@@ -22,7 +22,7 @@ import com.mashup.alcoholfree.presentation.ui.measuring.AlcoholBackPressDialog
 import com.mashup.alcoholfree.presentation.ui.register.model.RegisterTierState
 import com.mashup.alcoholfree.presentation.ui.theme.Black
 
-private const val WEB_ONBOARDING_URL = "https://dev-onboarding.sulsul.app/measure"
+private const val WEB_ONBOARDING_URL = "https://onboarding.sulsul.app/measure"
 
 @Composable
 fun RegisterTierScreen(

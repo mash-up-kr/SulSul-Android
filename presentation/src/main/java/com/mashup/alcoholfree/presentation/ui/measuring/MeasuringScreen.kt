@@ -56,7 +56,7 @@ import com.mashup.alcoholfree.presentation.ui.theme.White
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 
 private val measuringShape = RoundedCornerShape(16.dp)
-private const val WEB_FALLING_URL = "https://dev-falling.sulsul.app"
+private const val WEB_FALLING_URL = "https://falling.sulsul.app"
 
 @Composable
 fun MeasuringScreen(

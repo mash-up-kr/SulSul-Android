@@ -1,5 +1,6 @@
 package com.mashup.alcoholfree.presentation.ui.tiercard
 
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,13 +17,14 @@ import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.theme.Black
 import com.mashup.alcoholfree.presentation.ui.tiercard.model.TierCardInfoState
 
-private val WEB_VIEW_ONBOARDING_RESULT_URL = "dev-onboarding.sulsul.app/result"
+private val WEB_VIEW_ONBOARDING_RESULT_URL = "onboarding.sulsul.app/result"
 
 @Composable
 fun TierCardInfoScreen(
     state: TierCardInfoState,
     onIsWebViewLoading: (Boolean) -> Unit,
     onFinishClick: () -> Unit,
+    onStartKaKao: (Intent) -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -36,6 +38,7 @@ fun TierCardInfoScreen(
             url = getTierCardInfoUrl(state.drinkLimit.alcoholType, state.drinkLimit.glasses),
             isTransparent = false,
             onIsWebViewLoading = onIsWebViewLoading,
+            onStartKaKao = onStartKaKao,
         )
 
         SulSulBackButton(
