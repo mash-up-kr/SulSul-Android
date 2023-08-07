@@ -6,7 +6,6 @@ import android.view.MotionEvent
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
@@ -22,7 +21,8 @@ fun SulSulWebView(
     isTransparent: Boolean,
     state: SulSulWebViewState? = null,
     bridge: SulSulWebViewBridge? = null,
-    onIsWebViewLoading: (Boolean) -> Unit,
+    onIsWebViewLoading: (Boolean) -> Unit = {},
+    sulsulWebViewClient: SulSulWebViewClient = SulSulWebViewClient(onIsWebViewLoading),
 ) {
     AndroidView(
         modifier = modifier,
@@ -33,19 +33,19 @@ fun SulSulWebView(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                 )
 
-                webViewClient = object : WebViewClient() {
-                    override fun onPageFinished(view: WebView?, url: String?) {
-                        super.onPageFinished(view, url)
-                        onIsWebViewLoading(false)
-                    }
-                }
+                webViewClient = sulsulWebViewClient
 
                 webChromeClient = WebChromeClient()
 
                 if (isTransparent) {
                     setBackgroundColor(0) // 웹뷰 투명 배경
                 }
-                settings.javaScriptEnabled = true
+
+                with(settings) {
+                    javaScriptEnabled = true
+                    javaScriptCanOpenWindowsAutomatically = true
+                }
+
                 bridge?.let {
                     addJavascriptInterface(bridge, bridge.bridgeName)
                     if (bridge is SulSulWebViewSendBridge) {
