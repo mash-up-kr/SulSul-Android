@@ -100,5 +100,10 @@ dependencies {
     // splash screen
     implementation(Dependencies.AndroidX.SPLASH)
 
+    // lifecycle scope
+    implementation(Dependencies.AndroidX.LIFECYCLE_RUNTIME)
+    // live data
+    implementation(Dependencies.AndroidX.LIVE_DATA)
+
     implementation(project(":domain"))
 }
