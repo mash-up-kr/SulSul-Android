@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.mashup.alcoholfree.presentation.ui.component.InvalidCountDialog
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLoading
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
@@ -27,6 +28,7 @@ private const val WEB_ONBOARDING_URL = "https://onboarding.sulsul.app/measure"
 @Composable
 fun RegisterTierScreen(
     state: RegisterTierState,
+    onValidationDialogVisibilityChanged: (Boolean) -> Unit,
     onSuccess: (String, Int) -> Unit,
     onIsWebViewLoading: (Boolean) -> Unit,
     onFinishClick: () -> Unit,
@@ -73,5 +75,11 @@ fun RegisterTierScreen(
 
     if (state.isLoading) {
         SulSulLoading()
+    }
+
+    if (state.isValidationDialogVisible) {
+        InvalidCountDialog(
+            onContinueClick = { onValidationDialogVisibilityChanged(false) },
+        )
     }
 }

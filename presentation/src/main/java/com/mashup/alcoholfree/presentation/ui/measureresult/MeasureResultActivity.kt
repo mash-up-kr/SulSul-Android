@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mashup.alcoholfree.presentation.ui.home.HomeActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,10 +28,18 @@ class MeasureResultActivity : ComponentActivity() {
                 MeasureResultScreen(
                     state = state,
                 ) {
-                    finish()
+                    navigateToHome()
                 }
             }
         }
+    }
+
+    private fun navigateToHome() {
+        startActivity(
+            Intent(this, HomeActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),
+        )
     }
 
     companion object {

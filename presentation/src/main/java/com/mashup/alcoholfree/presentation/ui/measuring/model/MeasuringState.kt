@@ -10,4 +10,5 @@ data class MeasuringState(
     val alcoholTypes: ImmutableList<String>,
     val isLoading: Boolean,
     val isDrunken: Boolean,
+    val isValidationDialogVisible: Boolean = false,
 )

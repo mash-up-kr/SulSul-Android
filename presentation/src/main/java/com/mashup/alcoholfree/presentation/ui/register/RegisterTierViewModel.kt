@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mashup.alcoholfree.domain.base.Result
 import com.mashup.alcoholfree.domain.model.RegisterTierParam
 import com.mashup.alcoholfree.domain.usecase.RegisterDrinkingLimitUseCase
 import com.mashup.alcoholfree.presentation.ui.register.model.RegisterTierState
@@ -27,18 +28,36 @@ class RegisterTierViewModel @Inject constructor(
     val successEvent: LiveData<Event<String>> get() = _successEvent
 
     fun registerTier(drinkType: String, glass: Int) {
+        if (glass <= 0) {
+            updateValidationDialogVisibility(isVisible = true)
+            return
+        }
         viewModelScope.launch {
-            val result = registerDrinkingLimitUseCase(
+            val result = handleRegisterDrinkingLimit(registerDrinkingLimitUseCase(
                 RegisterTierParam(
                     drinkType = drinkType,
                     glass = glass,
                 ),
-            )
-            _successEvent.value = Event(result)
+            ))
+
+            result?.let {
+                _successEvent.value = Event(it)
+            }
+        }
+    }
+
+    private fun handleRegisterDrinkingLimit(result: Result<String>): String? {
+        return when (result) {
+            is Result.Success -> result.value
+            is Result.Error -> null
         }
     }
 
     fun updateLoading(isLoading: Boolean) {
         _state.value = _state.value.copy(isLoading = isLoading)
+    }
+
+    fun updateValidationDialogVisibility(isVisible: Boolean) {
+        _state.value = _state.value.copy(isValidationDialogVisible = isVisible)
     }
 }

@@ -36,4 +36,6 @@
     <string name="loading_title_label">술 꺼내오는 중..</string>
     <string name="loading_sub_title_label">잠시만 기다려 주세요</string>
     <string name="login_info_messge">로그인 정보가 없습니다. 다시 로그인 해주세요.</string>
+    <string name="common_dialog_title">알림</string>
+    <string name="invalid_count_message">최소 1잔부터 등록할 수 있습니다.</string>
 </resources>

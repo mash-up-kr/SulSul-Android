@@ -28,6 +28,7 @@ class MeasuringActivity : ComponentActivity() {
                 MeasuringScreen(
                     state = state.value,
                     onAlcoholSelectionChanged = { viewModel.updateCurrentAlcoholId(it) },
+                    onValidationDialogVisibilityChanged = viewModel::updateValidationDialogVisibility,
                     onBackButtonClick = { finish() },
                     onAddBallSuccess = viewModel::addAlcoholItem,
                     onMeasureFinishClick = viewModel::createMeasureResultReport,

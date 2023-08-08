@@ -28,6 +28,7 @@ class RegisterTierActivity : ComponentActivity() {
                     onSuccess = viewModel::registerTier,
                     onIsWebViewLoading = viewModel::updateLoading,
                     onFinishClick = { finish() },
+                    onValidationDialogVisibilityChanged = viewModel::updateValidationDialogVisibility,
                 )
             }
         }
