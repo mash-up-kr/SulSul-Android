@@ -23,7 +23,7 @@ class SplashViewModel @Inject constructor(
     private val _addTokenEvent = MutableLiveData<Unit>()
     val addTokenEvent: LiveData<Unit> = _addTokenEvent
 
-    fun checkAccessToken(): Unit? {
+    fun checkAccessToken(): Boolean {
         return TokenManagerProvider
             .instance
             .manager
@@ -33,7 +33,9 @@ class SplashViewModel @Inject constructor(
                 if (!preAccessToken.value.equals(accessToken)) {
                     addKakaoToken(accessToken)
                 }
+                true
             }
+            ?: false
     }
 
     private fun addKakaoToken(accessToken: String) {

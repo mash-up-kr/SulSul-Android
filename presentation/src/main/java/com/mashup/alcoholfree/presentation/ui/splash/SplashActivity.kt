@@ -49,7 +49,7 @@ class SplashActivity : ComponentActivity() {
     }
 
     private fun addAccessToken() {
-        if (viewModel.checkAccessToken() == null) {
+        if (!viewModel.checkAccessToken()) {
             Toast
                 .makeText(this, getString(R.string.login_info_messge), Toast.LENGTH_SHORT)
                 .show()
