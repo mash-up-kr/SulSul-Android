@@ -37,4 +37,5 @@
     <string name="loading_sub_title_label">잠시만 기다려 주세요</string>
     <string name="common_dialog_title">알림</string>
     <string name="invalid_count_message">최소 1잔부터 등록할 수 있습니다.</string>
+    <string name="common_error">오류가 발생했습니다. 다시 시도해주세요.</string>
 </resources>
