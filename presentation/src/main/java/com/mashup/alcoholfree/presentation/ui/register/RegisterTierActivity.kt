@@ -8,8 +8,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
 import com.mashup.alcoholfree.presentation.utils.observeEvent
+import com.mashup.alcoholfree.presentation.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +40,10 @@ class RegisterTierActivity : ComponentActivity() {
     private fun observeData() {
         viewModel.successEvent.observeEvent(this) {
             finish()
+        }
+
+        viewModel.errorEvent.observe(this) {
+            showToast(R.string.common_error)
         }
     }
 

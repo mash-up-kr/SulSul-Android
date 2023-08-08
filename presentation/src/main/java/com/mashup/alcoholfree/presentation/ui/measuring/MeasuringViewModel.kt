@@ -46,6 +46,9 @@ class MeasuringViewModel @Inject constructor(
     private val drinks
         get() = drinkingMap.toList()
 
+    private val _errorEvent = MutableLiveData<Unit>()
+    val errorEvent: LiveData<Unit> = _errorEvent
+
     private fun getDateTimeNow() = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)
 
     fun addAlcoholItem(alcoholType: String) {
@@ -77,12 +80,15 @@ class MeasuringViewModel @Inject constructor(
                         },
                         totalDrinkGlasses = state.value.totalCount,
                     ).toDomainModel(),
-                )
+                ),
             )
 
             result?.let {
                 _createReportSuccessEvent.value = Event(it.id)
             }
+                ?: run {
+                    _errorEvent.value = Unit
+                }
         }
     }
 
