@@ -34,9 +34,23 @@
                     android:scheme="kakao${KAKAO_KEY}" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.measuring.MeasuringActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.Browsable" />
+
+                <data
+                    android:host="measuring"
+                    android:scheme="sulsul" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.measureresult.MeasureResultActivity" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.measuring.MeasuringActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.register.RegisterTierActivity" />
         <activity android:name=".ui.tiercard.TierCardInfoActivity" />
