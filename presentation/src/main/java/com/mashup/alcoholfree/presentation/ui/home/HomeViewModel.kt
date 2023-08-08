@@ -1,25 +1,21 @@
 package com.mashup.alcoholfree.presentation.ui.home
 
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mashup.alcoholfree.domain.base.Result
-import com.mashup.alcoholfree.domain.model.MyInfo
-import com.mashup.alcoholfree.domain.model.PromiseCard
 import com.mashup.alcoholfree.domain.usecase.GetAlcoholPromiseCardsUseCase
 import com.mashup.alcoholfree.domain.usecase.GetMyInfoUseCase
-import com.mashup.alcoholfree.presentation.ui.home.model.AlcoholPromiseCardState
 import com.mashup.alcoholfree.presentation.ui.home.model.HomeState
-import com.mashup.alcoholfree.presentation.ui.home.model.MyInfoUiModel
-import com.mashup.alcoholfree.presentation.ui.home.model.TierUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toUiModel
 import com.mashup.alcoholfree.presentation.ui.home.model.toUiState
 import com.mashup.alcoholfree.presentation.utils.ImmutableList
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,80 +23,38 @@ class HomeViewModel @Inject constructor(
     private val getAlcoholPromiseCardsUseCase: GetAlcoholPromiseCardsUseCase,
     private val getMyInfoUseCase: GetMyInfoUseCase,
 ) : ViewModel() {
+    val state: StateFlow<HomeState> = makeCombinedState().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = initHomeState()
+    )
 
-    private val _state = MutableStateFlow(initHomeState())
-    val state = _state.asStateFlow()
-
-    fun getUserInfo() {
-        viewModelScope.launch {
-            _state.update { state ->
-                state.copy(isLoading = true)
-            }
-
-            val myInfo: MyInfo? = handleMyInfo(getMyInfoUseCase())
-
-            myInfo?.let {
-                _state.update { state ->
-                    state.copy(
-                        userName = it.nickname,
-                        alcoholTier = it.tier?.toUiModel(),
-                        drinkLimit = it.drinkingLimits?.toUiModel(),
-                        isLoading = false,
-                    )
-                }
-            }
-
-            getAlcoholPromiseCards()
+    private fun makeCombinedState(): Flow<HomeState> = combine(
+        getMyInfoUseCase(),
+        getAlcoholPromiseCardsUseCase(),
+    ) { userInfo, promiseCards ->
+        val cards = promiseCards.map { card ->
+            card.toUiModel().toUiState()
         }
-    }
 
-    private fun handleMyInfo(result: Result<MyInfo>): MyInfo? {
-        return when (result) {
-            is Result.Success -> result.value
-            is Result.Error -> null
-        }
-    }
-
-    fun getAlcoholPromiseCards() {
-        viewModelScope.launch {
-            _state.update { state ->
-                state.copy(isLoading = true)
-            }
-
-            val cards: List<AlcoholPromiseCardState>? =
-                handleAlcoholPromiseCards(getAlcoholPromiseCardsUseCase())?.map { card ->
-                    card.toUiModel().toUiState()
-                }
-
-            cards?.let { cardsState ->
-                _state.update { state ->
-                    state.copy(
-                        cardList = ImmutableList(cardsState),
-                        isLoading = false,
-                    )
-                }
-            }
-        }
-    }
-
-    private fun handleAlcoholPromiseCards(result: Result<List<PromiseCard>>): List<PromiseCard>? {
-        return when (result) {
-            is Result.Success -> result.value
-            is Result.Error -> null
-        }
+        HomeState(
+            userName = userInfo.nickname,
+            alcoholTier = userInfo.tier?.toUiModel(),
+            drinkLimit = userInfo.drinkingLimits?.toUiModel(),
+            cardList = ImmutableList(cards),
+            isLoading = false,
+        )
+    }.catch {
+        Log.d("HomeViewModel", it.toString())
     }
 
     private fun initHomeState(): HomeState {
-        // TODO("초기 상태 셋팅")
         return HomeState(
             userName = "",
-            alcoholTier = TierUiModel(
-                subTitle = "",
-                title = "",
-                tierImageUrl = "",
-            ),
+            alcoholTier = null,
             cardList = ImmutableList(emptyList()),
             drinkLimit = null,
+            isLoading = true,
         )
     }
 }

@@ -3,6 +3,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <package android:name="com.kakao.talk" />
+    </queries>
+
     <application>
         <activity
             android:name=".ui.splash.SplashActivity"
