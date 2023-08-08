@@ -17,6 +17,7 @@ object Dependencies {
             "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
         const val MATERIAL = "com.google.android.material:material:$MATERIAL_VERSION"
         const val SPLASH = "androidx.core:core-splashscreen:$SPLASH_VERSION"
+        const val LIVE_DATA = "androidx.lifecycle:lifecycle-livedata-ktx:$LIFECYCLE_VERSION"
     }
 
     object Retrofit {
