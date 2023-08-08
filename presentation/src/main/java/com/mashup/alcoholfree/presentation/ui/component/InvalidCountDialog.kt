@@ -1,4 +1,4 @@
-package com.mashup.alcoholfree.presentation.ui.measuring
+package com.mashup.alcoholfree.presentation.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.mashup.alcoholfree.presentation.R
-import com.mashup.alcoholfree.presentation.ui.component.SulSulDefaultButton
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonColor
 import com.mashup.alcoholfree.presentation.ui.component.model.SulSulButtonSize
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme

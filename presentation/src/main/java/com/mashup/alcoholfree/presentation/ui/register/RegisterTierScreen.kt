@@ -15,11 +15,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.mashup.alcoholfree.presentation.ui.component.InvalidCountDialog
 import com.mashup.alcoholfree.presentation.ui.component.SulSulBackButton
 import com.mashup.alcoholfree.presentation.ui.component.SulSulLoading
 import com.mashup.alcoholfree.presentation.ui.component.SulSulWebView
 import com.mashup.alcoholfree.presentation.ui.measuring.AlcoholBackPressDialog
-import com.mashup.alcoholfree.presentation.ui.measuring.InvalidCountDialog
 import com.mashup.alcoholfree.presentation.ui.register.model.RegisterTierState
 import com.mashup.alcoholfree.presentation.ui.theme.Black
 
