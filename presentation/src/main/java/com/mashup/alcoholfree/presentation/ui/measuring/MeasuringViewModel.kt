@@ -58,6 +58,10 @@ class MeasuringViewModel @Inject constructor(
     }
 
     fun createMeasureResultReport() {
+        if (state.value.totalCount <= 0) {
+            updateValidationDialogVisibility(isVisible = true)
+            return
+        }
         viewModelScope.launch {
             val result = createMeasureResultReportUseCase(
                 MeasureResultReportParamUiModel(
@@ -71,6 +75,10 @@ class MeasuringViewModel @Inject constructor(
             )
             _createReportSuccessEvent.value = Event(result.id)
         }
+    }
+
+    fun updateValidationDialogVisibility(isVisible: Boolean) {
+        _state.value = _state.value.copy(isValidationDialogVisible = isVisible)
     }
 
     fun updateCurrentAlcoholId(alcoholId: Int) {

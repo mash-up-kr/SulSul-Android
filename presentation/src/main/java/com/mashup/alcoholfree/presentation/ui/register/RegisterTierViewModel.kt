@@ -27,6 +27,10 @@ class RegisterTierViewModel @Inject constructor(
     val successEvent: LiveData<Event<String>> get() = _successEvent
 
     fun registerTier(drinkType: String, glass: Int) {
+        if (glass <= 0) {
+            updateValidationDialogVisibility(isVisible = true)
+            return
+        }
         viewModelScope.launch {
             val result = registerDrinkingLimitUseCase(
                 RegisterTierParam(
@@ -40,5 +44,9 @@ class RegisterTierViewModel @Inject constructor(
 
     fun updateLoading(isLoading: Boolean) {
         _state.value = _state.value.copy(isLoading = isLoading)
+    }
+
+    fun updateValidationDialogVisibility(isVisible: Boolean) {
+        _state.value = _state.value.copy(isValidationDialogVisible = isVisible)
     }
 }
