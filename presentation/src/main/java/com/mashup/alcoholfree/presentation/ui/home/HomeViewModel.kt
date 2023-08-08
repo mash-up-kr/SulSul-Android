@@ -1,6 +1,7 @@
 package com.mashup.alcoholfree.presentation.ui.home
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mashup.alcoholfree.domain.usecase.GetAlcoholPromiseCardsUseCase
@@ -26,8 +27,11 @@ class HomeViewModel @Inject constructor(
     val state: StateFlow<HomeState> = makeCombinedState().stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = initHomeState()
+        initialValue = initHomeState(),
     )
+
+    private val _errorEvent = MutableLiveData<Unit>()
+    val errorEvent: LiveData<Unit> = _errorEvent
 
     private fun makeCombinedState(): Flow<HomeState> = combine(
         getMyInfoUseCase(),
@@ -44,8 +48,8 @@ class HomeViewModel @Inject constructor(
             cardList = ImmutableList(cards),
             isLoading = false,
         )
-    }.catch {
-        Log.d("HomeViewModel", it.toString())
+    }.catch { exception ->
+        _errorEvent.value = Unit
     }
 
     private fun initHomeState(): HomeState {

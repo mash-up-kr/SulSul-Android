@@ -1,5 +1,7 @@
 package com.mashup.alcoholfree.presentation.ui.measureresult
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,6 +30,9 @@ class MeasureResultViewModel @Inject constructor(
     private val _state = MutableStateFlow(initState())
     val state = _state.asStateFlow()
 
+    private val _errorEvent = MutableLiveData<Unit>()
+    val errorEvent: LiveData<Unit> = _errorEvent
+
     init {
         reportId?.let { id ->
             viewModelScope.launch {
@@ -53,6 +58,8 @@ class MeasureResultViewModel @Inject constructor(
                             isLoading = false,
                         )
                     }
+                } ?: run {
+                    _errorEvent.value = Unit
                 }
             }
         }

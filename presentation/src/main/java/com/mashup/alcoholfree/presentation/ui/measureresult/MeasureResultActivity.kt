@@ -9,8 +9,10 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mashup.alcoholfree.presentation.R
 import com.mashup.alcoholfree.presentation.ui.home.HomeActivity
 import com.mashup.alcoholfree.presentation.ui.theme.AlcoholFreeAndroidTheme
+import com.mashup.alcoholfree.presentation.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,6 +33,13 @@ class MeasureResultActivity : ComponentActivity() {
                     navigateToHome()
                 }
             }
+        }
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        viewModel.errorEvent.observe(this) {
+            showToast(R.string.common_error)
         }
     }
 

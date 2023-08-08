@@ -27,21 +27,29 @@ class RegisterTierViewModel @Inject constructor(
     private val _successEvent = MutableLiveData<Event<String>>()
     val successEvent: LiveData<Event<String>> get() = _successEvent
 
+    private val _errorEvent = MutableLiveData<Unit>()
+    val errorEvent: LiveData<Unit> = _errorEvent
+
     fun registerTier(drinkType: String, glass: Int) {
         if (glass <= 0) {
             updateValidationDialogVisibility(isVisible = true)
             return
         }
+
         viewModelScope.launch {
-            val result = handleRegisterDrinkingLimit(registerDrinkingLimitUseCase(
-                RegisterTierParam(
-                    drinkType = drinkType,
-                    glass = glass,
+            val result = handleRegisterDrinkingLimit(
+                registerDrinkingLimitUseCase(
+                    RegisterTierParam(
+                        drinkType = drinkType,
+                        glass = glass,
+                    ),
                 ),
-            ))
+            )
 
             result?.let {
                 _successEvent.value = Event(it)
+            } ?: run {
+                _errorEvent.value = Unit
             }
         }
     }
