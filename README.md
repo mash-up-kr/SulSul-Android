@@ -6,7 +6,10 @@
 + 하나의 주종으로 주량을 측정하여 여러가지의 주종에 따라 자신의 주량을 알 수 있는 서비스 입니다. 또한 여러가지의 주종으로 주량을 측정하고 그에 따른 칭호도 획득할 수 있습니다.
   
 # 💾App Download
-+ [술술 PlayStore 링크](https://play.google.com/store/apps/details?id=com.mashup.alcoholfree)
+
+<a href="https://play.google.com/store/apps/details?id=com.mashup.alcoholfree">
+<img src="https://user-images.githubusercontent.com/63157395/211233100-2f255c00-3336-4125-b5da-2fd935e40b5a.png" width="101px" />
+</a>
 
 # 💻Contributor
 <div align="center">
@@ -19,12 +22,12 @@
           </td>
           <td align="center">
               <a href="https://github.com/SEO-J17">                 
-                  <img alt="SEO-J17" src="https://avatars.githubusercontent.com/SEO-J17" width="100" />            
+                  <img alt="SEO-J17" src="https://avatars.githubusercontent.com/SEO-J17" width="120" />            
               </a>
           </td>
           <td align="center">
               <a href="https://github.com/oreocube">                 
-                  <img alt="oreocube" src="https://avatars.githubusercontent.com/oreocube" width="100" />            
+                  <img alt="oreocube" src="https://avatars.githubusercontent.com/oreocube" width="120" />            
               </a>
           </td>
       </tr>
@@ -37,43 +40,49 @@
 </div>
 
 # 🎨Structure
-> **MVVM**
 
-  <img src=https://user-images.githubusercontent.com/59912150/229727957-6ba9efc6-032c-433e-b4df-e1c9dbcc7595.png>
+<img src=https://github.com/mash-up-kr/SulSul-Android/assets/59912150/41a8a1b6-75d7-4f19-8cfa-67c59b9c6f9d/>
 
-  + MVVM 디자인 패턴 + Clean Architecture을 통해 구조를 설계하여 개발하였습니다.
-
-
-> **Clean Architecture**
-
-  <img src=https://github.com/SEO-J17/CanyonGG/assets/59912150/16f69d90-2eaa-41ae-abc2-39757d48bdc2>
-
++ MVVM + Clean Architecture을 통해 구조를 설계하여 개발하였습니다.
 + 클린 아키텍처 가이드에 따라 data -> domain <- presentaion 의 순서로 의존성을 가지게 하여 구조를 설계했습니다.
 
 
 # 🛠 Tech & Library
 
-+ **Target SDK Level 33**
-+ **Min SDK Level 26**
++ Target SDK Level 33
++ Min SDK Level 26
 + Kotlin 1.8.10
-+ JetPack
-    + Compose
-    + LifeCycle
-    + LiveData
-    + Flow
-    + ViewModel
-    + DataStore
-+ Hilt
-+ Coil-Compose
-+ Retrofit
-+ OkHttp
-+ GSON
-+ Coroutine
-+ Splash
-+ WebView
-+ Kakao SDK
+  
+ 구분 | 내용
+-- | --
+Architecture | MVVM, Clean Architecture
+Jetpack | Compose, DataStore, Lifecycle, LiveData, ViewModel
+Network | Retrofit, OkHttp
+Asynchronous Processing | Coroutine, Flow
+Dependency Injection | Hilt
+Third Party Library | Coil, Kakao SDK
+Strategy | Git Flow
+Other Tool | Figma
 
-# ✨Features
+# 🏆 Goal
+
+1. **클린 아키텍처 (달성)**
+   - 도메인 레이어는 타 레이어에 의존 x
+   - 꼼꼼한 코드리뷰
+
+2. **리컴포지션 최소화 (달성)**
+   - screen 컴포저블에는 state, 람다만 전달
+   - ImmutableList 정의
+
+3. **컴포넌트 공통화 (달성)**
+   - 버튼, 뱃지, 웹뷰 등 여러 화면에서 재사용되는 컴포넌트 정의
+
+4. **테스트 코드 작성 (실패**)
+
+5. **모든 화면에 오너십 갖기 (달성)**
+   - 개발자가 특정 화면만 담당하지 않고 이슈가 생기면 누구든 개발
+
+# ✨ Features
 <div>
     <img
         width="32%"
