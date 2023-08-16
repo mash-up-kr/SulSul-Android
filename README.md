@@ -5,13 +5,13 @@
 + 2023.04 ~ 2023.08 까지 서버,웹,디자이너,안드로이드 분야의 총 11명의 사람들과 함께 진행한 팀 프로젝트 입니다.
 + 하나의 주종으로 주량을 측정하여 여러가지의 주종에 따라 자신의 주량을 알 수 있는 서비스 입니다. 또한 여러가지의 주종으로 주량을 측정하고 그에 따른 칭호도 획득할 수 있습니다.
   
-# 💾App Download
+# 💾 App Download
 
 <a href="https://play.google.com/store/apps/details?id=com.mashup.alcoholfree">
 <img src="https://user-images.githubusercontent.com/63157395/211233100-2f255c00-3336-4125-b5da-2fd935e40b5a.png" width="101px" />
 </a>
 
-# 💻Contributor
+# 💻 Contributor
 <div align="center">
 <table style="font-weight : bold">
       <tr>
@@ -39,7 +39,7 @@
   </table>
 </div>
 
-# 🎨Structure
+# 🎨 Structure
 
 <img src=https://github.com/mash-up-kr/SulSul-Android/assets/59912150/41a8a1b6-75d7-4f19-8cfa-67c59b9c6f9d/>
 
